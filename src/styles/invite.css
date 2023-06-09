@@ -1,0 +1,141 @@
+.invite-content {
+  color: #fff;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.invite-content h1 {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 2.3rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.invite-amount-out {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  border: 1px solid #5b6e78;
+  border-radius: 1rem;
+  box-shadow: rgba(90, 110, 121, 0.2) 0px 7px 29px 0px;
+}
+
+.invite-amount p {
+  color: #ffffffd0;
+}
+
+.invite-amount h2 {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.invite-amount-out button {
+  padding: 0 1.5rem;
+  border: none;
+  border-radius: 1rem;
+  background-color: #e8f3d4;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.invite-amount-out button:hover {
+  background-color: #d1dac2;
+}
+
+.invite-card1-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.7rem;
+}
+
+.invite-card1 {
+  background-color: red;
+  width: 31%;
+  height: 11rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  border-radius: 1rem;
+}
+
+.invite-card1 i {
+  font-size: 2.3rem;
+}
+
+.invite-card1 p {
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.income-history-card-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2.5rem;
+}
+
+.income-history-card {
+  padding: 1rem;
+  width: 48%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  border: 1px solid #5b6e78;
+  border-radius: 1rem;
+}
+
+.income-history-card p {
+  font-size: 1.3rem;
+  font-weight: 400;
+}
+
+.income-history-card h2 {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.income-history h3 {
+  font-weight: 400;
+  color: #f7feff;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+}
+
+.invite-button {
+  position: absolute;
+  right: 0;
+  top: 75vh;
+  margin-top: 1rem;
+  background-color: #a0f5c3;
+  border: none;
+  padding: 0.8rem 1rem;
+  border-radius: 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  transition: all 0.3s ease-in-out;
+}
+
+.invite-button:hover {
+  background-color: #89dfad;
+}
+
+@media screen and (max-width: 520px) {
+  .invite-content h1 {
+    font-size: 2rem;
+  }
+
+  .income-history-card p {
+    font-size: 1rem;
+  }
+
+  .income-history h3 {
+    font-size: 1.1rem;
+  }
+}
