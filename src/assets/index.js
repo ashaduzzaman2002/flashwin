@@ -1,9 +1,49 @@
-import Show from './images/eye-solid.svg'
-import Hide from './images/eye-slash-solid.svg'
-import Home from './images/home.png'
-import Bot from './images/bot.png'
-import Elephant from './images/elephant.png'
+import Home from './images/home.png';
+import ElephantIcon from './icons/elephant.svg';
+import Wheel from './images/spinner-flashwin-01.png';
+import roulette from './images/roulette-flashwin-02.png';
+import Cow from './icons/cow.svg';
+import tiger from './icons/tiger.svg';
+import Money from './icons/withdraw-money.svg';
+import recharge from './icons/recharge.svg';
+import rechargeFilled from './icons/recharge-filled.svg';
+import check from './icons/check.svg';
+import reward from './icons/reward.svg';
+import rocket from './icons/rocket.svg';
+import dice from './icons/dice.svg';
+import fortuneWheel from './icons/fortune-wheel.svg';
+import bomb from './icons/bomb.svg';
+import vault from './icons/vault.svg';
+import home from './icons/home.svg';
+import coin from './icons/coin.svg';
+import treasure from './images/treasure-chest.png';
+import avatar from './icons/avatar.svg'
+import profile from './icons/profile.svg'
+import profileFilled from './icons/profile-filled.svg'
+import receipt from './icons/receipt-solid.svg'
 
 export {
-    Show, Hide, Home, Bot, Elephant
-}
+  Home,
+  ElephantIcon,
+  Wheel,
+  roulette,
+  Cow,
+  tiger,
+  Money,
+  recharge,
+  rechargeFilled,
+  check,
+  reward,
+  rocket,
+  dice,
+  fortuneWheel,
+  bomb,
+  vault,
+  home,
+  coin,
+  treasure,
+  avatar,
+  profile,
+  profileFilled,
+  receipt
+};

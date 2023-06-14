@@ -1,0 +1,93 @@
+.checkin-container {
+  color: #fff;
+}
+
+.checkin-container h1 {
+  text-align: center;
+  padding: 2rem;
+  font-weight: 500;
+  font-size: 1.4rem;
+}
+
+.daily-rewards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  background-color: #ffffff5a;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+}
+
+.daily-rewards img {
+  width: 90%;
+}
+
+.daily-rewards div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.checkin-btn {
+  margin-top: 2rem;
+  width: 100%;
+  padding: 1.1rem 0;
+  border-radius: 1rem;
+  border: none;
+  background-color: #69f0ae;
+  color: #000700;
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.checkin-btn:focus {
+  outline: none;
+}
+
+.checkin-desc {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  color: rgb(202, 200, 200);
+}
+
+.checkin-tresure {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  position: absolute;
+  width: 100%;
+  height: 200px;
+}
+
+.checkin-tresure img {
+  position: relative;
+  z-index: 2;
+  width: 30%;
+  margin: auto;
+}
+
+.checkin-tresure div {
+  width: 200px;
+  height: 200px;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(217, 169, 24, 0.8) 0%, rgba(104, 84, 22, 0) 70%);
+  filter: blur(20px);
+}
+
+
+@media screen and (max-width: 520px) {
+  .checkin-tresure img {
+    width: 40%;
+  }
+  
+}

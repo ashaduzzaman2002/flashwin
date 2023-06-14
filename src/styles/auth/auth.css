@@ -93,12 +93,12 @@
   color: #ffffff65;
 }
 
-.show-password {
-  width: 20px;
-  height: 20px;
+.password-input i {
+  font-size: 14px;
   position: absolute;
   right: 1rem;
-  color: #fff;
+  color: #e2e0e0;
+
 }
 
 .forgotPassword {
@@ -166,6 +166,8 @@
   outline: none;
 }
 
+
+
 @media screen and (max-width: 400px) {
   .auth-input,
   .verification-input {
@@ -174,7 +176,7 @@
 
   .auth-input input,
   .verification-input button {
-    padding: 10px 0;
+    padding: 10px 10px;
   }
 
   .verification-input input {

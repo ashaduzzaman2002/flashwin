@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import '../../styles/auth/auth.css';
-import { Show, Hide } from '../../assets';
 import { Link } from 'react-router-dom';
 
 const Login = () => {
@@ -23,12 +22,7 @@ const Login = () => {
           <div className='auth-input password-input'>
             <input id='password' placeholder='Password (> 3 characters)' autocomplete="off" type={showPassword ? 'text' : 'password'} />
 
-            <img
-            className='show-password'
-              onClick={() => setShowPassword(!showPassword)}
-              src={showPassword ? Show : Hide}
-              alt=""
-            />
+            <i onClick={() => setShowPassword(!showPassword)} class={showPassword?"fa-solid fa-eye":"fa-solid fa-eye-slash"}></i>
           </div>
         </div>
 

@@ -1,0 +1,137 @@
+.withdraw-container {
+  color: #fff;
+}
+
+.header-secondary h1 {
+  text-align: center;
+  margin-top: 2rem;
+  font-weight: 500;
+  font-size: 1.4rem;
+}
+
+.header-secondary-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid gray;
+  padding: 1rem;
+  border-radius: 1rem;
+  margin-top: 1.5rem;
+}
+
+.header-secondary-card p:first-child {
+  color: rgba(255, 255, 255, 0.745);
+}
+
+.header-secondary-card p:last-child {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.header-secondary-card button {
+  border: none;
+  background-color: #fedcaf;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  font-weight: 500;
+}
+
+.header-secondary-card button:focus {
+  outline: none;
+}
+
+.withdraw-amount-header {
+  margin-top: 3rem;
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: #ffffffcb;
+  letter-spacing: 2px;
+}
+
+.withdraw-amount {
+  margin-top: 1rem;
+  display: flex;
+  background-color: #1f262c;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.withdraw-amount p {
+  padding: 1.2rem 1rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.withdraw-amount input {
+  width: 100%;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding-right: 1rem;
+}
+
+.withdraw-amount input:focus {
+  outline: none;
+}
+
+.withdraw-note {
+  margin-top: 1rem;
+}
+
+.withdraw-note h3 {
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.withdraw-note p {
+  color: #ffffffbd;
+  font-size: 14px;
+}
+
+.withdraw-note span {
+  color: #72d1a9;
+}
+
+.withdraw-btn {
+  margin-top: 5rem;
+  width: 100%;
+  padding: 1.1rem 0;
+  border-radius: 1rem;
+  border: none;
+  background-color: #69f0ae;
+  color: #000700;
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.withdraw-btn:focus {
+  outline: none;
+}
+
+.quick-amount {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.quick-amount button {
+  border: 1px solid #ffffff93;
+  background: none;
+  padding: 10px 0;
+  color: #fff;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+
+.quick-amount button:hover, .quick-amount-selected {
+  border-color: transparent;
+  background-color: #e8f2d4;
+  color: #000700;
+}

@@ -23,12 +23,12 @@ const BottomNav = () => {
         </li>
         <li
           className={`nav-link ${
-            pathname === '/research' ? 'active-link' : ''
+            pathname === '/recharge' ? 'active-link' : ''
           }`}
         >
-          <Link to={'/research'}>
+          <Link to={'/recharge'}>
             <i class="fa-solid fa-bolt-lightning"></i>
-            <p>Research</p>
+            <p>Recharge</p>
           </Link>
         </li>
         <li

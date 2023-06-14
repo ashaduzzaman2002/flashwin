@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import '../../styles/auth/auth.css';
-import { Show, Hide } from '../../assets';
 import { Link } from 'react-router-dom';
 
 const Register = () => {
@@ -32,12 +31,15 @@ const Register = () => {
           <div className="auth-input password-input">
             <input id="password" placeholder='Password (> 3 characters)' autocomplete="off" type={showPassword ? 'text' : 'password'} />
 
-            <img
-              className="show-password"
-              onClick={() => setShowPassword(!showPassword)}
-              src={showPassword ? Show : Hide}
-              alt=""
-            />
+            <i onClick={() => setShowPassword(!showPassword)} class={showPassword?"fa-solid fa-eye":"fa-solid fa-eye-slash"}></i>
+          </div>
+        </div>
+
+        <div>
+          <label htmlFor="referralCode">Referral Code {'(Optional)'}</label>
+
+          <div className="auth-input password-input">
+            <input id="referralCode" placeholder='Referral code' autocomplete="off" type="text" />
           </div>
         </div>
 

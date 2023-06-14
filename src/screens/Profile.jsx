@@ -1,6 +1,6 @@
 import React from 'react';
 import BottomNav from '../components/BottomNav';
-import { Bot } from '../assets';
+import { Bot, avatar } from '../assets';
 import { Link } from 'react-router-dom';
 import '../styles/Profile.css';
 
@@ -12,7 +12,7 @@ const Profile = () => {
       <div className="profile-container">
         <div className="uid-card">
           <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-            <img src={Bot} alt="" />
+            <img style={{width: '25%'}} src={avatar} alt="" />
             <div className="uid-detail">
               <p>UID: 43</p>
               <p>Phone: 9382756748</p>
