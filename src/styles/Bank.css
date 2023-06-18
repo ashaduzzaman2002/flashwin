@@ -1,0 +1,71 @@
+.bankDetails-container {
+  padding-top: 2rem;
+  color: #fff;
+  padding-bottom: 2rem;
+  position: relative;
+  min-height: 100vh;
+}
+
+.bankDetails-container h2 {
+  font-weight: 400;
+  text-align: center;
+}
+
+.bank-card {
+    margin-top: 2rem;
+    background-color: #283546;
+    padding: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 1rem;
+}
+
+.bankDetails-container i {
+    font-size: 3rem;
+    background-color: #798f9d;
+    padding: 1.2rem;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+
+
+.bank-card p {
+    color: #778d9c;
+    font-weight: 500;
+    font-style: italic;
+    font-size: 1.2rem;
+}
+
+.addAcountBtn {
+    position: absolute;
+    bottom: 3rem;
+    right: 2rem;
+    border: none;
+    background-color: #a2f4c4;
+    padding: 0.1rem 1.2rem;
+    border-radius: 1rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    
+}
+
+.addbank-icon {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.addbank-icon i {
+    font-size: 3.5rem;
+    padding: 2rem;
+    background-color: #283546;
+}
+
+.bankDetails-container label {
+    font-size: 1rem;
+}

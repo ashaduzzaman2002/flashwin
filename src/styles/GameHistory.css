@@ -1,0 +1,32 @@
+.gameHistory-container {
+    padding-top: 2rem;
+    color: #fff;
+    padding-bottom: 2rem;
+    position: relative;
+    min-height: 100vh;
+  }
+  
+  .gameHistory-container h2 {
+    font-weight: 400;
+    text-align: center;
+  }
+
+  .gameHistory-btn-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+  }
+
+  .gameHistory-btn-group button {
+    border: none;
+    background: none;
+    padding: 0.6rem;
+    border-radius: 10px;
+    font-weight: 500;
+    color: #fff;
+  }
+
+  .gameHistory-activeBtn {
+    background-color: #fbaa79 !important;
+    color: black !important;
+  }

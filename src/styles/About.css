@@ -1,0 +1,17 @@
+.about-container {
+  padding-top: 2rem;
+  color: #fff;
+  padding-bottom: 2rem;
+}
+
+.about-container h2 {
+  font-weight: 400;
+  text-align: center;
+}
+
+.about-para {
+    margin-top: 2rem;
+}
+.about-para p {
+    margin-bottom: 1.5rem;
+}

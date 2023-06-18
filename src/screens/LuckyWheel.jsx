@@ -2,6 +2,7 @@ import React from 'react';
 // import SpinWheel from '../components/SpinWheel'
 import '../styles/LuckyWheel.css';
 import { Cow, ElephantIcon, Wheel, roulette, tiger } from '../assets';
+import OtherUsers from '../components/OtherUsers';
 
 const LuckyWheel = () => {
   const numList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -100,32 +101,7 @@ const LuckyWheel = () => {
           <p style={{textAlign: 'center', marginTop: 5, color: '#ebe7f5', fontSize: 15}}>1:36</p>
         </div>
 
-        <div className='lucky-wheel-btn-group'>
-            <button style={{background: '#69efb0', color: 'black'}}>Other Players</button>
-            <button>My Orders</button>
-        </div>
-
-        <div className='luckyWheel-others'>
-          <div>
-            <p>Period</p>
-            <small>18:54</small>
-          </div>
-
-          <div style={{textAlign: 'center'}}>
-            <p>User</p>
-            <small>****18787</small>
-          </div>
-
-          <div style={{textAlign: 'center'}}>
-            <p>Select</p>
-            <small>2x2</small>
-          </div>
-
-          <div style={{textAlign: 'right'}}>
-            <p>Point</p>
-            <small>₹ 90</small>
-          </div>
-        </div>
+        <OtherUsers />
       </div>
     </div>
   );

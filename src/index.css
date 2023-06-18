@@ -28,6 +28,7 @@ body {
   background-color: #071724;
   scroll-behavior: smooth;
   user-select: none;
+  padding-bottom: 2rem;
 }
 
 a {
@@ -51,6 +52,18 @@ body::-webkit-scrollbar {
 body::-webkit-scrollbar-thumb {
   background-color: #0d2b43;  
   border-radius: 20px;       
+}
+
+.btn {
+  margin-top: 5rem;
+  width: 100%;
+  padding: 1.1rem 0;
+  border-radius: 1rem;
+  border: none;
+  background-color: #69f0ae;
+  color: #000700;
+  font-weight: 500;
+  font-size: 1.1rem;
 }
 
 @media screen and (max-width: 520px) {

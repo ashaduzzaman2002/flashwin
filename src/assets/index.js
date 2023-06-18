@@ -21,6 +21,7 @@ import avatar from './icons/avatar.svg'
 import profile from './icons/profile.svg'
 import profileFilled from './icons/profile-filled.svg'
 import receipt from './icons/receipt-solid.svg'
+import telegram from './icons/telegram-logo.svg'
 
 export {
   Home,
@@ -45,5 +46,6 @@ export {
   avatar,
   profile,
   profileFilled,
-  receipt
+  receipt,
+  telegram
 };

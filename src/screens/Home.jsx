@@ -32,7 +32,7 @@ const Home = () => {
           </div>
 
           <div className="home-card2-group">
-            <Card2 icon={bomb} text={"Minesweeper"} />
+            <Card2 url={'/game/minesweeper'} icon={bomb} text={"Minesweeper"} />
             <Card2 url={'/game/fortune-wheel'} icon={fortuneWheel} text={"Circle"} />
             <Card2 icon={rocket} text={'Fast Parity'} />
             <Card2 icon={dice} text={"Parity"} />
