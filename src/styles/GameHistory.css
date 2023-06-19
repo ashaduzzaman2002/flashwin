@@ -30,3 +30,18 @@
     background-color: #fbaa79 !important;
     color: black !important;
   }
+
+  .gameHistoryBox {
+    
+  }
+
+  .emptyImage {
+    display: flex;
+    min-height: 82vh;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .emptyImage img {
+    width: 40%;
+  }

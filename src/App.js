@@ -17,6 +17,8 @@ import Follow from './screens/Follow';
 import BankDetails from './screens/BankDetails';
 import AddBank from './screens/AddBank';
 import GameHistory from './screens/GameHistory';
+import FastParity from './screens/parity/FastParity';
+import FullParity from './screens/parity/FullParity';
 
 function App() {
   return (
@@ -28,6 +30,8 @@ function App() {
         <Route path="/update-profile" element={<UpdateProfile />} />
         <Route path="/game/fortune-wheel" element={<LuckyWheel />} />
         <Route path="/game/minesweeper" element={<Minesweeper />} />
+        <Route path="/game/fast-parity" element={<FastParity />} />
+        <Route path="/game/full-parity" element={<FullParity />} />
         <Route path="/login" element={<Login />} />
         <Route path="/forgot-password" element={<ForgotPass />} />
         <Route path="/withdraw" element={<Withdraw />} />

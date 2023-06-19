@@ -22,6 +22,7 @@ import profile from './icons/profile.svg'
 import profileFilled from './icons/profile-filled.svg'
 import receipt from './icons/receipt-solid.svg'
 import telegram from './icons/telegram-logo.svg'
+import emptyBox from './images/empty-box.png'
 
 export {
   Home,
@@ -47,5 +48,6 @@ export {
   profile,
   profileFilled,
   receipt,
-  telegram
+  telegram,
+  emptyBox
 };

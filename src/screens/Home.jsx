@@ -34,8 +34,8 @@ const Home = () => {
           <div className="home-card2-group">
             <Card2 url={'/game/minesweeper'} icon={bomb} text={"Minesweeper"} />
             <Card2 url={'/game/fortune-wheel'} icon={fortuneWheel} text={"Circle"} />
-            <Card2 icon={rocket} text={'Fast Parity'} />
-            <Card2 icon={dice} text={"Parity"} />
+            <Card2 url={'/game/fast-parity'} icon={rocket} text={'Fast Parity'} />
+            <Card2 url={'/game/full-parity'} icon={dice} text={"Parity"} />
           </div>
         </div>
       </div>
