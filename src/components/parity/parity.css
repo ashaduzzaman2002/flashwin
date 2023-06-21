@@ -10,54 +10,195 @@
 }
 
 .parity-top {
-    border: 1px solid #ffffff71;
-    padding: 1rem;
-    display: flex;
-    margin-top: 1.5rem;
-    border-radius: 1rem;
-    justify-content: space-between;
-    align-items: flex-start;
+  border: 1px solid #ffffff71;
+  padding: 1rem;
+  display: flex;
+  margin-top: 1.5rem;
+  border-radius: 1rem;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
 .parity-period p:first-child {
-    color: #c8c5c5;
+  color: #c8c5c5;
 }
 
 .parity-period p:last-child {
-    font-size: 1.2rem;
-    margin-top: 0.7rem;
+  font-size: 1.2rem;
+  margin-top: 0.7rem;
 }
 
 .parity-count {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 .parity-count p:first-child {
-    color: #c8c5c5;
+  color: #c8c5c5;
 }
 
 .parity-count-box {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .parity-count-box p:first-child {
-    background-color: rgba(255, 255, 255, 0.415);
-    color: #fff;
-    padding: 1rem;
-    line-height: 0;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 0.5rem;
-    border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.415);
+  color: #fff;
+  padding: 1rem;
+  line-height: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.5rem;
+  border-radius: 10px;
 }
 
 .parity-count-box p:last-child {
-    color: #ffffffe1;
-    font-size: 14px;
+  color: #ffffffe1;
+  font-size: 14px;
+}
+
+.prity-colors {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.prity-colors div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  border-radius: 0.8rem;
+}
+
+.prity-colors div p:first-child {
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.prity-colors div p:last-child {
+  font-size: 13px;
+  color: #efeded;
+  letter-spacing: 1.5px;
+}
+
+.paritynum-btns {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.paritynum-btns div {
+  background-color: #ffffff28;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0;
+  border-radius: 10px;
+}
+
+.paritynum-btns div i {
+  font-size: 12px;
+  color: #fdbb00;
+}
+
+.paritynum-btns p {
+  font-size: 17px;
+  color: #e6e4e4;
+}
+
+.parity-btn {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 2.5rem;
+  gap: 1rem;
+}
+
+.parity-btn button {
+  color: #fbab78;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 0.5rem;
+  border-radius: 10px;
+  border: none;
+  background: none;
+}
+
+.parity-btn-active {
+  background-color: #fbab78 !important;
+  color: black !important;
+}
+
+.game-first-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.game-first-row div {
+  text-align: right;
+}
+
+.game-first-row-box-out {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.game-first-row-box-out p {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 17px;
+}
+
+.game-first-row-box {
+  height: 60%;
+  width: 60%;
+  border-radius: 5px;
+}
+
+
+.game-second-row {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    margin-top: 1rem;
+}
+
+.game-second-row div {
+    border: 1px solid #c8c5c5;
+    text-align: center;
+    padding: 0.3rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-second-row-color {
+    padding: 1rem 0 !important;
+}
+.game-second-row-color p {
+    background-color: #a2f4c4;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    color: #000;
+    font-weight: 500;
 }

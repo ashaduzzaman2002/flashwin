@@ -6,12 +6,13 @@ import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
   return (
+    <div style={{backgroundColor: '#08224e', minHeight: '100vh', marginBottom: '-30px', marginTop: '-2rem'}}>
     <div className="container">
-      <BottomNav />
+      <BottomNav backgroundColor={'transparent'} />
 
       <div className="home-container">
         <div className="home-top">
-          <h4>Points</h4>
+          <h4 style={{paddingTop: '2rem'}}>Points</h4>
 
           <div className="home-top-item">
             <div>
@@ -39,6 +40,7 @@ const Home = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };

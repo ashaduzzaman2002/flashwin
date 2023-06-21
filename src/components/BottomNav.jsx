@@ -2,10 +2,10 @@ import React from 'react';
 import '../styles/bottomNav.css';
 import { Link } from 'react-router-dom';
 
-const BottomNav = () => {
+const BottomNav = ({backgroundColor}) => {
   const { pathname } = window.location;
   return (
-    <div className="container bottom-nav">
+    <div className="container bottom-nav" style={{backgroundColor}}>
       <ul>
         <li className={`nav-link ${pathname === '/' ? 'active-link' : ''}`}>
           <Link to={'/'}>

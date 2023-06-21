@@ -72,21 +72,21 @@
 }
 
 .home-card2-group div {
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    flex: 1 1;
+    padding: 20px;
+    border-radius: 20px;
     background-color: #13446d;
-    border-radius: 1rem;
-    border: 1px solid #275a92;
+    border: 1px solid rgba(0, 0, 255, 0.5);
+    box-shadow: 0px 0px 100px rgba(103, 164, 255, 1);
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    gap: 1rem;
-    padding: 2rem 1rem;
 }
 
 
 .home-card2-group img {
     width: 70%;
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
 }
 
 .home-card2-group p {
