@@ -43,7 +43,7 @@
     bottom: 3rem;
     right: 2rem;
     border: none;
-    background-color: #a2f4c4;
+    background: linear-gradient(to right bottom, rgb(255, 185, 9), rgb(254, 64, 45));
     padding: 0.1rem 1.2rem;
     border-radius: 1rem;
     font-weight: 500;
@@ -51,6 +51,7 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
+    color: #fff;
     
 }
 

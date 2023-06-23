@@ -112,7 +112,8 @@
   right: 0;
   top: 75vh;
   margin-top: 1rem;
-  background-color: #a0f5c3;
+  background: linear-gradient(to right bottom, rgb(255, 185, 9), rgb(254, 64, 45));
+  color: #fff;
   border: none;
   padding: 0.8rem 1rem;
   border-radius: 1rem;

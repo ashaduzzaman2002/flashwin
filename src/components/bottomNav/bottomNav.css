@@ -2,13 +2,21 @@
   position: fixed;
   bottom: 0;
   background-color: #071724;
+  width: 100%;
+  right: 0;
+  border-top-right-radius: 4.5em;
+  border-top-left-radius: 4.5rem;
+  background: linear-gradient(to right bottom, rgb(255, 185, 9), rgb(254, 64, 45));
 }
 
 .bottom-nav ul {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.8rem 0 1.7rem;
+  padding-top: 1.3rem;
+  padding-bottom: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .nav-link i {
@@ -21,7 +29,8 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    color: #47726b;
+    color: rgba(252, 255, 255, 0.777);
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.6));
 }
 
 
@@ -32,8 +41,8 @@
 }
 
 .active-link a {
-  color: #a2f4c4;
   transition: all 0.3s ease-in-out;
+  color: rgb(252, 255, 255);
 }
 
 @media screen and (max-width: 800px) {

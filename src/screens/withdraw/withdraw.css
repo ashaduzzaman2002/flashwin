@@ -101,8 +101,8 @@
   padding: 1.1rem 0;
   border-radius: 1rem;
   border: none;
-  background-color: #69f0ae;
-  color: #000700;
+  background: linear-gradient(to right bottom, rgb(255, 185, 9), rgb(254, 64, 45));
+  color: #fff;
   font-weight: 500;
   font-size: 1.1rem;
 }

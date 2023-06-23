@@ -4,7 +4,7 @@ const OtherUsers = () => {
   return (
     <>
       <div className="lucky-wheel-btn-group">
-        <button style={{ background: '#69efb0', color: 'black' }}>
+        <button style={{ background:' linear-gradient(to right bottom, rgb(255, 185, 9), rgb(254, 64, 45))', color: '#fff' }}>
           Other Players
         </button>
         <button>My Orders</button>

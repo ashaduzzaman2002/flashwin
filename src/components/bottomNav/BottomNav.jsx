@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 const BottomNav = ({backgroundColor}) => {
   const { pathname } = window.location;
   return (
-    <div className="container bottom-nav" style={{backgroundColor}}>
-      <ul>
+    <div className="bottom-nav">
+      <ul className='container'>
         <li className={`nav-link ${pathname === '/' ? 'active-link' : ''}`}>
           <Link to={'/'}>
             <i class="fa-solid fa-house"></i>

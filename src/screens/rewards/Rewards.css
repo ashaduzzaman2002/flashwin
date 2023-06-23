@@ -34,8 +34,8 @@
   padding: 0.8rem 0;
   border-radius: 1rem;
   border: none;
-  background-color: #69f0ae;
-  color: #000700;
+  background: linear-gradient(to right bottom, rgb(255, 185, 9), rgb(254, 64, 45));
+  color: #fff;
   font-weight: 500;
   font-size: 1rem;
 }
@@ -49,7 +49,7 @@
 }
 
 .reward-card-desc img {
-    background-color: #62ffdb;
+    background: linear-gradient(to right bottom, rgb(255, 185, 9), rgb(254, 64, 45));
     padding: 0.6rem;
     width: 50px;
     height: 50px;
