@@ -1,6 +1,6 @@
 import React from 'react';
-import '../styles/CheckIn.css';
-import { coin, treasure } from '../assets';
+import './CheckIn.css';
+import { coin, treasure } from '../../assets';
 
 const CheckIn = () => {
   const dayList = [1, 2, 3, 4, 5, 6, 7];

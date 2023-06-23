@@ -1,8 +1,8 @@
 import React from 'react';
 // import SpinWheel from '../components/SpinWheel'
-import '../styles/LuckyWheel.css';
-import { Cow, ElephantIcon, Wheel, roulette, tiger } from '../assets';
-import OtherUsers from '../components/OtherUsers';
+import './LuckyWheel.css';
+import { Cow, ElephantIcon, Wheel, roulette, tiger } from '../../../assets';
+import OtherUsers from '../../../components/OtherUsers';
 
 const LuckyWheel = () => {
   const numList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];

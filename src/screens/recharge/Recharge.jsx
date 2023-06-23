@@ -1,7 +1,7 @@
 import React from 'react';
-import '../styles/Recharge.css';
-import BottomNav from '../components/BottomNav';
-import HeaderSecondar from '../components/HeaderSecondar';
+import './Recharge.css';
+import BottomNav from '../../components/bottomNav/BottomNav';
+import HeaderSecondar from '../../components/HeaderSecondar';
 import { useState } from 'react';
 
 const Recharge = () => {

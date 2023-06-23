@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import '../styles/GameHistory.css';
-import { emptyBox } from '../assets';
+import './GameHistory.css';
+import { emptyBox } from '../../../assets';
 
 const GameHistory = () => {
     const [activeBtn, setActiveBtn] = useState('minesweeper')

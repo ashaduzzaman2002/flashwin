@@ -1,6 +1,6 @@
 import React from 'react';
-import '../styles/Follow.css';
-import {telegram} from '../assets'
+import './Follow.css';
+import {telegram} from '../../assets'
 
 const Follow = () => {
   return (

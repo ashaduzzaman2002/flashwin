@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import BottomNav from '../components/BottomNav';
-import { Bot, avatar } from '../assets';
+import BottomNav from '../../../components/bottomNav/BottomNav';
+import { Bot, avatar } from '../../../assets';
 import { Link, useNavigate } from 'react-router-dom';
-import '../styles/Profile.css';
-import ConfirmModal from '../components/ConfirmModal';
+import './Profile.css';
+import ConfirmModal from '../../../components/modal/ConfirmModal';
 
 const Profile = () => {
   const [showModal, setShowModal] = useState(false)

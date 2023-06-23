@@ -1,7 +1,7 @@
 import React from 'react';
-import '../styles/UpdateProfile.css';
-import HeaderSecondar from '../components/HeaderSecondar';
-import { avatar } from '../assets';
+import './UpdateProfile.css';
+import HeaderSecondar from '../../../components/HeaderSecondar';
+import { avatar } from '../../../assets';
 
 const UpdateProfile = () => {
   return (

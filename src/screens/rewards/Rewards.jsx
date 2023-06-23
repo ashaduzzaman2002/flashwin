@@ -1,7 +1,7 @@
 import React from 'react';
-import '../styles/Rewards.css'
-import Progressbar from '../components/ProgressBar';
-import { profileFilled, receipt } from '../assets';
+import './Rewards.css'
+import Progressbar from '../../components/ProgressBar';
+import { profileFilled, receipt } from '../../assets';
 
 const Rewards = () => {
   return (

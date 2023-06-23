@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import '../styles/Minesweeper.css';
-import OtherUsers from '../components/OtherUsers';
+import './Minesweeper.css';
+import OtherUsers from '../../../components/OtherUsers';
 
 const Minesweeper = () => {
     const [ratio, setRatio] = useState('2x2')

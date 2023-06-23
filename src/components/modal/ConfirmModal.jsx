@@ -1,5 +1,5 @@
 import React from 'react'
-import '../styles/ConfirmModal.css'
+import './ConfirmModal.css'
 
 const ConfirmModal = ({text1, text2, setFunc}) => {
   return (

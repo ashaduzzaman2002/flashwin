@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/Bank.css';
+import './Bank.css';
 import { useNavigate } from 'react-router-dom';
 
 const BankDetails = () => {

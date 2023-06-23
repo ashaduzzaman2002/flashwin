@@ -1,6 +1,6 @@
 import React from 'react';
-import Parity from '../../components/parity/Parity';
-import Start from '../../components/start/Start';
+import Parity from '../../../components/parity/Parity';
+import Start from '../../../components/start/Start';
 
 const FastParity = () => {
   return (

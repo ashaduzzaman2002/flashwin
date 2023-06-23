@@ -1,6 +1,6 @@
 import React from 'react';
-import BottomNav from '../components/BottomNav';
-import '../styles/invite.css';
+import BottomNav from '../../components/bottomNav/BottomNav';
+import './invite.css';
 
 const Invite = () => {
   return (

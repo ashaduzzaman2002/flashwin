@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/bottomNav.css';
+import './bottomNav.css';
 import { Link } from 'react-router-dom';
 
 const BottomNav = ({backgroundColor}) => {

@@ -1,7 +1,7 @@
 import React from 'react';
-import '../styles/withdraw.css';
-import BottomNav from '../components/BottomNav';
-import HeaderSecondar from '../components/HeaderSecondar';
+import './withdraw.css';
+import BottomNav from '../../components/bottomNav/BottomNav';
+import HeaderSecondar from '../../components/HeaderSecondar';
 
 const Withdraw = () => {
   return (

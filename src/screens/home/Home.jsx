@@ -1,7 +1,7 @@
 import React from 'react';
-import BottomNav from '../components/BottomNav';
-import '../styles/home.css';
-import { Money, bomb, check, dice, fortuneWheel, reward, rocket, vault } from '../assets';
+import BottomNav from '../../components/bottomNav/BottomNav';
+import './home.css';
+import { Money, bomb, check, dice, fortuneWheel, reward, rocket, vault } from '../../assets';
 import { useNavigate } from 'react-router-dom';
 
 const Home = () => {

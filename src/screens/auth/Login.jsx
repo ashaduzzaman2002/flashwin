@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../../styles/auth/auth.css';
+import './auth.css';
 import { Link } from 'react-router-dom';
 
 const Login = () => {
