@@ -4,6 +4,7 @@
   width: 450px;
   margin: auto;
   padding-bottom: 2rem;
+  overflow: hidden;
 }
 
 .lucky-wheel-container h2 {

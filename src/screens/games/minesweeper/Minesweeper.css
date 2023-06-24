@@ -62,7 +62,7 @@
 
 
   .minesweeper-game-2x2 div {
-    background-color: #8d9588;
+    background-color: #4ca9e2;
     height: 220px;
     border-radius: 1rem;
     position: relative;
@@ -78,7 +78,7 @@
   }
 
   .minesweeper-game-4x4 div {
-    background-color: #8d9588;
+    background-color: #4ca9e2;
     height: 110px;
     border-radius: 1rem;
     position: relative;
@@ -92,7 +92,7 @@
     border: none;
     width: 9rem;
     height: 9rem;
-    background-color: #ffdcaa;
+    background: linear-gradient(to right bottom, rgb(255, 185, 9), rgb(254, 64, 45));
     font-size: 2rem;
     font-weight: 500;
     cursor: pointer;

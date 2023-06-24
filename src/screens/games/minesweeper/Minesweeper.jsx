@@ -53,7 +53,7 @@ const Minesweeper = () => {
 
         <div className='minesweeper-note'>
           <img src="" alt="" />
-          <p>Check the boxes that you think have no mines to get a bonus</p>
+          <p><i className='fa-solid fa-circle-info'></i> Check the boxes that you think have no mines to get a bonus</p>
         </div>
       <OtherUsers />
       </div>
