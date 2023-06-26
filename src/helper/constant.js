@@ -1,0 +1,1 @@
+export const baseURL = 'https://dipantan.live:4430'
