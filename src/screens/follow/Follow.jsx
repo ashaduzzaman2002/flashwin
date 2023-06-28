@@ -12,8 +12,9 @@ const Follow = () => {
   const getFollowLinks =  async () => {
     try {
       const {data} = await axios(`${baseURL}/more/support`)
-      setData(data);
       console.log(data);
+      setData(data);
+      
     } catch (error) {
       console.log(error);
     }

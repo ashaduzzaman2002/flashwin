@@ -1,19 +1,22 @@
 import React, { useState } from 'react';
 import './auth.css';
 import { Link } from 'react-router-dom';
-import { dbObject } from '../../helper/constant';
+import { baseURL, dbObject } from '../../helper/constant';
+import axios from 'axios';
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const [password, setPassword] = useState('');
   const [number, setNumber] = useState('');
+  const [data, setData] = useState([]);
 
   const login = async (e) => {
     e.preventDefault();
     const user = { password, number };
-    const response = await dbObject.post("/auth/login", user);
-    console.log(response);
+    // const {data} = await axios.post(`${baseURL}/auth/login`, user);
+    const {data} = await dbObject.post("/auth/login", user);
+    console.log(data);
   }
   return (
     <div className="auth-container">
