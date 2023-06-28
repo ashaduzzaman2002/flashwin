@@ -7,6 +7,6 @@ export const dbObject = axios.create({
     baseURL: "https://dipantan.live:4430"
 });
 
-const respnse = await dbObject.get("/auth");
+// const respnse = await dbObject.get("/auth");
 
-console.log(respnse);
+// console.log(respnse);
