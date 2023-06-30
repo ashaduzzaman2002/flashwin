@@ -9,7 +9,6 @@ const Login = () => {
   const [number, setNumber] = useState('')
   const [password, setPassword] = useState('')
 
-
   // const auth = async (e) => {
   //   e.preventDefault()
   //   try {
