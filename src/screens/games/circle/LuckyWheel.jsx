@@ -2,7 +2,7 @@ import React from 'react';
 // import SpinWheel from '../components/SpinWheel'
 import './LuckyWheel.css';
 import { Cow, ElephantIcon, Wheel, roulette, tiger } from '../../../assets';
-import OtherUsers from '../../../components/OtherUsers';
+import GameDetails from '../../../components/gameDetails/GameDetails';
 import WheelComponent from '../../../components/WheelComponent';
 
 const LuckyWheel = () => {
@@ -120,7 +120,7 @@ const LuckyWheel = () => {
           <p style={{textAlign: 'center', marginTop: 5, color: '#ebe7f5', fontSize: 15}}>1:36</p>
         </div>
 
-        <OtherUsers />
+        <GameDetails />
       </div>
     </div>
   );

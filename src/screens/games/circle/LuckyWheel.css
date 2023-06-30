@@ -127,34 +127,6 @@
   border-radius: 10px;
 }
 
-.lucky-wheel-btn-group {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-  margin-top: 1.5rem;
-}
-
-.lucky-wheel-btn-group button {
-  background: none;
-  padding: 0.8rem 0;
-  border: none;
-  border-radius: 8px;
-  color: #f5f5f5;
-  font-weight: 600;
-  font-size: 16px;
-}
-
-.luckyWheel-others {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 2rem;
-}
-
-.luckyWheel-others p {
-  color: #f1b81a;
-  font-weight: 500;
-}
-
 
 
 @media screen and (max-width: 520px) {

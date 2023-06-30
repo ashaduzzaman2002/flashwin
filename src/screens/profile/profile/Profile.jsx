@@ -68,7 +68,7 @@ const Profile = () => {
               }}
             >
               <div className="icon" style={{ background: '#ffcdd5' }}>
-                <i class={'fa-solid fa-arrow-right-from-bracket'}></i>
+                <i className={'fa-solid fa-arrow-right-from-bracket'}></i>
               </div>
               <div>
                 <h2>Logout</h2>
@@ -77,7 +77,7 @@ const Profile = () => {
 
             <i
               style={{ cursor: 'pointer' }}
-              class="fa-solid fa-chevron-right"
+              className="fa-solid fa-chevron-right"
             ></i>
           </div>
         </div>
@@ -93,7 +93,7 @@ const UserDetailsItem = ({ title, desc, icon, navigateUrl }) => {
   <div onClick={() => navigate(navigateUrl)} className="user-details-item">
     <div style={{ display: 'flex', alignItems: 'center', gap: '1.4rem' }}>
       <div className="icon">
-        <i class={icon}></i>
+        <i className={icon}></i>
       </div>
 
       <div>
@@ -102,7 +102,7 @@ const UserDetailsItem = ({ title, desc, icon, navigateUrl }) => {
       </div>
     </div>
 
-    <i style={{ cursor: 'pointer' }} class="fa-solid fa-chevron-right"></i>
+    <i style={{ cursor: 'pointer' }} className="fa-solid fa-chevron-right"></i>
   </div>
 );}
 

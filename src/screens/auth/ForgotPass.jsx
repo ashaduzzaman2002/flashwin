@@ -34,7 +34,7 @@ const ForgotPass = () => {
 
             <i
               onClick={() => setShowPassword(!showPassword)}
-              class={showPassword ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'}
+              className={showPassword ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'}
             ></i>
           </div>
         </div>

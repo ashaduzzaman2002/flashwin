@@ -28,28 +28,7 @@ function App() {
   return (
     <>
       <Routes>
-        <Route
-          path="/test"
-          element={
-            <WheelComponent
-              segments={['Segment 1', 'Segment 2', 'Segment 3', 'Segment 4', 'Segment 5', 'Segment 6', 'Segment 7', 'Segment 8', 'Segment 9', 'Segment 10']} // Replace with your own segments array
-              segColors={['#f6aa32', '#ec463f', '#f6aa32', '#ec463f', '#f0cf50', '#815cd1', '#f0cf50', '#815cd1', '#3da5e0', '#4ca350']} // Replace with your own segColors array
-              winningSegment="Segment 4"
-              onFinished={(segment) =>
-                console.log('Finished spinning:', segment)
-              }
-              primaryColor="black"
-              contrastColor="white"
-              buttonText="Spin"
-              isOnlyOnce={true}
-              size={290}
-              upDuration={100}
-              downDuration={1000}
-              fontFamily="proxima-nova"
-            />
-          }
-        />
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={ <Home />} />
         <Route path="/invite" element={<Invite />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/update-profile" element={<UpdateProfile />} />

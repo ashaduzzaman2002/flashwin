@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Minesweeper.css';
-import OtherUsers from '../../../components/OtherUsers';
+import GameDetails from '../../../components/gameDetails/GameDetails';
 
 const Minesweeper = () => {
     const [ratio, setRatio] = useState('2x2')
@@ -55,7 +55,7 @@ const Minesweeper = () => {
           <img src="" alt="" />
           <p><i className='fa-solid fa-circle-info'></i> Check the boxes that you think have no mines to get a bonus</p>
         </div>
-      <OtherUsers />
+      <GameDetails />
       </div>
 
     </div>

@@ -9,7 +9,7 @@ const BottomNav = ({backgroundColor}) => {
       <ul className='container'>
         <li className={`nav-link ${pathname === '/' ? 'active-link' : ''}`}>
           <Link to={'/'}>
-            <i class="fa-solid fa-house"></i>
+            <i className="fa-solid fa-house"></i>
             <p>Home</p>
           </Link>
         </li>
@@ -17,7 +17,7 @@ const BottomNav = ({backgroundColor}) => {
           className={`nav-link ${pathname === '/invite' ? 'active-link' : ''}`}
         >
           <Link to={'/invite'}>
-            <i class="fa-solid fa-people-line"></i>
+            <i className="fa-solid fa-people-line"></i>
             <p>Invite</p>
           </Link>
         </li>
@@ -27,7 +27,7 @@ const BottomNav = ({backgroundColor}) => {
           }`}
         >
           <Link to={'/recharge'}>
-            <i class="fa-solid fa-bolt-lightning"></i>
+            <i className="fa-solid fa-bolt-lightning"></i>
             <p>Recharge</p>
           </Link>
         </li>
@@ -35,7 +35,7 @@ const BottomNav = ({backgroundColor}) => {
           className={`nav-link ${pathname === '/profile' ? 'active-link' : ''}`}
         >
           <Link to={'/profile'}>
-            <i class="fa-solid fa-user"></i>
+            <i className="fa-solid fa-user"></i>
             <p>Profile</p>
           </Link>
         </li>

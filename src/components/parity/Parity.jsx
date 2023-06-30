@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './parity.css';
-import OtherUser from '../OtherUsers';
+import GameDetails from '../gameDetails/GameDetails';
 
 const Parity = ({ heading, icon }) => {
   const firstCardList = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -45,7 +45,7 @@ const Parity = ({ heading, icon }) => {
         {firstCardList.map((item) => (
           <div>
             <p>{item}</p>
-            {icon ? <i class="fa-solid fa-bolt"></i> : ''}
+            {icon ? <i className="fa-solid fa-bolt"></i> : ''}
           </div>
         ))}
       </div>
@@ -129,7 +129,7 @@ const Parity = ({ heading, icon }) => {
         ))}
       </div>
 
-      <OtherUser />
+      <GameDetails />
     </div>
   );
 };
