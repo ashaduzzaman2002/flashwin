@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './CheckIn.css';
 import { coin, treasure } from '../../assets';
+import { dbObject } from '../../helper/constant';
 
 const CheckIn = () => {
   const dayList = [1, 2, 3, 4, 5, 6, 7];
+
+  const getData = async() => {
+    // const {data} = await dbObject('/task/checkin')
+    // console.log(data);
+  }
+  
+  useEffect(() => {
+   getData()
+  }, [])
+  
+  
   return (
     <div
       style={{
