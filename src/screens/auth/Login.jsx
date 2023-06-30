@@ -1,51 +1,69 @@
 import React, { useState, useContext } from 'react';
 import './auth.css';
 import { Link } from 'react-router-dom';
-import { AuthContext } from '../../context/AuthContext';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { useFormik } from 'formik';
-import { loginValidation } from '../../validation';
+<<<<<<< HEAD
+import axios from 'axios';
+import {baseURL} from '../../helper/constant'
 
-const initialValues = {
-  number: '',
-  password: '',
-};
+const Login = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [number, setNumber] = useState('')
+  const [password, setPassword] = useState('')
+
+
+  const login = async (e) => {
+    e.preventDefault()
+
+    try {
+      const user = {
+        password,
+        number
+      }
+      const {data} = await axios.post(`${baseURL}/auth/login`, user)
+
+      console.log('logged in', data);
+    } catch (error) {
+      console.log(error);
+    }
+
+  }
+
+  return (
+    <div className="auth-container">
+      <h2>Log <span style={{color: '#67efaf'}}>In</span> </h2>
+      <form onSubmit={login} className="auth-form" action="">
+=======
+import { baseURL, dbObject } from '../../helper/constant';
+import axios from 'axios';
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
 
-  const { values, errors, handleBlur, touched, handleChange, handleSubmit } =
-    useFormik({
-      initialValues: initialValues,
+  const [password, setPassword] = useState('');
+  const [number, setNumber] = useState('');
+  const [data, setData] = useState([]);
 
-      validationSchema: loginValidation,
-
-      onSubmit: (values) => {
-        console.log(values);
-      },
-    });
-
+  const login = async (e) => {
+    e.preventDefault();
+    const user = { password, number };
+    // const {data} = await axios.post(`${baseURL}/auth/login`, user);
+    const {data} = await dbObject.post("/auth/login", user);
+    console.log(data);
+  }
   return (
     <div className="auth-container">
-      <h2>
-        Log <span style={{ color: '#67efaf' }}>In</span>{' '}
-      </h2>
-      <form onSubmit={handleSubmit} className="auth-form" action="">
-        <div style={{ marginBottom: '1.5rem' }}>
+      <h2>Log <span style={{ color: '#67efaf' }}>In</span> </h2>
+      <form className="auth-form" action="">
+>>>>>>> 88754c049f809d24b86b3696a8bf0ec9ee800706
+        <div>
           <label htmlFor="number">Phone</label>
           <div className="auth-input phone-input">
             <p>+91</p>
-            <input
-              value={values.number}
-              onChange={handleChange}
-              id="number"
-              autoComplete="off"
-              type="number"
-              placeholder="8909XXXXXX"
-              name="number"
-              onBlur={handleBlur}
-            />
+<<<<<<< HEAD
+            <input value={number} onChange={(e) => setNumber(e.target.value)} id='number'autocomplete="off" type="number" placeholder="8909XXXXXX" />
+=======
+            <input id='number' autocomplete="off" type="number" placeholder="8909XXXXXX" value={number} onChange={(e) => setNumber(e.target.value)} />
+>>>>>>> 88754c049f809d24b86b3696a8bf0ec9ee800706
           </div>
 
           {errors.number && touched.number ? (
@@ -56,24 +74,16 @@ const Login = () => {
         <div style={{ marginBottom: '1.5rem' }}>
           <label htmlFor="password">Password</label>
 
-          <div className="auth-input password-input">
-            <input
-              value={values.password}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              id="password"
-              placeholder="Password (> 3 characters)"
-              autoComplete="off"
-              type={showPassword ? 'text' : 'password'}
-              name="password"
-            />
+          <div className='auth-input password-input'>
+<<<<<<< HEAD
+            <input value={password} onChange={(e) => setPassword(e.target.value)} id='password' placeholder='Password (> 3 characters)' autocomplete="off" type={showPassword ? 'text' : 'password'} />
 
-            <i
-              onClick={() => setShowPassword(!showPassword)}
-              className={
-                showPassword ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'
-              }
-            ></i>
+            <i onClick={() => setShowPassword(!showPassword)} className={showPassword?"fa-solid fa-eye":"fa-solid fa-eye-slash"}></i>
+=======
+            <input id='password' placeholder='Password (> 3 characters)' autocomplete="off" type={showPassword ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)} />
+
+            <i onClick={() => setShowPassword(!showPassword)} class={showPassword ? "fa-solid fa-eye" : "fa-solid fa-eye-slash"}></i>
+>>>>>>> 88754c049f809d24b86b3696a8bf0ec9ee800706
           </div>
           {errors.password && touched.password ? (
             <small style={{ color: 'red' }}>{errors.password}</small>
@@ -88,9 +98,8 @@ const Login = () => {
           Login
         </button>
 
-        <p className="auth-other-link">
-          Don't have an account? <Link to="/register">Register</Link>
-        </p>
+        <p className='auth-other-link'>Don't have an account? <Link to='/register' >Register</Link></p>
+
       </form>
 
       <ToastContainer
