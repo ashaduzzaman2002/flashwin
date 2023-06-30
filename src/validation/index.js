@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 
 export const loginValidation = Yup.object({
-  // number: Yup.number().required("Please enter your phone number!"),
+  number: Yup.number().required("Please enter your phone number!"),
 
   password: Yup.string().required('Please enter your password!'),
 });
