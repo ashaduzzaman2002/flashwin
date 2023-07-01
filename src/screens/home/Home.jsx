@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import BottomNav from '../../components/bottomNav/BottomNav';
 import './home.css';
 import {
@@ -12,9 +12,28 @@ import {
   vault,
 } from '../../assets';
 import { useNavigate } from 'react-router-dom';
+import { dbObject } from '../../helper/constant';
 
 const Home = () => {
   const naivgate = useNavigate();
+
+  const [walletBalance, setWalletBalance] = useState('0.0');
+
+  const fetchWallet = async () => {
+    try {
+      const { data } = await dbObject.get("/wallet/fetch");
+      setWalletBalance(data.data.total_bal);
+      // console.log(data.data.total_bal);
+    } catch (error) {
+      console.log("jsjjs");
+    }
+  }
+
+  useEffect(() => {
+    fetchWallet();
+  }, []);
+
+
   return (
     <div
       style={{
@@ -33,7 +52,7 @@ const Home = () => {
               <div className="balance__section__left">
                 <div className="balance__section__text">My Balance</div>
                 <div className="balance__value">
-                  <span style={{ fontSize: 18 }}>₹</span>548.48
+                  <span style={{ fontSize: 18 }}>₹</span>{walletBalance}
                 </div>
               </div>
               <div className="balance__section__right">
@@ -43,7 +62,7 @@ const Home = () => {
                   </button>{' '}
                   <br />
                   <button
-                  onClick={() => naivgate('/withdraw')}
+                    onClick={() => naivgate('/withdraw')}
                     className="balance__section__withdrawal__btn"
                     style={{ marginTop: 5 }}
                   >
@@ -83,7 +102,7 @@ const Home = () => {
                 url={'/game/minesweeper'}
                 icon={bomb}
                 text={'Minesweeper'}
-                bgColor = '#4ec6de'
+                bgColor='#4ec6de'
               />
               <Card2
                 url={'/game/fortune-wheel'}
@@ -119,7 +138,7 @@ const Card1 = ({ icon, text, url }) => {
 const Card2 = ({ icon, text, url, bgColor }) => {
   const navigate = useNavigate();
   return (
-    <div style={{backgroundColor: bgColor}} onClick={() => navigate(url)}>
+    <div style={{ backgroundColor: bgColor }} onClick={() => navigate(url)}>
       <img src={icon} alt="" />
       <p>{text}</p>
     </div>

@@ -8,9 +8,7 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const getUser = async () => {
     try {
-      const { data } = await axios.get(`${baseURL}/auth`, {
-        withCredentials: true, // Include cookies in the request
-      });
+      const { data } = await dbObject.get("/auth");
       console.log(data);
     } catch (error) {
       console.log(error);

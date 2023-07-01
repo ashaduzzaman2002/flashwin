@@ -9,17 +9,19 @@ const Profile = () => {
   const [showModal, setShowModal] = useState(false)
   return (<>
 
-{
-  showModal && <ConfirmModal setFunc = {setShowModal} text1={'Are you sure you want to logout?'} text2='Do you really want to logout?' />
-}
-      
+    {
+      showModal && <ConfirmModal setFunc={setShowModal} text1={'Are you sure you want to logout?'} text2='Do you really want to logout?' />
+
+
+    }
+
     <div className="container">
       <BottomNav />
 
       <div className="profile-container">
         <div className="uid-card">
           <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-            <img style={{width: '25%'}} src={avatar} alt="" />
+            <img style={{ width: '25%' }} src={avatar} alt="" />
             <div className="uid-detail">
               <p>UID: 43</p>
               <p>Phone: 9382756748</p>
@@ -31,7 +33,7 @@ const Profile = () => {
 
         <div className="user-details">
           <UserDetailsItem
-          navigateUrl = '/game-history'
+            navigateUrl='/game-history'
             title={'Game History'}
             desc="View your recent game details"
             icon={'fa-solid fa-clock-rotate-left'}
@@ -42,7 +44,7 @@ const Profile = () => {
             icon={'fa-solid fa-wallet'}
           />
           <UserDetailsItem
-          navigateUrl = '/bank-details'
+            navigateUrl='/bank-details'
             title={'Bank Details'}
             desc={'Update your bank details for easy withdrawals'}
             icon={'fa-solid fa-building-columns'}
@@ -50,16 +52,16 @@ const Profile = () => {
 
           <h3>Others</h3>
           <UserDetailsItem
-          navigateUrl = '/about-us'
+            navigateUrl='/about-us'
             title={'About Us'}
             icon={'fa-solid fa-circle-info'}
           />
-    
+
           <UserDetailsItem navigateUrl={'/follow-us'} title={'Follow Us'} icon={'fa-brands fa-telegram'} />
 
           <div className="user-details-item">
             <div
-            onClick={() => setShowModal(true)}
+              onClick={() => setShowModal(true)}
               style={{
                 display: 'flex',
                 alignItems: 'center',
@@ -83,27 +85,28 @@ const Profile = () => {
         </div>
       </div>
     </div>
-    </>
+  </>
   );
 };
 
 const UserDetailsItem = ({ title, desc, icon, navigateUrl }) => {
   const navigate = useNavigate()
   return (
-  <div onClick={() => navigate(navigateUrl)} className="user-details-item">
-    <div style={{ display: 'flex', alignItems: 'center', gap: '1.4rem' }}>
-      <div className="icon">
-        <i className={icon}></i>
+    <div onClick={() => navigate(navigateUrl)} className="user-details-item">
+      <div style={{ display: 'flex', alignItems: 'center', gap: '1.4rem' }}>
+        <div className="icon">
+          <i className={icon}></i>
+        </div>
+
+        <div>
+          <h2>{title}</h2>
+          <p>{desc}</p>
+        </div>
       </div>
 
-      <div>
-        <h2>{title}</h2>
-        <p>{desc}</p>
-      </div>
+      <i style={{ cursor: 'pointer' }} className="fa-solid fa-chevron-right"></i>
     </div>
-
-    <i style={{ cursor: 'pointer' }} className="fa-solid fa-chevron-right"></i>
-  </div>
-);}
+  );
+}
 
 export default Profile;

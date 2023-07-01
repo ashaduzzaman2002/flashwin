@@ -1,6 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { dbObject } from '../helper/constant';
 
 const HeaderSecondar = ({ title }) => {
+
+  const [walletBalance, setWalletBalance] = useState('0.0');
+  const fetchWallet = async () => {
+    try {
+      const { data } = await dbObject.get("/wallet/fetch");
+      setWalletBalance(data.data.total_bal);
+      // console.log(data.data.total_bal);
+    } catch (error) {
+      console.log("jsjjs");
+    }
+  }
+  useEffect(() => {
+    fetchWallet();
+  }, []);
+
   return (
     <div className="header-secondary">
       <h1>{title}</h1>
@@ -8,7 +24,7 @@ const HeaderSecondar = ({ title }) => {
       <div className='header-secondary-card'>
         <div>
           <p>Total Blance Available</p>
-          <p>₹ 0.0</p>
+          <p>₹ {walletBalance}</p>
         </div>
 
         <button>
