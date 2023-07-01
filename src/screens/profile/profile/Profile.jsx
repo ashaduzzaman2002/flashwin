@@ -1,18 +1,49 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import BottomNav from '../../../components/bottomNav/BottomNav';
 import { Bot, avatar } from '../../../assets';
 import { Link, useNavigate } from 'react-router-dom';
 import './Profile.css';
 import ConfirmModal from '../../../components/modal/ConfirmModal';
+import { AuthContext } from '../../../context/AuthContext';
+import { dbObject } from '../../../helper/constant';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Profile = () => {
   const [showModal, setShowModal] = useState(false)
+  const [confirm, setConfirm] = useState(false)
+  const {user} = useContext(AuthContext)
+  let navigate = useNavigate();
+
+  const logout = async () => {
+    try {
+      if(confirm) {
+        const {data} = await dbObject.post("auth/logout")
+        console.log(data);
+
+        toast.success('Logged In Successfully!', {
+          position: 'top-center',
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'colored',
+        });
+
+        setTimeout(() => {
+          navigate("/login");
+        }, 2000);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (<>
 
     {
-      showModal && <ConfirmModal setFunc={setShowModal} text1={'Are you sure you want to logout?'} text2='Do you really want to logout?' />
-
-
+      showModal && <ConfirmModal confirmFunc={setConfirm} setFunc={setShowModal} text1={'Are you sure you want to logout?'} text2='Do you really want to logout?' />
     }
 
     <div className="container">
@@ -23,8 +54,8 @@ const Profile = () => {
           <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
             <img style={{ width: '25%' }} src={avatar} alt="" />
             <div className="uid-detail">
-              <p>UID: 43</p>
-              <p>Phone: 9382756748</p>
+              <p>UID: {user?.id || '0000000'}</p>
+              <p>Phone: {user?.number}</p>
             </div>
           </div>
 
@@ -84,6 +115,18 @@ const Profile = () => {
           </div>
         </div>
       </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </div>
   </>
   );

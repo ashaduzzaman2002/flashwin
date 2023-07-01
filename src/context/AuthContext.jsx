@@ -1,65 +1,40 @@
-import axios from 'axios';
 import { createContext, useEffect, useState } from 'react';
-import { baseURL, dbObject } from '../helper/constant';
-import { toast } from 'react-toastify';
+import { dbObject } from '../helper/constant';
+
 
 export const AuthContext = createContext();
-
 export const AuthProvider = ({ children }) => {
+
+  const [user, setUser] = useState(null)
+  const [walletBalance, setWalletBalance] = useState('0.0');
+
+
   const getUser = async () => {
     try {
       const { data } = await dbObject.get("/auth");
-      console.log(data);
+      setUser(data?.data);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const login = async (e, number, password) => {
-    e.preventDefault();
-
+  const fetchWallet = async () => {
     try {
-      const user = {
-        password,
-        number,
-      };
-      const { data } = await axios.post(`${baseURL}/auth/login`, user);
-
-      if (!data?.error) {
-        toast.success('Logged In Successfully!', {
-          position: 'top-center',
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: 'colored',
-        });
-      } else {
-        toast.error(data.message, {
-          position: 'top-center',
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: 'colored',
-        });
-      }
-
-      console.log('logged in', data);
+      const { data } = await dbObject.get("/wallet/fetch");
+      setWalletBalance(data.data.total_bal);
+      // console.log(data.data.total_bal);
     } catch (error) {
-      console.log(error);
+      console.log("jsjjs");
     }
-  };
+  }
+  
 
   useEffect(() => {
     getUser();
-  }, [login]);
+    fetchWallet();
+  }, []);
 
   return (
-    <AuthContext.Provider value={{ login }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ user, walletBalance }}>{children}</AuthContext.Provider>
   );
 };

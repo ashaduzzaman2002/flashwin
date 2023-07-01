@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import BottomNav from '../../components/bottomNav/BottomNav';
 import './home.css';
 import {
@@ -13,25 +13,12 @@ import {
 } from '../../assets';
 import { useNavigate } from 'react-router-dom';
 import { dbObject } from '../../helper/constant';
+import { AuthContext } from '../../context/AuthContext';
 
 const Home = () => {
   const naivgate = useNavigate();
 
-  const [walletBalance, setWalletBalance] = useState('0.0');
-
-  const fetchWallet = async () => {
-    try {
-      const { data } = await dbObject.get("/wallet/fetch");
-      setWalletBalance(data.data.total_bal);
-      // console.log(data.data.total_bal);
-    } catch (error) {
-      console.log("jsjjs");
-    }
-  }
-
-  useEffect(() => {
-    fetchWallet();
-  }, []);
+  const {walletBalance} = useContext(AuthContext)
 
 
   return (
