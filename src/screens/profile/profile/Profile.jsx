@@ -41,8 +41,6 @@ const Profile = () => {
       console.log(error);
     }
   }
-
-  console.log(user.bank);
   return (<>
 
     {

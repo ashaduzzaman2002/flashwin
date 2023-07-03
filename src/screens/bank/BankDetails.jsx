@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Bank.css';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthContext';
 
 const BankDetails = () => {
-    const navigate = useNavigate()
+  const {user} = useContext(AuthContext);
+    const navigate = useNavigate();
+    console.log(user.bank);
   return (
     <div className="container">
       <div className="bankDetails-container">

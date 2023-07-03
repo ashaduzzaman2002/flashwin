@@ -12,7 +12,11 @@ export const AuthProvider = ({ children }) => {
   const getUser = async () => {
     try {
       const { data } = await dbObject.get("/auth");
-      setUser(data?.data);
+      console.log(data.data);
+      if(!data.error){
+        setUser(data.data);
+      }
+     
     } catch (error) {
       console.log(error);
     }
