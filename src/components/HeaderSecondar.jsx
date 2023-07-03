@@ -1,9 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { dbObject } from '../helper/constant';
+import { useNavigate } from 'react-router-dom';
 
 const HeaderSecondar = ({ title }) => {
 
   const [walletBalance, setWalletBalance] = useState('0.0');
+  let navigate = useNavigate();
+
+  const openPage = async ()=>{
+    if(title == "Recharge"){
+      navigate("/recharge-history");
+    } else{
+      navigate("/withdraw-history");
+    }
+  }
+
+
   const fetchWallet = async () => {
     try {
       const { data } = await dbObject.get("/wallet/fetch");
@@ -27,7 +39,7 @@ const HeaderSecondar = ({ title }) => {
           <p>₹ {walletBalance}</p>
         </div>
 
-        <button>
+        <button onClick={openPage}>
           <i className="fa-solid fa-clock-rotate-left"></i> History
         </button>
       </div>

@@ -23,6 +23,8 @@ import {
 } from './screens';
 
 import WheelComponent from './components/WheelComponent';
+import RechargeHistory from './screens/recharge-history/RechargeHistory';
+import WithdrawHistory from './screens/withdraw-history/WithdrawHistory';
 
 function App() {
   return (
@@ -39,7 +41,9 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/forgot-password" element={<ForgotPass />} />
         <Route path="/withdraw" element={<Withdraw />} />
+        <Route path="/withdraw-history" element={<WithdrawHistory/>} />
         <Route path="/recharge" element={<Recharge />} />
+        <Route path="/recharge-history" element={<RechargeHistory/>} />
         <Route path="/rewards" element={<Rewards />} />
         <Route path="/check-in" element={<CheckIn />} />
         <Route path="/about-us" element={<About />} />
