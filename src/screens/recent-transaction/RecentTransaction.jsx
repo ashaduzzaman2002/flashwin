@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
 import { dbObject } from "../../helper/constant";
 
-const WithdrawHistory = () => {
+const RecentTransaction = () => {
 
-    const [withdrawList, setWithdrawList] = useState([]);
+    const [transactionList, setTransactionList] = useState([]);
 
-    const fetchWithdrawList = async () => {
+    const fetchTransactionList = async () => {
         try {
-            const { data } = await dbObject.post("/withdraw/history");
+            const { data } = await dbObject.get("/wallet/transactions");
+            // console.log(data);
             if (!data.error) {
-                console.log(data);
-                setWithdrawList(data.data);
+                setTransactionList(data.data);
             }
         } catch (error) {
             console.log(error);
@@ -18,20 +18,21 @@ const WithdrawHistory = () => {
     }
 
     useEffect(() => {
-        fetchWithdrawList();
+        fetchTransactionList();
     }, []);
-
 
     return (
         <>
-            <h1>Withdraw History Page</h1>
+            <h1>Recent Transaction Page</h1>
             <div>
-                {withdrawList.map(items => {
+                {transactionList.map(items => {
                     return (
                         <div key={items.id}>
                             <h2>Id: {items.id}</h2>
-                            <h2>Request Id: {items.request_id}</h2>
+                            <h2>Source: {items.source}</h2>
+                            <h2>Txn Id: {items.transaction_id}</h2>
                             <h2>Amount: {items.amount}</h2>
+                            <h2>Type: {items.type}</h2>
                             <h2>Is Approved: {items.is_approved}</h2>
                             <h2>User Id: {items.user_id}</h2>
                             <h2>Date: {items.date}</h2>
@@ -44,4 +45,4 @@ const WithdrawHistory = () => {
     );
 }
 
-export default WithdrawHistory;
+export default RecentTransaction;

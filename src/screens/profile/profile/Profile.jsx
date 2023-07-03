@@ -73,6 +73,7 @@ const Profile = () => {
             title={'Recent Transactions'}
             desc={'View your recent transactions'}
             icon={'fa-solid fa-wallet'}
+            navigateUrl="/recent-transaction"
           />
           <UserDetailsItem
             navigateUrl='/bank-details'

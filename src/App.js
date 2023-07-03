@@ -25,6 +25,7 @@ import {
 import WheelComponent from './components/WheelComponent';
 import RechargeHistory from './screens/recharge-history/RechargeHistory';
 import WithdrawHistory from './screens/withdraw-history/WithdrawHistory';
+import RecentTransaction from './screens/recent-transaction/RecentTransaction';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
         <Route path="/" element={ <Home />} />
         <Route path="/invite" element={<Invite />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/recent-transaction" element={<RecentTransaction/>} />
         <Route path="/update-profile" element={<UpdateProfile />} />
         <Route path="/game/fortune-wheel" element={<LuckyWheel />} />
         <Route path="/game/minesweeper" element={<Minesweeper />} />
