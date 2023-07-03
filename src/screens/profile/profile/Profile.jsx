@@ -13,6 +13,8 @@ const Profile = () => {
   const [confirm, setConfirm] = useState(false)
   const {user} = useContext(AuthContext)
   let navigate = useNavigate();
+  const [userId, setUserId] = useState(0);
+  const [userNumber, setUserNumber] = useState(0);
 
   const logout = async () => {
     try {
@@ -20,7 +22,7 @@ const Profile = () => {
         const {data} = await dbObject.post("auth/logout")
         console.log(data);
 
-        toast.success('Logged In Successfully!', {
+        toast.success('Logged Out!', {
           position: 'top-center',
           autoClose: 2000,
           hideProgressBar: false,
@@ -33,13 +35,14 @@ const Profile = () => {
 
         setTimeout(() => {
           navigate("/login");
-        }, 2000);
+        }, 1000);
       }
     } catch (error) {
       console.log(error);
     }
   }
 
+  console.log(user.bank);
   return (<>
 
     {
