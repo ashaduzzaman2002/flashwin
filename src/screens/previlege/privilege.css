@@ -1,0 +1,23 @@
+.privilege-container{
+    color: #fff;
+    padding: 2rem 0;
+}
+
+.privilege-header {
+    text-align: center;
+}
+
+.privilege-header h1 {
+    font-size: 2rem;
+    font-weight: 500;
+    background: linear-gradient(to bottom, #ffd844, #feab26);
+  -webkit-background-clip: text; /* For Safari */
+  -webkit-text-fill-color: transparent; /* For Safari */
+  background-clip: text;
+  color: transparent;
+}
+
+.privilege-header h3 {
+    font-size: 1.1rem;
+    font-weight: 500;
+}

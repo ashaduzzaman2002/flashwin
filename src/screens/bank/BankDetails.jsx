@@ -6,7 +6,7 @@ import { AuthContext } from '../../context/AuthContext';
 const BankDetails = () => {
   const {user} = useContext(AuthContext);
     const navigate = useNavigate();
-    console.log(user.bank);
+    console.log(user?.bank);
   return (
     <div className="container">
       <div className="bankDetails-container">
