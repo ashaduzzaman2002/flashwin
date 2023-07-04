@@ -1,11 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import BottomNav from '../../components/bottomNav/BottomNav';
 import './invite.css';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { dbObject } from '../../helper/constant';
+import { diamond, treasure } from '../../assets';
+import CommissionCard from '../../components/commission/CommissionCard';
+import { AuthContext } from '../../context/AuthContext';
 
 const Invite = () => {
   const navigate = useNavigate();
+  const { commissionHistory } = useContext(AuthContext);
 
   const [commissionWalletBalance, setCommissionWalletBalance] = useState('0.0');
   const [totalReferralCount, setTotalReferralCount] = useState('0');
@@ -15,50 +19,43 @@ const Invite = () => {
 
   const fetchCommissionWallet = async () => {
     try {
-      const { data } = await dbObject.get("/commision/wallet");
-      if(!data.error){
+      const { data } = await dbObject.get('/commision/wallet');
+      if (!data.error) {
         setCommissionWalletBalance(data.data[0].balance);
-      } else{
-        console.log("Issue from Server Side");
+      } else {
+        console.log('Issue from Server Side');
       }
-    } catch (error) { console.log(error); }
-  }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  const fetchCommissionHistory = async () => {
-    try {
-      const { data } = await dbObject.get("/wallet/refer_history");
-      if(!data.error){
-        console.log(data);
-      } else{
-        console.log("Issue from Server Side");
-      }
-    } catch (error) { console.log(error); }
-  }
+
 
   const fetchReferCounts = async () => {
     try {
-      const { data } = await dbObject.get("/wallet/refer_history");
-      if(!data.error){
+      const { data } = await dbObject.get('/wallet/refer_history');
+      if (!data.error) {
         console.log(data);
         setTotalReferralCount(data.data.total_refer);
         setTotalReferralEarning(data.data.total_earning);
         setTodayReferralCount(data.today.total);
         setTodayReferralEarning(data.today.amount);
-
-      } else{
-        console.log("Issue from Server Side");
+      } else {
+        console.log('Issue from Server Side');
       }
-    } catch (error) { console.log(error); }
-  }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  useEffect(() => { 
-    fetchCommissionWallet(); 
-    fetchCommissionHistory();
+  useEffect(() => {
+    fetchCommissionWallet();
     fetchReferCounts();
   }, []);
 
   return (
-    <div className="container">
+    <div className="container" style={{ paddingBottom: '0rem' }}>
       <BottomNav />
 
       <div className="invite-content">
@@ -81,6 +78,7 @@ const Invite = () => {
             color={'#040100'}
             icon={'fa-regular fa-star'}
             title={'Privilege'}
+            url={'/privilege'}
           />
 
           <Card1
@@ -88,6 +86,7 @@ const Invite = () => {
             color={'#000503'}
             icon={'fa-solid fa-ranking-star'}
             title={'Ranking'}
+            url={'/ranking'}
           />
 
           <Card1
@@ -95,16 +94,58 @@ const Invite = () => {
             color={'#fcffff'}
             icon={'fa-solid fa-link'}
             title={'My Link'}
+            url={'/my-link'}
           />
         </div>
+
+        <Link to={'/agent'} className="agent-contrainer">
+          <div>
+            <h2>Agent 10 million</h2>
+            <p>cash growth plan</p>
+          </div>
+
+          <div className="invite-diamond">
+            <img src={diamond} alt="" />
+            <div />
+          </div>
+        </Link>
 
         <div className="income-history">
           <div className="income-history-card-group">
             <Card2 title={'Invited Today'} amount={totalReferralCount} />
 
-            <Card2 title={"Today's Income"} amount={"₹ " + totalReferralEarning} />
+            <Card2
+              title={"Today's Income"}
+              amount={'₹ ' + totalReferralEarning}
+            />
           </div>
-          <h3>Income History</h3>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              marginTop: '1rem',
+            }}
+          >
+            <h3>Income History</h3>
+            <Link
+              style={{
+                fontSize: '1.2rem',
+                fontWeight: '600',
+                color: '#3191dc',
+                cursor: 'default',
+              }}
+              to={'/commission-history'}
+            >
+              See all
+            </Link>
+          </div>
+        </div>
+
+        <div className="commission-container" style={{marginBottom: '9rem'}}>
+          {commissionHistory?.map((item) => (
+            <CommissionCard key={item.id} data={item} />
+          ))}
         </div>
 
         <button className="invite-button" type="button">
@@ -115,18 +156,20 @@ const Invite = () => {
   );
 };
 
-const Card1 = ({ icon, title, bgColor, color }) => {
+const Card1 = ({ icon, title, bgColor, color, url }) => {
   return (
-    <div
+    <Link
+      to={url}
       className="invite-card1"
       style={{
         background: bgColor,
         color: color,
+        cursor: 'default',
       }}
     >
       <i className={icon}></i>
       <p>{title}</p>
-    </div>
+    </Link>
   );
 };
 

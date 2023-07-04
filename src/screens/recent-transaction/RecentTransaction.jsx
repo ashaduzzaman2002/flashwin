@@ -1,48 +1,74 @@
-import { useEffect, useState } from "react";
-import { dbObject } from "../../helper/constant";
+import { useEffect, useState } from 'react';
+import { dbObject } from '../../helper/constant';
+import './recentTransaction.css';
+import { bomb, check, dice, fortuneWheel, rocket } from '../../assets';
 
 const RecentTransaction = () => {
+  const [transactionList, setTransactionList] = useState([]);
 
-    const [transactionList, setTransactionList] = useState([]);
-
-    const fetchTransactionList = async () => {
-        try {
-            const { data } = await dbObject.get("/wallet/transactions");
-            // console.log(data);
-            if (!data.error) {
-                setTransactionList(data.data);
-            }
-        } catch (error) {
-            console.log(error);
-        }
+  const fetchTransactionList = async () => {
+    try {
+      const { data } = await dbObject.get('/wallet/transactions');
+      // console.log(data);
+      if (!data.error) {
+        setTransactionList(data.data);
+      }
+    } catch (error) {
+      console.log(error);
     }
+  };
 
-    useEffect(() => {
-        fetchTransactionList();
-    }, []);
+  useEffect(() => {
+    fetchTransactionList();
+  }, []);
 
-    return (
-        <>
-            <h1>Recent Transaction Page</h1>
-            <div>
-                {transactionList.map(items => {
-                    return (
-                        <div key={items.id}>
-                            <h2>Id: {items.id}</h2>
-                            <h2>Source: {items.source}</h2>
-                            <h2>Txn Id: {items.transaction_id}</h2>
-                            <h2>Amount: {items.amount}</h2>
-                            <h2>Type: {items.type}</h2>
-                            <h2>Is Approved: {items.is_approved}</h2>
-                            <h2>User Id: {items.user_id}</h2>
-                            <h2>Date: {items.date}</h2>
-                            <hr />
-                        </div>
-                    );
-                })}
-            </div>
-        </>
-    );
-}
+  return (
+    <div className="container">
+      <div className="transaction-history-container">
+        <h2>Recharge History</h2>
 
+        <div className="transaction-history-card-group">
+          {transactionList.map((items) => (
+            <Card
+              key={items.id}
+              source={items.source}
+              date={items.date}
+              type={items.type}
+              amount={items.amount}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const Card = ({ source, date, type, amount }) => {
+  const newDate = new Date(date);
+  const formattedDate = newDate.toLocaleDateString('en-GB'); // dd/mm/yyyy
+  const hours = newDate.getHours();
+  const minutes = newDate.getMinutes();
+  const formattedTime = `${hours}:${minutes}`;
+
+  const img = source === 'checkin' ? check: source === 'circle'? fortuneWheel: source === 'minesweeper'? bomb : source === 'fastparity'? rocket: dice
+
+  return (
+    <div className="transaction-history-card">
+      <div className="info">
+        <img src={img} width={50} alt="" />
+        <div>
+          <p>{source}</p>
+          <p>{`${formattedDate} ${formattedTime}`}</p>
+        </div>
+      </div>
+
+      <div style={{ color: type === 'credit' ? '#3bd146' : '#ee979f' }}>
+        <p className="amount">
+          {type === 'credit' ? '+' : '-'}
+          {Number(amount).toFixed(2)}
+        </p>
+      </div>
+    </div>
+  );
+};
 export default RecentTransaction;

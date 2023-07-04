@@ -1,6 +1,5 @@
 .invite-content {
   color: #fff;
-  height: 100vh;
   overflow: hidden;
 }
 
@@ -104,7 +103,6 @@
   font-weight: 400;
   color: #f7feff;
   font-size: 1.2rem;
-  margin-top: 1rem;
 }
 
 .invite-button {
@@ -118,11 +116,74 @@
   font-weight: 500;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   transition: all 0.3s ease-in-out;
-  width: 100%;
+  width: 450px;
+  position: fixed;
+  bottom: 6rem;
+  left: 50%;
+  transform: translate(-50%);
 }
 
 .invite-button:hover {
   background-color: #89dfad;
+}
+
+.invite-diamond {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  position: relative;
+  width: 100px;
+  height: 100px;
+  /* margin-right: 2rem; */
+}
+
+.invite-diamond img {
+  position: relative;
+  z-index: 2;
+  width: 70%;
+  margin: auto;
+}
+
+.invite-diamond div {
+  width: 100px;
+  height: 100px;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(217, 169, 24, 0.8) 0%, rgba(104, 84, 22, 0) 70%);
+  filter: blur(20px);
+}
+
+
+.agent-contrainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(90deg, #42413f, #090908);
+  color: #fff;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.agent-contrainer h2 {
+  font-size: 1.55rem;
+  font-weight: 700;
+  background: linear-gradient(to bottom, #e4c7ab, #f9b45e);
+  -webkit-background-clip: text; /* For Safari */
+  -webkit-text-fill-color: transparent; /* For Safari */
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 0.4rem;
+}
+
+.agent-contrainer p {
+  font-weight: 600;
+  letter-spacing: 1px;
 }
 
 @media screen and (max-width: 520px) {
@@ -136,5 +197,9 @@
 
   .income-history h3 {
     font-size: 1.1rem;
+  }
+
+  .invite-button {
+    width: 330px;
   }
 }

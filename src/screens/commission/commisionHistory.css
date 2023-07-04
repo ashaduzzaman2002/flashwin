@@ -1,0 +1,15 @@
+.commission-container {
+    color: #fff;
+    padding-bottom: 2rem;
+    width: 100%;
+  }
+  
+  .commission-container h2 {
+    font-weight: 400;
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  .commission-card {
+    margin-top: 1rem;
+  }

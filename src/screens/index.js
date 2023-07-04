@@ -18,6 +18,10 @@ import UpdateProfile from "./profile/updateProfile/UpdateProfile";
 import Recharge from "./recharge/Recharge";
 import Rewards from "./rewards/Rewards";
 import Withdraw from "./withdraw/Withdraw";
+import Agent from "./agent/Agent";
+import Privilege from "./previlege/Privilege";
+import Ranking from "./ranking/Ranking";
+import CommisionHistory from "./commission/CommisionHistory";
 
 
 
@@ -41,5 +45,9 @@ export {
     UpdateProfile,
     Recharge,
     Rewards,
-    Withdraw
+    Withdraw,
+    Agent,
+    Privilege,
+    Ranking,
+    CommisionHistory
 }

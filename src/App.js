@@ -2,8 +2,10 @@ import { Route, Routes } from 'react-router-dom';
 import {
   About,
   AddBank,
+  Agent,
   BankDetails,
   CheckIn,
+  CommisionHistory,
   FastParity,
   Follow,
   ForgotPass,
@@ -14,7 +16,9 @@ import {
   Login,
   LuckyWheel,
   Minesweeper,
+  Privilege,
   Profile,
+  Ranking,
   Recharge,
   Register,
   Rewards,
@@ -54,6 +58,10 @@ function App() {
         <Route path="/add-bank" element={<AddBank />} />
         <Route path="/game-history" element={<GameHistory />} />
         <Route path="/register" element={<Register />} />
+        <Route path='/agent' element={<Agent />} />
+        <Route path='/privilege' element={<Privilege />} />
+        <Route path='/ranking' element={<Ranking />} />
+        <Route path='/commission-history' element={<CommisionHistory />} />
       </Routes>
     </>
   );

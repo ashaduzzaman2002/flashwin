@@ -7,6 +7,7 @@ export const AuthProvider = ({ children }) => {
 
   const [user, setUser] = useState(null)
   const [walletBalance, setWalletBalance] = useState('0.0');
+  const [commissionHistory, setCommissionHistory] = useState([])
 
 
   const getUser = async () => {
@@ -31,14 +32,25 @@ export const AuthProvider = ({ children }) => {
       console.log("jsjjs");
     }
   }
+
+  const getCommissionHistory = async () => {
+    try {
+      const {data} = await dbObject.get('/commision/history')
+      setCommissionHistory(data.data);
+      console.log('commission', data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
   
 
   useEffect(() => {
     getUser();
     fetchWallet();
+    getCommissionHistory()
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, walletBalance }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ user, walletBalance, commissionHistory }}>{children}</AuthContext.Provider>
   );
 };
