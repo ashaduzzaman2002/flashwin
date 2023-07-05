@@ -26,7 +26,6 @@
   align-items: center;
   gap: 1rem;
   background-color: hwb(191 23% 66%);
-  width: 330px;
   position: relative;
   border-radius: 10px;
   overflow: hidden;
@@ -50,6 +49,7 @@
 .auth-form {
   display: flex;
   flex-direction: column;
+  width: 450px;
 }
 .auth-form label,
 .verification-input label {
@@ -167,10 +167,10 @@
 
 
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 520px) {
   .auth-input,
   .verification-input {
-    width: 300px;
+    width: 100%;
   }
 
   .auth-input input,
@@ -189,5 +189,9 @@
   .auth-container h2 {
     font-size: 2.3rem;
     margin-bottom: 1.7rem;
+  }
+
+  .auth-form {
+    width: 90%;
   }
 }

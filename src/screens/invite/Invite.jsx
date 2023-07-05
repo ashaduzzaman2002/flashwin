@@ -130,8 +130,8 @@ const Invite = () => {
             <h3>Income History</h3>
             <Link
               style={{
-                fontSize: '1.2rem',
-                fontWeight: '600',
+                fontSize: '1rem',
+                fontWeight: '500',
                 color: '#3191dc',
                 cursor: 'default',
               }}

@@ -5,7 +5,7 @@
 
 .invite-content h1 {
   text-align: center;
-  margin-top: 2rem;
+  margin-top: 1rem;
   font-size: 2.3rem;
   font-weight: 500;
   margin-bottom: 1rem;
@@ -15,10 +15,11 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 1rem;
+  padding: 0.8rem;
   border: 1px solid #5b6e78;
   border-radius: 1rem;
   box-shadow: rgba(90, 110, 121, 0.2) 0px 7px 29px 0px;
+  align-items: center;
 }
 
 .invite-amount p {
@@ -26,18 +27,19 @@
 }
 
 .invite-amount h2 {
-  font-size: 2rem;
+  font-size: 1.1rem;
   font-weight: 500;
 }
 
 .invite-amount-out button {
   padding: 0 1.5rem;
   border: none;
-  border-radius: 1rem;
+  border-radius: 5rem;
   background-color: #e8f3d4;
   font-weight: 500;
   font-size: 0.9rem;
   transition: all 0.3s ease-in-out;
+  height: 45px;
 }
 
 .invite-amount-out button:hover {
@@ -53,13 +55,13 @@
 .invite-card1 {
   background-color: red;
   width: 31%;
-  height: 7rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
+  gap: 1rem;
   border-radius: 1rem;
+  padding: 1rem;
 }
 
 .invite-card1 i {
@@ -74,17 +76,17 @@
 .income-history-card-group {
   display: flex;
   justify-content: space-between;
-  margin-top: 2.5rem;
+  margin-top: 1.2rem;
 }
 
 .income-history-card {
-  padding: 1rem;
+  padding: 0.4rem;
   width: 48%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.6rem;
+  gap: 0.4rem;
   border: 1px solid #5b6e78;
   border-radius: 1rem;
 }
@@ -95,14 +97,14 @@
 }
 
 .income-history-card h2 {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 500;
 }
 
 .income-history h3 {
   font-weight: 400;
   color: #f7feff;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .invite-button {
@@ -130,11 +132,9 @@
 .invite-diamond {
   display: flex;
   justify-content: center;
-  margin-top: 1rem;
   position: relative;
-  width: 100px;
-  height: 100px;
-  /* margin-right: 2rem; */
+  width: 90px;
+  height: 90px;
 }
 
 .invite-diamond img {
@@ -166,7 +166,7 @@
   background: linear-gradient(90deg, #42413f, #090908);
   color: #fff;
   margin-top: 1.5rem;
-  padding: 1rem;
+  padding: 0.3rem;
   border-radius: 1rem;
 }
 
@@ -178,12 +178,13 @@
   -webkit-text-fill-color: transparent; /* For Safari */
   background-clip: text;
   color: transparent;
-  margin-bottom: 0.4rem;
+  padding-left: 0.6rem;
 }
 
 .agent-contrainer p {
   font-weight: 600;
   letter-spacing: 1px;
+  padding-left: 0.6rem;
 }
 
 @media screen and (max-width: 520px) {

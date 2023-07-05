@@ -71,7 +71,7 @@ const Login = () => {
       <h2>
         Log <span style={{ color: '#67efaf' }}>In</span>{' '}
       </h2>
-      <form onSubmit={handleSubmit} className="auth-form" action="">
+      <form onSubmit={handleSubmit} className="auth-form " action="">
         <div style={{ marginBottom: '1.5rem' }}>
           <label htmlFor="number">Phone</label>
           <div className="auth-input phone-input">

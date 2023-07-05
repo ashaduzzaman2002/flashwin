@@ -39,7 +39,7 @@ const Recharge = () => {
         <h2 className="withdraw-amount-header">Quick amount</h2>
         <div className="quick-amount">
           {quickAmount.map((item) => (
-            <button key={item} className={`${selected === item && 'quick-amount-selected '}`} onClick={() => { setSelected(item); console.log(selected); }}>₹ {item}</button>
+            <button key={item} className={`${selected === item && 'quick-amount-selected '}`} onClick={() => { setSelected(item); setAmount(item); }}>₹ {item}</button>
           ))}
         </div>
 

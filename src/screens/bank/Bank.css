@@ -40,8 +40,8 @@
 
 .addAcountBtn {
     position: absolute;
-    bottom: 3rem;
-    right: 2rem;
+    bottom: 6rem;
+    right: 0.5rem;
     border: none;
     background: linear-gradient(to right bottom, rgb(255, 185, 9), rgb(254, 64, 45));
     padding: 0.1rem 1.2rem;
