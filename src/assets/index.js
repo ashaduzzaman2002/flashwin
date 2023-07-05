@@ -24,7 +24,7 @@ import receipt from './icons/receipt-solid.svg'
 import telegram from './icons/telegram-logo.svg'
 import emptyBox from './images/empty-box.png'
 import upi from './images/UPI_logo_PNG_lyp5s5.png'
-import diamond from './icons/diamond.svg';
+import diamond from './icons/agent-diamond.png';
 
 export {
   Home,

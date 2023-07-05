@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import './auth.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useFormik } from 'formik';
 import { loginValidation } from '../../validation';
 import { dbObject } from '../../helper/constant';
+import { AuthContext } from '../../context/AuthContext';
 
 const initialValues = {
   number: '',
@@ -13,8 +14,15 @@ const initialValues = {
 };
 
 const Login = () => {
-  let navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const { user, loading, setUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log(loading);
+    if (user) return navigate('/');
+  }, [user]);
+
   const { values, errors, handleBlur, touched, handleChange, handleSubmit } =
     useFormik({
       initialValues: initialValues,
@@ -22,8 +30,8 @@ const Login = () => {
       onSubmit: async () => {
         try {
           // console.log(values);
-          const { data } = await dbObject.post("/auth/login", values);
-          console.log(data);
+          const { data } = await dbObject.post('/auth/login', values);
+          setUser(data);
 
           if (!data?.error) {
             toast.success('Logged In Successfully!', {
@@ -38,9 +46,8 @@ const Login = () => {
             });
 
             setTimeout(() => {
-              navigate("/");
+              navigate('/');
             }, 2000);
-
           } else {
             toast.error(data.message, {
               position: 'top-center',
@@ -53,15 +60,11 @@ const Login = () => {
               theme: 'colored',
             });
           }
-
         } catch (error) {
           console.log(error);
         }
-
       },
     });
-
-
 
   return (
     <div className="auth-container">
@@ -126,17 +129,14 @@ const Login = () => {
           Login
         </button>
 
-
-
         <p className="auth-other-link">
           Don't have an account? <Link to="/register">Register</Link>
         </p>
-
       </form>
 
       <ToastContainer
         position="top-center"
-        autoClose={5000}
+        autoClose={2000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick

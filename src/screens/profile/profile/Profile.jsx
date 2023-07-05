@@ -10,21 +10,18 @@ import { ToastContainer, toast } from 'react-toastify';
 
 const Profile = () => {
   const [showModal, setShowModal] = useState(false)
-  const [confirm, setConfirm] = useState(false)
-  const {user} = useContext(AuthContext)
+  const {user,setUser} = useContext(AuthContext)
   let navigate = useNavigate();
-  const [userId, setUserId] = useState(0);
-  const [userNumber, setUserNumber] = useState(0);
 
   const logout = async () => {
     try {
-      if(confirm) {
+  
         const {data} = await dbObject.post("auth/logout")
         console.log(data);
-
+        
         toast.success('Logged Out!', {
           position: 'top-center',
-          autoClose: 2000,
+          autoClose: 1000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -32,11 +29,11 @@ const Profile = () => {
           progress: undefined,
           theme: 'colored',
         });
-
+        
         setTimeout(() => {
           navigate("/login");
         }, 1000);
-      }
+        setUser(null)
     } catch (error) {
       console.log(error);
     }
@@ -44,7 +41,7 @@ const Profile = () => {
   return (<>
 
     {
-      showModal && <ConfirmModal confirmFunc={setConfirm} setFunc={setShowModal} text1={'Are you sure you want to logout?'} text2='Do you really want to logout?' />
+      showModal && <ConfirmModal confirmFunc={logout} setFunc={setShowModal} text1={'Are you sure you want to logout?'} text2='Do you really want to logout?' />
     }
 
     <div className="container">

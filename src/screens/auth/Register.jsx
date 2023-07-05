@@ -1,10 +1,11 @@
 import axios from 'axios';
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { baseURL } from '../../helper/constant';
 import { ToastContainer, toast } from 'react-toastify';
 import { useFormik } from 'formik';
 import { signupValidation } from '../../validation';
+import { AuthContext } from '../../context/AuthContext';
 
 const initialValues = {
   number: '',
@@ -15,6 +16,15 @@ const initialValues = {
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
+
+    const {user, loading} = useContext(AuthContext)
+    const navigate = useNavigate()
+  
+    useEffect(() => {
+      console.log(loading);
+      if(user) return navigate('/')
+    }, [user])
+  
 
   const { values, errors, handleChange, handleSubmit, handleBlur, touched } =
     useFormik({

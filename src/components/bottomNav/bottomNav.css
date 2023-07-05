@@ -12,6 +12,7 @@
     rgb(254, 64, 45)
   );
   border-radius: 4rem;
+  z-index: 100;
 }
 
 .bottom-nav ul {

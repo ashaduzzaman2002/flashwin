@@ -8,15 +8,19 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)
   const [walletBalance, setWalletBalance] = useState('0.0');
   const [commissionHistory, setCommissionHistory] = useState([])
+  const [loading, setLoading] = useState(false)
 
 
   const getUser = async () => {
     try {
+      setLoading(true)
       const { data } = await dbObject.get("/auth");
       console.log(data.data);
       if(!data.error){
         setUser(data.data);
       }
+      setLoading(false)
+
      
     } catch (error) {
       console.log(error);
@@ -29,7 +33,7 @@ export const AuthProvider = ({ children }) => {
       setWalletBalance(data.data.total_bal);
       // console.log(data.data.total_bal);
     } catch (error) {
-      console.log("jsjjs");
+      console.log(error);
     }
   }
 
@@ -48,9 +52,9 @@ export const AuthProvider = ({ children }) => {
     getUser();
     fetchWallet();
     getCommissionHistory()
-  }, []);
+  }, [setLoading]);
 
   return (
-    <AuthContext.Provider value={{ user, walletBalance, commissionHistory }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ user, walletBalance, commissionHistory, loading, setUser }}>{children}</AuthContext.Provider>
   );
 };

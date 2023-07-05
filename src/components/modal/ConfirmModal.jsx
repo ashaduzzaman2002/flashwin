@@ -9,7 +9,7 @@ const ConfirmModal = ({text1, text2, setFunc, confirmFunc}) => {
             <p>{text2}</p>
 
             <div className='modalBtn'>
-                <button onClick={() => {confirmFunc(true); setFunc(false)}}>Yes</button>
+                <button onClick={() => {confirmFunc(); setFunc(false)}}>Yes</button>
                 <button onClick={() => setFunc(false)}>No</button>
             </div>
         </div>

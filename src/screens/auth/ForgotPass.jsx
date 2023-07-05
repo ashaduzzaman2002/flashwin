@@ -1,6 +1,8 @@
 import { useFormik } from 'formik';
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { signupValidation } from '../../validation';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthContext';
 
 const initialValues = {
   number: '',
@@ -10,6 +12,16 @@ const initialValues = {
 
 const ForgotPass = () => {
   const [showPassword, setShowPassword] = useState(false);
+
+  const {user, loading} = useContext(AuthContext)
+    const navigate = useNavigate()
+  
+    useEffect(() => {
+      console.log(loading);
+      if(user) return navigate('/')
+    }, [user])
+  
+
 
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
