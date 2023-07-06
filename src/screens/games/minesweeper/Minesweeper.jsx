@@ -1,31 +1,15 @@
-import React, { useEffect, useState } from "react";
-import "./Minesweeper.css";
-import GameDetails from "../../../components/gameDetails/GameDetails";
-import { dbObject } from "../../../helper/constant";
+import React, { useState } from 'react';
+import './Minesweeper.css';
+import GameDetails from '../../../components/gameDetails/GameDetails';
+import Start from '../../../components/start/Start'
 
 const Minesweeper = () => {
-  const [ratio, setRatio] = useState("2x2");
+    const [ratio, setRatio] = useState('2x2')
+    const [startCart, setStartCart] = useState(false)
 
-  useEffect(() => {
-    startGame();
-  }, []);
-
-  const startGame = async () => {
-    let body;
-    if (ratio === "2x2") {
-      body = {
-        amount: 20,
-        cell: 2,
-      };
-    } else {
-      body = {
-        amount: 20,
-        cell: 4,
-      };
+    const handleStart = () => {
+      setStartCart(true)
     }
-    const response = await dbObject.post("mine/start", body);
-    console.log(response);
-  };
 
   return (
     <div
@@ -36,6 +20,10 @@ const Minesweeper = () => {
         background: "linear-gradient(180deg, #424242, #071724)",
       }}
     >
+      {
+        startCart && <Start game='minesweeper' name={'Choose the game amount'} setFunc = {setStartCart} />
+      }
+      
       <div className="minesweeper-container">
         <h2>Minesweeper</h2>
 
@@ -83,8 +71,8 @@ const Minesweeper = () => {
             <div></div>
             <div></div>
             <div></div>
-          </div>
-          <button>Start</button>
+        </div>
+        <button style={{cursor: 'default'}} onClick={handleStart}>Start</button>
         </div>
 
         <div className="minesweeper-note">

@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import './auth.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useFormik } from 'formik';
@@ -17,10 +17,17 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { user, loading, setUser } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     console.log(loading);
-    if (user) return navigate('/');
+    if (user) {
+      if (location.state) {
+        navigate(location.state?.from, { replace: true });
+      } else {
+        navigate('/', { replace: true });
+      }
+    }
   }, [user]);
 
   const { values, errors, handleBlur, touched, handleChange, handleSubmit } =

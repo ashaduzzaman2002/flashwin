@@ -17,14 +17,15 @@ import vault from './icons/vault.svg';
 import home from './icons/home.svg';
 import coin from './icons/coin.svg';
 import treasure from './images/treasure-chest.png';
-import avatar from './icons/avatar.svg'
-import profile from './icons/profile.svg'
-import profileFilled from './icons/profile-filled.svg'
-import receipt from './icons/receipt-solid.svg'
-import telegram from './icons/telegram-logo.svg'
-import emptyBox from './images/empty-box.png'
-import upi from './images/UPI_logo_PNG_lyp5s5.png'
+import avatar from './icons/avatar.svg';
+import profile from './icons/profile.svg';
+import profileFilled from './icons/profile-filled.svg';
+import receipt from './icons/receipt-solid.svg';
+import telegram from './icons/telegram-logo.svg';
+import emptyBox from './images/empty-box.png';
+import upi from './images/UPI_logo_PNG_lyp5s5.png';
 import diamond from './icons/agent-diamond.png';
+import privilege from './images/privilege.svg';
 
 export {
   Home,
@@ -53,5 +54,6 @@ export {
   telegram,
   emptyBox,
   upi,
-  diamond
+  diamond,
+  privilege,
 };
