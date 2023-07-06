@@ -1,4 +1,4 @@
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import {
   About,
   AddBank,
@@ -241,10 +241,11 @@ function App() {
 const Redirect = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     console.log(loading);
-    if (!user) return navigate('/login');
+    if (!user) return navigate('/login', { state: { from: location.pathname } });
   }, []);
 
   if (loading) return <h1>Loading...</h1>;

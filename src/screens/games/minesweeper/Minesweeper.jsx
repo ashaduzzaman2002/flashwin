@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
 import './Minesweeper.css';
 import GameDetails from '../../../components/gameDetails/GameDetails';
+import Start from '../../../components/start/Start'
 
 const Minesweeper = () => {
     const [ratio, setRatio] = useState('2x2')
+    const [startCart, setStartCart] = useState(false)
+
+    const handleStart = () => {
+      setStartCart(true)
+    }
 
   return (
     <div
@@ -14,6 +20,10 @@ const Minesweeper = () => {
         background: 'linear-gradient(180deg, #424242, #071724)',
       }}
     >
+      {
+        startCart && <Start game='minesweeper' name={'Choose the game amount'} setFunc = {setStartCart} />
+      }
+      
       <div className="minesweeper-container">
         <h2>Minesweeper</h2>
 
@@ -48,7 +58,7 @@ const Minesweeper = () => {
             <div></div>
             <div></div>
         </div>
-        <button>Start</button>
+        <button style={{cursor: 'default'}} onClick={handleStart}>Start</button>
         </div>
 
         <div className='minesweeper-note'>

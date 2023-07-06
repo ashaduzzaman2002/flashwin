@@ -89,13 +89,6 @@ const Invite = () => {
             url={'/ranking'}
           />
 
-          <Card1
-            bgColor={'linear-gradient(to bottom right, #ffb909, #fe402d)'}
-            color={'#fcffff'}
-            icon={'fa-solid fa-link'}
-            title={'My Link'}
-            url={'/my-link'}
-          />
         </div>
 
         <Link to={'/agent'} className="agent-contrainer">

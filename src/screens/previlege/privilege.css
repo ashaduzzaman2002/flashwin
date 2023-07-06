@@ -1,16 +1,16 @@
-.privilege-container{
-    color: #fff;
-    padding: 2rem 0;
+.privilege-container {
+  color: #fff;
+  padding: 2rem 0;
 }
 
 .privilege-header {
-    text-align: center;
+  text-align: center;
 }
 
 .privilege-header h1 {
-    font-size: 2rem;
-    font-weight: 500;
-    background: linear-gradient(to bottom, #ffd844, #feab26);
+  font-size: 2rem;
+  font-weight: 500;
+  background: linear-gradient(to bottom, #ffd844, #feab26);
   -webkit-background-clip: text; /* For Safari */
   -webkit-text-fill-color: transparent; /* For Safari */
   background-clip: text;
@@ -18,6 +18,270 @@
 }
 
 .privilege-header h3 {
-    font-size: 1.1rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.privilege_img {
+  display: flex;
+  justify-content: center;
+
+  position: relative;
+  width: 300px;
+  height: 300px;
+  margin: auto;
+}
+
+.privilege_img img {
+  position: relative;
+  z-index: 2;
+  width: 95%;
+  margin: auto;
+}
+
+.privilege_img div {
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    #84a2bada 0%,
+    #84a2ba4e 40%,
+    rgba(104, 84, 22, 0) 65%
+  );
+  filter: blur(20px);
+}
+
+
+.longest-btn-outer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.longest-btn {
+    background: linear-gradient(90deg, #419fee, #0e4aa4);
+    color: #fff;
+    outline: none;
+    padding: 0.6rem 2rem;
+    border: none;
+    font-weight: 500;
+    font-size: 1rem;
+    border-radius: 3rem;
+}
+
+.privilege_note {
+    text-align: center;
+    margin-top: 0.5rem;
+    font-weight: 600;
+}
+.privilege-card {
+    background-color: #535d66;
+    padding: 1rem;
+    border-radius: 1rem;
+    margin-top: 2rem;
+}
+  
+.privilege-level div {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.privilege-level button {
+    background-color: #ffdcaa;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 2.5rem;
+}
+
+.privilege-level div p {
     font-weight: 500;
 }
+
+.privilege-card .note {
+    text-align: center;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    color: #eceaea;
+}
+
+
+
+.privilege-slider {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+
+
+.privilege-slider p {
+    color: #eceaea;
+}
+
+
+.easiest {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+
+.easiest i {
+    width: 50px;
+    height: 50px;
+    background-color: #a2f3c6;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    color: #210b32;
+}
+
+
+.bar-cart {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.bar-cart p {
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.bar-cart div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.bar-cart div div {
+    height: 30px;
+    width: 0.8rem;
+    background-color: #ffab40;
+    border-radius: 1rem;
+}
+
+.easiest .plus {
+    font-size: 2rem;
+}
+
+.winnerAmounts {
+    display: grid;
+    gap: 0.7rem;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 2rem 2rem 1rem;
+}
+
+.winnerAmounts div {
+    display: flex;
+    gap: 0.4rem;
+
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+  /* === Custom progress slider === */
+.progress-slider {
+
+	font-size: 1.5rem;
+	width: 100%;
+	color: #6ceeab;
+	--thumb-height: 1.1rem;
+	--track-height: 0.25rem;
+	--track-color: #dae4da;
+	--clip-edges: 0.125em;
+}
+
+
+
+/* === Custom progress slider commons === */
+.progress-slider {
+	position: relative;
+	background: #fff0;
+	overflow: hidden;
+}
+
+.progress-slider:active {
+	cursor: grabbing;
+}
+
+.progress-slider:disabled {
+	filter: grayscale(1);
+	opacity: 0.3;
+	cursor: not-allowed;
+}
+
+/* === WebKit specific styles === */
+.progress-slider,
+.progress-slider::-webkit-slider-runnable-track,
+.progress-slider::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	transition: all ease 100ms;
+	height: var(--thumb-height);
+}
+
+.progress-slider::-webkit-slider-runnable-track,
+.progress-slider::-webkit-slider-thumb {
+	position: relative;
+}
+
+.progress-slider::-webkit-slider-thumb {
+	--thumb-radius: calc((var(--thumb-height) * 0.5) - 1px);
+	--clip-top: calc((var(--thumb-height) - var(--track-height)) * 0.5 - 0.5px);
+	--clip-bottom: calc(var(--thumb-height) - var(--clip-top));
+	--clip-further: calc(100% + 1px);
+	--box-fill: calc(-100vmax - var(--thumb-width, var(--thumb-height))) 0 0
+		100vmax currentColor;
+
+	width: var(--thumb-width, var(--thumb-height));
+	background: linear-gradient(currentColor 0 0) scroll no-repeat left center /
+		50% calc(var(--track-height) + 1px);
+	background-color: currentColor;
+	box-shadow: var(--box-fill);
+	border-radius: var(--thumb-width, var(--thumb-height));
+
+	filter: brightness(100%);
+	clip-path: polygon(
+		100% -1px,
+		var(--clip-edges) -1px,
+		0 var(--clip-top),
+		-100vmax var(--clip-top),
+		-100vmax var(--clip-bottom),
+		0 var(--clip-bottom),
+		var(--clip-edges) 100%,
+		var(--clip-further) var(--clip-further)
+	);
+}
+
+
+
+.progress-slider:active::-webkit-slider-thumb {
+	filter: brightness(var(--brightness-down));
+	cursor: grabbing;
+}
+
+.progress-slider::-webkit-slider-runnable-track {
+	background: linear-gradient(var(--track-color) 0 0) scroll no-repeat center /
+		100% calc(var(--track-height) + 1px);
+}
+
+.progress-slider:disabled::-webkit-slider-thumb {
+	cursor: not-allowed;
+}
+
+/* === Firefox specific styles === */
