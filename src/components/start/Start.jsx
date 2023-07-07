@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import './start.css';
+import { useNavigate } from 'react-router-dom';
 
-const Start = ({ name, setFunc, game }) => {
+const Start = ({ name, startGame, game }) => {
   const [contactPoint, setContactPoint] = useState(10);
 
-  const startGame = () => {
-    setFunc(false);
+  const navigate = useNavigate()
+
+  const handleStart = () => {
+    startGame({amount: contactPoint, number: 5})
   };
 
   const handleIncDec = (value) => {
@@ -20,7 +23,7 @@ const Start = ({ name, setFunc, game }) => {
 
         <div className="points-div">
           <h3>INR 0.0</h3>
-          <button>
+          <button onClick={() => navigate('/recharge')}>
             <i className="fa-solid fa-clock-rotate-left"></i> Recharge
           </button>
         </div>
@@ -94,7 +97,7 @@ const Start = ({ name, setFunc, game }) => {
         )}
 
         <div style={{ width: '100%', marginTop: '1rem' }}>
-          <button className="btn" onClick={startGame}>
+          <button className="btn" onClick={handleStart}>
             Start
           </button>
         </div>

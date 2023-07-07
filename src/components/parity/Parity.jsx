@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './parity.css';
 import GameDetails from '../gameDetails/GameDetails';
 
-const Parity = ({ heading, icon }) => {
+const Parity = ({ heading, icon, setColor, setStartCart }) => {
   const firstCardList = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   const [activeBtn, setActiveBtn] = useState('probability');
   return (
@@ -25,17 +25,35 @@ const Parity = ({ heading, icon }) => {
       </div>
 
       <div className="prity-colors">
-        <div style={{ backgroundColor: '#d72e2a' }}>
+        <div
+          onClick={() => {
+            setColor('Red');
+            setStartCart(true);
+          }}
+          style={{ backgroundColor: '#d72e2a' }}
+        >
           <p>Join Red</p>
           <p>1:2</p>
         </div>
 
-        <div style={{ backgroundColor: '#1976d3' }}>
+        <div
+          onClick={() => {
+            setColor('Blue');
+            setStartCart(true);
+          }}
+          style={{ backgroundColor: '#1976d3' }}
+        >
           <p>Join Blue</p>
           <p>1:4.5</p>
         </div>
 
-        <div style={{ backgroundColor: '#388e3d' }}>
+        <div
+          onClick={() => {
+            setColor('Green');
+            setStartCart(true);
+          }}
+          style={{ backgroundColor: '#388e3d' }}
+        >
           <p>Join green</p>
           <p>1:2</p>
         </div>

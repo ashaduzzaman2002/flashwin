@@ -73,12 +73,12 @@ const Profile = () => {
             icon={'fa-solid fa-wallet'}
             navigateUrl="/recent-transaction"
           />
-          <UserDetailsItem
+          {/* <UserDetailsItem
             navigateUrl='/bank-details'
             title={'Bank Details'}
             desc={'Update your bank details for easy withdrawals'}
             icon={'fa-solid fa-building-columns'}
-          />
+          /> */}
 
           <h3>Others</h3>
           <UserDetailsItem

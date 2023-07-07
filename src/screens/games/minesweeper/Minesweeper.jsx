@@ -7,8 +7,8 @@ const Minesweeper = () => {
     const [ratio, setRatio] = useState('2x2')
     const [startCart, setStartCart] = useState(false)
 
-    const handleStart = () => {
-      setStartCart(true)
+    const startGame = () => {
+      setStartCart(false)
     }
 
   return (
@@ -21,7 +21,7 @@ const Minesweeper = () => {
       }}
     >
       {
-        startCart && <Start game='minesweeper' name={'Choose the game amount'} setFunc = {setStartCart} />
+        startCart && <Start game='minesweeper' name={'Choose the game amount'} startGame = {startGame} />
       }
       
       <div className="minesweeper-container">
@@ -58,7 +58,7 @@ const Minesweeper = () => {
             <div></div>
             <div></div>
         </div>
-        <button style={{cursor: 'default'}} onClick={handleStart}>Start</button>
+        <button style={{cursor: 'default'}} onClick={() => setStartCart(true)}>Start</button>
         </div>
 
         <div className='minesweeper-note'>

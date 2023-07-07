@@ -26,6 +26,9 @@ import emptyBox from './images/empty-box.png';
 import upi from './images/UPI_logo_PNG_lyp5s5.png';
 import diamond from './icons/agent-diamond.png';
 import privilege from './images/privilege.svg';
+import bar1 from './images/bar1.png'
+import bar2 from './images/bar2.png'
+import bar3 from './images/bar3.png'
 
 export {
   Home,
@@ -56,4 +59,7 @@ export {
   upi,
   diamond,
   privilege,
+  bar1,
+  bar2,
+  bar3,
 };

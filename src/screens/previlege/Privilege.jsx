@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './privilege.css';
-import { privilege } from '../../assets';
+import { bar1, bar2, bar3, privilege } from '../../assets';
 import { dbObject } from '../../helper/constant';
 
 const Privilege = () => {
@@ -260,17 +260,17 @@ const Privilege = () => {
           <div className="bar-cart">
             <div>
               <p>+₹7011</p>
-              <div style={{ height: '40px' }} />
+              <img width={55} height={65} src={bar2} alt="" />
             </div>
 
             <div>
               <p>+₹10011</p>
-              <div style={{ height: '50px' }} />
+              <img width={50} height={80} src={bar1} alt="" />
             </div>
 
             <div>
               <p>+₹5011</p>
-              <div style={{ height: '30px' }} />
+              <img width={45} height={50} src={bar3} alt="" />
             </div>
           </div>
 
