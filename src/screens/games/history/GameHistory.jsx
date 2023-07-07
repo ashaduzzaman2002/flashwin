@@ -14,7 +14,7 @@ const GameHistory = () => {
                 <button onClick={() => {setActiveBtn('minesweeper')}} className={`${activeBtn === 'minesweeper'?'gameHistory-activeBtn': ''}`}>Minesweeper</button>
                 <button onClick={() => {setActiveBtn('circle')}} className={`${activeBtn === 'circle'?'gameHistory-activeBtn': ''}`}>Circle</button>
                 <button onClick={() => {setActiveBtn('fast-parity')}} className={`${activeBtn === 'fast-parity'?'gameHistory-activeBtn': ''}`}>Fast-Parity</button>
-                <button onClick={() => {setActiveBtn('full-parity')}} className={`${activeBtn === 'full-parity'?'gameHistory-activeBtn': ''}`}>Full-Parity</button>
+                <button onClick={() => {setActiveBtn('full-parity')}} className={`${activeBtn === 'full-parity'?'gameHistory-activeBtn': ''}`}>Parity</button>
             </div>
 
             <div className='gameHistoryBox'>
