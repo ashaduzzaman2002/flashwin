@@ -108,6 +108,41 @@
   font-size: 1rem;
 }
 
+
+.invitePageBottomBottom {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.invitePageBottomBottomCols {
+  flex-basis: 50%;
+  width: 100%;
+  border: 0.5px solid rgb(102, 125, 132);
+  padding: 0.4rem;
+  border-radius: 1rem;
+}
+
+.invitePageBottomColTop {
+  font-size: 12px;
+  color: #cccaca;
+}
+
+.invitePageMostBottom {
+  font-family: sans-serif;
+  font-size: 12px;
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.invitePageMostBottom img {
+  margin-left: 7.5px;
+}
+
 .invite-button {
   margin-top: 1.5rem;
   background: linear-gradient(
@@ -209,6 +244,6 @@
   }
 
   .invite-button {
-    width: 330px;
+    width: 95%;
   }
 }

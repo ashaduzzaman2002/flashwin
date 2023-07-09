@@ -30,8 +30,6 @@ const Invite = () => {
     }
   };
 
-
-
   const fetchReferCounts = async () => {
     try {
       const { data } = await dbObject.get('/wallet/refer_history');
@@ -61,7 +59,7 @@ const Invite = () => {
       <div className="invite-content">
         <h1>Invite</h1>
 
-        <div className="invite-amount-out">
+        <div className="invite-amount-out" style={{marginBottom: '2rem'}}>
           <div className="invite-amount">
             <p>Invite Amount</p>
             <h2>₹ {commissionWalletBalance}</h2>
@@ -74,24 +72,23 @@ const Invite = () => {
 
         <div className="invite-card1-group">
           <Card1
-            bgColor={'linear-gradient(to bottom right, #ffbf0c, #fba638)'}
-            color={'#040100'}
+            bgColor={'linear-gradient(90deg, #ef5731, #f28e58)'}
+            color={'#fff'}
             icon={'fa-regular fa-star'}
             title={'Privilege'}
             url={'/privilege'}
           />
 
           <Card1
-            bgColor={'linear-gradient(to bottom right, #5ef6d2, #6caea5)'}
+            bgColor={'linear-gradient(90deg, #6caea5, #83f9dd)'}
             color={'#000503'}
             icon={'fa-solid fa-ranking-star'}
             title={'Ranking'}
             url={'/ranking'}
           />
-
         </div>
 
-        <Link to={'/agent'} className="agent-contrainer">
+        <Link to={'/agent'} className="agent-contrainer" style={{marginBottom: '2rem'}}>
           <div>
             <h2>Agent 10 million</h2>
             <p>cash growth plan</p>
@@ -103,21 +100,21 @@ const Invite = () => {
           </div>
         </Link>
 
-        <div className="income-history">
-          <div className="income-history-card-group">
-            <Card2 title={'Invited Today'} amount={totalReferralCount} />
+        <div className="income-history" >
 
-            <Card2
-              title={"Today's Income"}
-              amount={'₹ ' + totalReferralEarning}
-            />
+          <div class="invitePageBottomBottom">
+           <Card2 title={"Invited Today"} amount={totalReferralCount} />
+            <Card2 title={"Today's Income"}
+              amount={'₹ ' + totalReferralEarning} />
           </div>
+
+
           <div
             style={{
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
-              marginTop: '1rem',
+              marginTop: '2rem',
             }}
           >
             <h3>Income History</h3>
@@ -135,7 +132,7 @@ const Invite = () => {
           </div>
         </div>
 
-        <div className="commission-container" style={{marginBottom: '9rem'}}>
+        <div className="commission-container" style={{ marginBottom: '9rem' }}>
           {commissionHistory?.map((item) => (
             <CommissionCard key={item.id} data={item} />
           ))}
@@ -158,6 +155,7 @@ const Card1 = ({ icon, title, bgColor, color, url }) => {
         background: bgColor,
         color: color,
         cursor: 'default',
+        boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px',
       }}
     >
       <i className={icon}></i>
@@ -167,12 +165,20 @@ const Card1 = ({ icon, title, bgColor, color, url }) => {
 };
 
 const Card2 = ({ title, amount }) => (
-  <div className="income-history-card">
-    <p>
-      {title} <i className="fa-solid fa-chevron-right"></i>
-    </p>
-    <h2>{amount}</h2>
-  </div>
+  <div class="invitePageBottomBottomCols">
+  <center>
+    <div class="invitePageBottomColTop">{title}</div>
+    <div class="invitePageBottomColBottom">{amount}</div>
+    <div class="invitePageMostBottom">
+      <div class="invitePageMostBottomLeft">Total {amount}</div>
+      <img
+        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADZ0lEQVRYCcVXTUhUURT+7hs0KDP7UabJ3/4gF7VJLAS1kCKloEVtWrWIloGbFv2ZJrQI27QLauWmFoGQ0aZ/wrSoLAxKiGwyf7BkcsjfuZ1z73v5fPPe+N4w4oHhvrn3nPOde865554r4JPknWPZGP+2D5g7AohyEotAyogSF2KQRvrJPiDUgbySx+L43Wk/qsViTPJ2RRjTiYsEeoIAchfj1+siRrztyDaaxcmeoVQyngbIzkMr8H3kHAQaIbEqlRLPNYE4ybahqKBV1D+YcuNzNUDteiZxj4T3uAkFnhPoQpZx1M0bSQbIm5U7IefuU3wLAwOlEhAiSjrrxek3H+xsCwzQO5c9GQe3ENmILFFh94RhramYK7dneOcWAI/sVcJQWOb8fwNUwmUq5nZQ5zdjcHKbpEJgJl2/72xfUwzER4DZSUtPsJFPR5axlUOhPcDn3O9R21YPHGwDKs8AK3yWBad5jKVqC1UXVeF+fx31XWTqrgKb6ziewJdOoOs6MDnuhPDxn4rV2rJ8Q5dXvxWO9L69BcSiZDpFb3sDUHUWWLnBB6CThTCptIeaDocbaanCuez5/+8YMPoJyN9BwOuBdVuA3CJg6B0wE/cUc10QMkY5oC4W13XPyeH3wJMmYOSjZimtAaovADkbPUXcF0Q5J6G+0dw5vGfHPgOP6I4afK15ivYCtZfIK/neMskrEYOSKT0DWFlsQHti4KVWHdkN7L+SDOM1Q9j6GHox+JlPzAGJ2XlOrg9+SQhpUDZzM5Ee5YQp9ueB0motP9wLdN8IousneyA9A3LpsqyhmBdXacAf3ZQTZEx8OIgBg2QAt1EBKa+MEu4ysMk8vdEu4Gkz8CfoXmQfGUA9XBDio3bgGhDepaU4AZ9R4k2k7Lw8EEIdBjeQVAuoh/NJXP3ySjTzwAvgeWua4IRJ2IbuXqmB9EtcfH71A/0PaecEHizmNhTZztjpXcerqXRMkdOmJ2wKA3w6r2PVInH36pc42dIFZwzCstoyPoaaqHWmFpzSeYmJMRjLJBUC68+yNqVshHKLCDVQdYxaRmVstNpyx0tpPgQmkjj1qpdb54yGQz1MqB13vAkYMskAnlSeKCyopc8WMiRgl8EaTNKyLSBdVtJZS9a4IAesSfuo8mI5Hqd2I/h7qZ7n/wBZfz7VBRipQAAAAABJRU5ErkJggg=="
+        height="17.5"
+        alt=""
+      />
+    </div>
+  </center>
+</div>
 );
 
 export default Invite;

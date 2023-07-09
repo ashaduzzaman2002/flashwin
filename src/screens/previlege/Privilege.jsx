@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import './privilege.css';
-import { privilege } from '../../assets';
+import { bar1, bar2, bar3, privilege } from '../../assets';
 import { dbObject } from '../../helper/constant';
 
 const Privilege = () => {
   const [people, setPeople] = useState(1);
+  const [people2, setPeople2] = useState(1);
   const [day, setDay] = useState(1);
   const [commisssion, setCommission] = useState(62);
+  const [incomeEstimate, setCIcomeEstimate] = useState(50);
   const [levels, setLevels] = useState({});
 
   const handleCommission = () => {
     setCommission(62 * people * day);
+  };
+
+  const handleIcome = () => {
+    setCIcomeEstimate(50 * people2);
   };
 
   const commisionCalculator = async () => {
@@ -25,8 +31,9 @@ const Privilege = () => {
   // Replace the existing handleCommission calls with the following:
   useEffect(() => {
     handleCommission();
+    handleIcome()
     commisionCalculator();
-  }, [people, day]);
+  }, [people, day, people2]);
 
   const winnerAmounts = [
     '+₹4011',
@@ -134,7 +141,7 @@ const Privilege = () => {
               marginBlock: '1rem',
             }}
           >
-            Commission Estimate <span>₹{commisssion}</span>
+            Commission <span style={{color: "#71d9ab"}}>₹{commisssion}</span>
           </h3>
         </div>
 
@@ -161,11 +168,70 @@ const Privilege = () => {
           Everytime you invite a valid user, get ₹50 ad reward
         </h3>
 
-        <div className="privilege-card">
+        <div
+          className="privilege-card"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexDirection: 'column',
+          }}
+        >
           <p className="note">
             If the recharge amount is greater than 100, it is a effective user
           </p>
+
+          <i className="fa-solid fa-user"></i>
+
+          <button
+            style={{
+              border: 'none',
+              backgroundColor: '#ffdcac',
+              fontWeight: '500',
+              padding: '0.5rem 1.5rem',
+              marginTop: '1rem',
+              borderRadius: '2rem',
+            }}
+          >
+            Recharge over 100
+          </button>
+
+          <h3
+          style={{
+            textAlign: 'center',
+            fontWeight: '500',
+            fontSize: '1.2rem',
+            marginBottom: '-1.5rem',
+          }}
+        >
+          Income Estimate
+        </h3>
+
+        <div className="privilege-slider" style={{width: '100%'}}>
+            <p>People({people2})</p>
+            <input
+              min="1"
+              max="100"
+              value={people2}
+              onChange={(e) => setPeople2(e.target.value)}
+              className="progress-slider"
+              style={{width: '100%'}}
+              type="range"
+            />
+          </div>
+          
+        <h3
+            style={{
+              textAlign: 'center',
+              fontWeight: '500',
+              fontSize: '1.2rem',
+              marginBlock: '1rem',
+            }}
+          >
+            Reward: <span style={{color: "#71d9ab"}}>₹{incomeEstimate}</span>
+          </h3>
         </div>
+
 
         <div
           className="longest-btn-outer"
@@ -194,17 +260,17 @@ const Privilege = () => {
           <div className="bar-cart">
             <div>
               <p>+₹7011</p>
-              <div style={{ height: '40px' }} />
+              <img width={55} height={65} src={bar2} alt="" />
             </div>
 
             <div>
               <p>+₹10011</p>
-              <div style={{ height: '50px' }} />
+              <img width={50} height={80} src={bar1} alt="" />
             </div>
 
             <div>
               <p>+₹5011</p>
-              <div style={{ height: '30px' }} />
+              <img width={45} height={50} src={bar3} alt="" />
             </div>
           </div>
 

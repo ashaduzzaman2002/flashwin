@@ -24,3 +24,37 @@
     font-weight: 600;
     font-size: 1.05rem;
   }
+
+
+  .invitePageIncomeBox {
+    width: 100%;
+    padding: 10px 3%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.invitePageIncomeBoxLeft {
+  display: flex;
+  align-items: center;
+}
+
+.invitePageIncomeBoxIcon {
+  height: 50px;
+  width: 50px;
+  border-radius: 50px;
+  background: #f0f0f0;
+}
+
+.invitePageIncomeBoxLeftRight {
+  margin-left: 10px;
+}
+
+.invitePageIncomeDetailBottom {
+  margin-top: 5px;
+}
+
+.invitePageIncomeTime {
+  color: #aaa;
+  font-size: 13px;
+}

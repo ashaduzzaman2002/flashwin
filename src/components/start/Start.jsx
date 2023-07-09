@@ -1,16 +1,17 @@
-import React, { useState } from "react";
-import { AuthContext } from "../../context/AuthContext";
-import { useContext } from "react";
-import "./start.css";
+import React, { useState } from 'react';
+import './start.css';
+import { useNavigate } from 'react-router-dom';
 
-const Start = ({ name, setFunc, game }) => {
+const Start = ({ name, startGame, game }) => {
   const [contactPoint, setContactPoint] = useState(10);
 
-  const startGame = () => {
-    setFunc(false);
+  const navigate = useNavigate()
+
+  const handleStart = () => {
+    startGame({amount: contactPoint, number: 5})
   };
 
-  const { walletBalance } = useContext(AuthContext);
+  // const { walletBalance } = useContext(AuthContext);
 
   const handleIncDec = (value) => {
     // setContactPoint(contactPoint + value);
@@ -23,8 +24,8 @@ const Start = ({ name, setFunc, game }) => {
         <p>Points</p>
 
         <div className="points-div">
-          <h3>INR {walletBalance}</h3>
-          <button>
+          <h3>INR 0.0</h3>
+          <button onClick={() => navigate('/recharge')}>
             <i className="fa-solid fa-clock-rotate-left"></i> Recharge
           </button>
         </div>
@@ -97,8 +98,8 @@ const Start = ({ name, setFunc, game }) => {
           </div>
         )}
 
-        <div style={{ width: "100%", marginTop: "1rem" }}>
-          <button className="btn" onClick={startGame}>
+        <div style={{ width: '100%', marginTop: '1rem' }}>
+          <button className="btn" onClick={handleStart}>
             Start
           </button>
         </div>
