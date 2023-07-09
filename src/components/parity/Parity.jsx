@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import './parity.css';
-import GameDetails from '../gameDetails/GameDetails';
+import React, { useState } from "react";
+import "./parity.css";
+import GameDetails from "../gameDetails/GameDetails";
 
 const Parity = ({ heading, icon }) => {
   const firstCardList = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-  const [activeBtn, setActiveBtn] = useState('probability');
+  const [activeBtn, setActiveBtn] = useState("probability");
   return (
     <div className="parity-container">
       <h2>{heading}</h2>
@@ -25,17 +25,17 @@ const Parity = ({ heading, icon }) => {
       </div>
 
       <div className="prity-colors">
-        <div style={{ backgroundColor: '#d72e2a' }}>
+        <div style={{ backgroundColor: "#d72e2a" }}>
           <p>Join Red</p>
           <p>1:2</p>
         </div>
 
-        <div style={{ backgroundColor: '#1976d3' }}>
+        <div style={{ backgroundColor: "#1976d3" }}>
           <p>Join Blue</p>
           <p>1:4.5</p>
         </div>
 
-        <div style={{ backgroundColor: '#388e3d' }}>
+        <div style={{ backgroundColor: "#388e3d" }}>
           <p>Join green</p>
           <p>1:2</p>
         </div>
@@ -45,34 +45,34 @@ const Parity = ({ heading, icon }) => {
         {firstCardList.map((item) => (
           <div>
             <p>{item}</p>
-            {icon ? <i className="fa-solid fa-bolt"></i> : ''}
+            {icon ? <i className="fa-solid fa-bolt"></i> : ""}
           </div>
         ))}
       </div>
 
       <div className="parity-btn">
         <button
-          onClick={() => setActiveBtn('continuos')}
-          className={activeBtn === 'continuos' ? 'parity-btn-active' : ''}
+          onClick={() => setActiveBtn("continuos")}
+          className={activeBtn === "continuos" ? "parity-btn-active" : ""}
         >
           Continuos
         </button>
         <button
-          onClick={() => setActiveBtn('record')}
-          className={activeBtn === 'record' ? 'parity-btn-active' : ''}
+          onClick={() => setActiveBtn("record")}
+          className={activeBtn === "record" ? "parity-btn-active" : ""}
         >
           Record
         </button>
         <button
-          onClick={() => setActiveBtn('probability')}
-          className={activeBtn === 'probability' ? 'parity-btn-active' : ''}
+          onClick={() => setActiveBtn("probability")}
+          className={activeBtn === "probability" ? "parity-btn-active" : ""}
         >
           Probability
         </button>
       </div>
 
       <div>
-        <p style={{ textAlign: 'center', marginTop: '1.2rem', fontSize: 15 }}>
+        <p style={{ textAlign: "center", marginTop: "1.2rem", fontSize: 15 }}>
           1 item today
         </p>
       </div>
@@ -91,26 +91,26 @@ const Parity = ({ heading, icon }) => {
         </div>
 
         <div className="game-first-row-box-out">
-          <p style={{ backgroundColor: '#d72e2a' }}>R</p>
+          <p style={{ backgroundColor: "#d72e2a" }}>R</p>
           <div
             className="game-first-row-box"
-            style={{ backgroundColor: '#ffcdd2' }}
+            style={{ backgroundColor: "#ffcdd2" }}
           ></div>
         </div>
 
         <div className="game-first-row-box-out">
-          <p style={{ backgroundColor: '#1976d3' }}>B</p>
+          <p style={{ backgroundColor: "#1976d3" }}>B</p>
           <div
             className="game-first-row-box"
-            style={{ backgroundColor: '#bbdefa' }}
+            style={{ backgroundColor: "#bbdefa" }}
           ></div>
         </div>
 
         <div className="game-first-row-box-out">
-          <p style={{ backgroundColor: '#388e3d' }}>G</p>
+          <p style={{ backgroundColor: "#388e3d" }}>G</p>
           <div
             className="game-first-row-box"
-            style={{ backgroundColor: '#c8e6ca' }}
+            style={{ backgroundColor: "#c8e6ca" }}
           ></div>
         </div>
       </div>
