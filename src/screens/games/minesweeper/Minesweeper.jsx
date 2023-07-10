@@ -48,7 +48,6 @@ const Minesweeper = () => {
     setStartCart(true);
   };
 
- 
   const startGame = async () => {
     setStartCart(false);
     setIsPlayingMinesweeper(false);
