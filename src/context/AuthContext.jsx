@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }) => {
   const fetchWallet = async () => {
     try {
       const { data } = await dbObject.get("/wallet/fetch");
-      setWalletBalance(data.data.total_bal);
+      setWalletBalance(data?.data?.total_bal.toFixed(2));
       // console.log(data.data.total_bal);
     } catch (error) {
       console.log(error);
