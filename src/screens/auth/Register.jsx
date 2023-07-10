@@ -6,6 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { useFormik } from 'formik';
 import { signupValidation } from '../../validation';
 import { AuthContext } from '../../context/AuthContext';
+import Toaster, { toastOptions } from '../../components/Toster/Toaster';
 
 const initialValues = {
   number: '',
@@ -34,27 +35,9 @@ const Register = () => {
         try {
           const { data } = await axios.post(`${baseURL}/auth/register`, values);
           if (!data?.error) {
-            toast.success('Logged In Successfully!', {
-              position: 'top-center',
-              autoClose: 2000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: 'colored',
-            });
+            toast.success('Logged In Successfully!', toastOptions);
           } else {
-            toast.error(data.message, {
-              position: 'top-center',
-              autoClose: 2000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: 'colored',
-            });
+            toast.error(data.message, toastOptions);
           }
         } catch (error) {
           console.log(error);
@@ -162,18 +145,7 @@ const Register = () => {
         </p>
       </form>
 
-      <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-      />
+      <Toaster />
     </div>
   );
 };

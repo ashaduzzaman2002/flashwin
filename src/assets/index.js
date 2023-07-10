@@ -29,6 +29,9 @@ import privilege from './images/privilege.svg';
 import bar1 from './images/bar1.png'
 import bar2 from './images/bar2.png'
 import bar3 from './images/bar3.png'
+import moneyBag from './images/money-bag.png'
+import mining from './gif/mining.json';
+import mineBomb from './gif/mine-bomb.json';
 
 export {
   Home,
@@ -62,4 +65,7 @@ export {
   bar1,
   bar2,
   bar3,
+  moneyBag,
+  mining,
+  mineBomb
 };
