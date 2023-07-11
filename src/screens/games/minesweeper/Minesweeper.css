@@ -147,9 +147,61 @@
   border-radius: 2rem;
 }
 
+.mine-myorder {
+  background-color: #283546;
+  border-radius: 1rem;
+  padding: 0.8rem;
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 35% 65%;
+}
+
+.mine-myorder .minesweeper-game-2x2 {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+  margin-top: 0rem;
+}
+
+.mine-myorder .minesweeper-game-2x2 div {
+  background-color: #3d5474;
+  width: 70px;
+  height: 70px;
+  border-radius: 0.7rem;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mine-myorder .minesweeper-game-4x4 {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+
+.mine-myorder .minesweeper-game-4x4 div {
+  background-color: #4ca9e2;
+  height: 110px;
+  border-radius: 1rem;
+  position: relative;
+}
+
+
+
+.myorder-text {
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+}
+
+
+
 @media screen and (max-width: 520px) {
   .minesweeper-container {
-    width: 330px;
+    width: 94%;
   }
 
   .minesweeper-game-2x2 div {
@@ -171,5 +223,17 @@
   .minesweeper-game button {
     width: 7.5rem;
     height: 7.5rem;
+  }
+}
+
+
+@media screen and (max-width: 483px) {
+  .mine-myorder .minesweeper-game-2x2 {  
+    gap: 0.3rem;
+  }
+  
+  .mine-myorder .minesweeper-game-2x2 div {
+    width: 55px;
+    height: 55px;
   }
 }

@@ -1,0 +1,133 @@
+.probabilty-game-second-row {
+  display: grid;
+  grid-template-columns: repeat(11, 1fr);
+  margin-top: 1rem;
+}
+
+.probabilty-game-second-row .numbers {
+  display: flex;
+  flex-direction: column;
+}
+
+.parity-record {
+  margin-top: 1.5rem;
+}
+
+.parity-record p:first-child {
+  color: #e1e0e0;
+}
+
+.parity-record-box {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.6rem;
+}
+
+.continuous-tab {
+  overflow-x: auto !important;
+  margin-top: 1.5rem;
+}
+
+.scroll-container {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  overflow-x: auto;
+  gap: 0.6rem;
+  width: 100%;
+  overflow-x: auto !important;
+  white-space: nowrap;
+}
+
+.parity__records__circle {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  position: relative;
+  border-radius: 100px;
+}
+
+.parity__records__circle__no {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  color: #fff;
+  background: rgba(0, 0, 0, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  z-index: 150;
+}
+
+.parity__records__circle__inner {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.parity__records__circle__col {
+  width: 100%;
+  aspect-ratio: 1 / 2;
+}
+
+.parity__records__circle__col {
+  width: 100%;
+  aspect-ratio: 1 / 2;
+}
+
+.parity-myorder {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.5rem;
+}
+
+.parity-myorder td {
+  text-align: center;
+  margin-top: 0.2rem;
+}
+
+.parity-myorder td:first-child {
+  text-align: left;
+}
+
+.parity-myorder td:last-child {
+  text-align: right;
+}
+
+.parity-myorder-header td{
+  color: #f1b81a;
+  font-weight: 500;
+}
+
+.parity-selected {
+  display: flex;
+  justify-content: center;
+}
+
+.parity-selected p{
+  background-color: #e8f3d5;
+  width: 50%;
+  color: #000;
+  font-size: 14px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.parity-result p {
+  width: 38%;
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+  background-color: #e14738;
+  color: #fff;
+}
+
+@media screen and (max-width: 378px) {
+  .parity-record-box div {
+    width: 40px;
+    height: 40px;
+  }
+}

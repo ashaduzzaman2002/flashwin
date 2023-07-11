@@ -135,3 +135,25 @@
   background-color: #e8f2d4;
   color: #000700;
 }
+
+.add-bank-link {
+  background-color: #e8f3d5;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.add-bank-link a {
+  color: #060809;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.bank-icon {
+  margin-right: 0.5rem;
+  font-size: 1.3rem;
+}

@@ -34,10 +34,6 @@
     color: black !important;
   }
 
-  .gameHistoryBox {
-    
-  }
-
   .emptyImage {
     display: flex;
     min-height: 82vh;
@@ -47,4 +43,57 @@
 
   .emptyImage img {
     width: 40%;
+  }
+
+  .game-history-card-group {
+    margin-top: 1rem;
+  }
+
+  .game-history {
+    padding-top: 1rem;
+  }
+
+  .history-parity{
+    background-color: #283546;
+    padding: 1rem;
+    border-radius: 0.8rem;
+    margin-top: 0.5rem;
+  }
+
+  .history-parity .date {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .history-parity .date p {
+    font-size: 15px;
+    color: #e6e4e4;
+  }
+
+  .hr80 {
+    border-bottom: 1px solid gray;
+    margin-top: 1rem;
+  }
+
+  .parity-delivery {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    color: #e6e4e4;
+    font-size: 15px;
+  }
+
+  .history-parity-btn {
+    margin-top: 1rem;
+    display: flex;
+    gap: 1rem;
+  }
+
+  .history-parity-btn button {
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    font-weight: 500;
   }

@@ -29,7 +29,7 @@ const Home = () => {
         paddingTop: '2rem',
       }}
     >
-      <div className="container">
+      <div className="container" style={{marginTop: '-2rem'}}>
         <BottomNav backgroundColor={'transparent'} />
 
         <div className="home-container">

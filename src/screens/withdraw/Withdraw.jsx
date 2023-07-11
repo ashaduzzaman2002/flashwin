@@ -51,12 +51,11 @@ const Withdraw = () => {
       <div className="withdraw-container">
         <HeaderSecondar title={'Withdraw'} />
 
-        {/* <div>
-          <Link to={'add-bank'}>
-            <i class="fa-solid fa-building-columns"></i>
-            Add Bank Account
+        <div className='add-bank-link'>
+          <Link to={'/bank-details'}>
+            <i class="fa-solid fa-building-columns bank-icon"></i> Add Bank Account
           </Link>
-        </div> */}
+        </div>
 
         <h2 className="withdraw-amount-header">Withdrawal amount</h2>
 

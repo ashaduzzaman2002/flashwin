@@ -6,7 +6,7 @@ import { AuthContext } from '../../../context/AuthContext';
 import { useContext } from 'react';
 import { toast } from 'react-toastify';
 import Toaster from '../../../components/Toster/Toaster';
-import { mining, moneyBag } from '../../../assets';
+import { bomb, mining, moneyBag } from '../../../assets';
 import Lottie from 'lottie-react';
 
 //   int _selectedGridType = 2;
@@ -41,6 +41,7 @@ const Minesweeper = () => {
   const [miningAnimation, setMiningAnimation] = useState(false);
   const game = 'minesweeper';
   const name = 'Minesweeper';
+  const [activeBtn2, setActiveBtn2] = useState('OtherPlayers');
 
   const { walletBalance } = useContext(AuthContext);
 
@@ -360,7 +361,88 @@ const Minesweeper = () => {
             think have no mines to get a bonus
           </p>
         </div>
-        <GameDetails />
+
+        <div className="gameDetails-btn-group">
+          <button
+            onClick={() => setActiveBtn2('OtherPlayers')}
+            className={`${
+              activeBtn2 === 'OtherPlayers' ? 'gameDetails-activeBtn' : ''
+            }`}
+          >
+            Other Players
+          </button>
+
+          <button
+            onClick={() => setActiveBtn2('MyOrder')}
+            className={`${
+              activeBtn2 === 'MyOrder' ? 'gameDetails-activeBtn' : ''
+            }`}
+          >
+            My Orders
+          </button>
+        </div>
+
+        {activeBtn2 === 'OtherPlayers' ? (
+          <div className="gameDetails-others">
+            <div>
+              <p>Period</p>
+              <small>18:54</small>
+            </div>
+
+            <div style={{ textAlign: 'center' }}>
+              <p>User</p>
+              <small>****18787</small>
+            </div>
+
+            <div style={{ textAlign: 'center' }}>
+              <p>Select</p>
+              <small>2x2</small>
+            </div>
+
+            <div style={{ textAlign: 'right' }}>
+              <p>Point</p>
+              <small>₹ 90</small>
+            </div>
+          </div>
+        ) : (
+          <div className="mine-myorder">
+            <div className="game-type">
+              <div
+                className={`minesweeper-game-2x2`}
+                style={{ marginBottom: 0 }}
+              >
+                <div>
+                  <img style={{ width: '80%' }} src={bomb} alt="" />
+                </div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+            </div>
+
+            <div style={{marginLeft: '1rem'}}>
+              <div style={{margin: 0}} className="myorder-text">
+                <div>
+                  <p>Points</p>
+                  <p>₹ 20</p>
+                </div>
+
+                <div>
+                  <p>Pass</p>
+                  <p>3</p>
+                </div>
+
+                <div>
+                  <p>Bonous</p>
+                  <p style={{ color: '#7eb298' }}>+₹20.50</p>
+                </div>
+              </div>
+
+                <p style={{marginTop: 8, fontSize: 15, color: '#e5eae7'}}>Delivery: ₹19.00 Fees: ₹1.00</p>
+                <p style={{marginTop: 8, fontSize: 15, color: '#e5eae7'}}>12/07/2023 12:32</p>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
