@@ -49,6 +49,7 @@ const FastParity = () => {
         <Start
           startGame={startGame}
           name={`Fast Parity - ${color || number}`}
+          setStartCart={setStartCart}
           color={color}
         />
       )}
@@ -163,7 +164,7 @@ const FastParity = () => {
               <Probability probabilityBox={probabilityBox} />
             )}
 
-<div className="gameDetails-btn-group">
+            <div className="gameDetails-btn-group">
               <button
                 onClick={() => setActiveBtn2('OtherPlayers')}
                 className={`${
@@ -219,12 +220,24 @@ const FastParity = () => {
                   </thead>
 
                   <tbody>
-                    <tr className='parity-myorder'>
+                    <tr className="parity-myorder">
                       <td>18:01</td>
-                      <td className='parity-selected'><p style={{backgroundColor: '#1776d7', width: '100%', color: '#fff'}}>blue</p></td>
-                      <td>₹10</td> 
-                      <td className='parity-selected parity-result'><p style={{backgroundColor: '#388e3d'}}>7</p></td> 
-                      <td>+₹0.00</td> 
+                      <td className="parity-selected">
+                        <p
+                          style={{
+                            backgroundColor: '#1776d7',
+                            width: '100%',
+                            color: '#fff',
+                          }}
+                        >
+                          blue
+                        </p>
+                      </td>
+                      <td>₹10</td>
+                      <td className="parity-selected parity-result">
+                        <p style={{ backgroundColor: '#388e3d' }}>7</p>
+                      </td>
+                      <td>+₹0.00</td>
                     </tr>
                   </tbody>
                 </table>

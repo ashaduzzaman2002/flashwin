@@ -1,14 +1,20 @@
-import React, { useState } from 'react';
+import React, {  useState } from 'react';
 import './start.css';
 import { useNavigate } from 'react-router-dom';
 
-const Start = ({ name, startGame, game }) => {
+const Start = ({ name, startGame, game, setStartCart }) => {
+  const [isBoxOpen, setIsBoxOpen] = useState(false);
   const [contactPoint, setContactPoint] = useState(10);
+  
+
+  const closeCard = () => {
+    setStartCart(false)
+  };
 
   const navigate = useNavigate()
 
   const handleStart = () => {
-    startGame({amount: contactPoint, number: 5})
+    startGame(contactPoint)
   };
 
   // const { walletBalance } = useContext(AuthContext);
@@ -18,7 +24,8 @@ const Start = ({ name, startGame, game }) => {
   };
 
   return (
-    <div className="start-container">
+    <div  className="start-container">
+      <div onClick={closeCard} className='card-out-side'></div>
       <div className="start-box">
         <h2 className="game-name">{name}</h2>
         <p>Points</p>

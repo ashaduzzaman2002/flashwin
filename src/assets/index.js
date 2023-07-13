@@ -32,6 +32,8 @@ import bar3 from './images/bar3.png'
 import moneyBag from './images/money-bag.png'
 import mining from './gif/mining.json';
 import mineBomb from './gif/mine-bomb.json';
+import magicBag from './icons/magic-bag.json';
+import hangLoose from './icons/hang-loose.json';
 
 export {
   Home,
@@ -67,5 +69,7 @@ export {
   bar3,
   moneyBag,
   mining,
-  mineBomb
+  mineBomb,
+  magicBag,
+  hangLoose
 };

@@ -43,6 +43,7 @@ const FullParity = () => {
       {startCart && (
         <Start
           startGame={startGame}
+          setStartCart={setStartCart}
           name={`Parity - ${color || number}`}
           color={color}
         />
