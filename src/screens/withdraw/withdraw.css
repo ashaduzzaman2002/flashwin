@@ -98,7 +98,7 @@
 .withdraw-btn {
   margin-top: 5rem;
   width: 100%;
-  padding: 1.1rem 0;
+  padding: 0.9rem 0;
   border-radius: 1rem;
   border: none;
   background: linear-gradient(to right bottom, rgb(255, 185, 9), rgb(254, 64, 45));

@@ -2,7 +2,7 @@ import React from 'react';
 import './bottomNav.css';
 import { Link } from 'react-router-dom';
 
-const BottomNav = ({backgroundColor}) => {
+const BottomNav = () => {
   const { pathname } = window.location;
   return (
     <div className="bottom-nav">

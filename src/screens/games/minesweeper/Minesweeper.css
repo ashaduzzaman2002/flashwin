@@ -47,10 +47,13 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  width: 85%;
+  margin: auto;
 }
 
 .minesweeper-game-2x2 {
   width: 100%;
+  aspect-ratio: 1/1;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
@@ -59,7 +62,7 @@
 
 .minesweeper-game-2x2 div {
   background-color: #4ca9e2;
-  height: 220px;
+  /* height: 220px; */
   border-radius: 1rem;
   position: relative;
 }
@@ -205,7 +208,7 @@
   }
 
   .minesweeper-game-2x2 div {
-    height: 150px;
+    /* height: 150px; */
   }
 
   .minesweeper-game-2x2 {
@@ -232,8 +235,4 @@
     gap: 0.3rem;
   }
   
-  .mine-myorder .minesweeper-game-2x2 div {
-    width: 55px;
-    height: 55px;
-  }
 }

@@ -152,7 +152,7 @@
   );
   color: #fff;
   border: none;
-  padding: 1.1rem 1rem;
+  padding: 0.9rem 1rem;
   border-radius: 1rem;
   font-size: 1.1rem;
   font-weight: 500;
@@ -232,7 +232,7 @@
 
 @media screen and (max-width: 520px) {
   .invite-content h1 {
-    font-size: 2rem;
+    font-size: 1.4rem;
   }
 
   .income-history-card p {

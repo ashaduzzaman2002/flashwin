@@ -24,7 +24,7 @@ const LuckyWheel = () => {
   const [isPlay, setIsPlay] = useState(false);
   const [history, setHistory] = useState([]);
   const [result, setResult] = useState(null)
-  const [showResult, setShowResult] = useState(true)
+  const [showResult, setShowResult] = useState(false)
 
   const generateNumbers = (start) => {
     const numberArray = Array.from({ length: 10 }, (_, index) => index + start);
@@ -106,22 +106,6 @@ const LuckyWheel = () => {
     }
   }, [timer]);
 
-  const startInterval = async () => {
-    try {
-      console.log('object');
-      const { data } = await dbObject.post('/circle/play', {
-        animal: 'lion',
-        color: '',
-        number: '',
-        amount: '20',
-      });
-
-      console.log(data);
-      console.log('object1');
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   const handleStart = (data) => {
     setColor(data.color);
@@ -167,6 +151,7 @@ const LuckyWheel = () => {
           );
           clearInterval(intervalId);
           setDegree(index * 9.4);
+          console.log(data);
           setShowResult(true)
         }
       }

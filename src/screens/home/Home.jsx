@@ -112,15 +112,6 @@ const Home = () => {
   );
 };
 
-const Card1 = ({ icon, text, url }) => {
-  const naivgate = useNavigate();
-  return (
-    <div onClick={() => naivgate(url)}>
-      <img src={icon} alt="" />
-      <p>{text}</p>
-    </div>
-  );
-};
 
 const Card2 = ({ icon, text, url, bgColor }) => {
   const navigate = useNavigate();
