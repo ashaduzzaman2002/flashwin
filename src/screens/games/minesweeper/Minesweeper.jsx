@@ -329,11 +329,11 @@ const Minesweeper = () => {
             {Array(16)
               .fill()
               .map((_, i) => (
-                <div
-                  key={i + 1}
-                  id={i + 1}
-                  onClick={() => mineCell(i + 1)}
-                ></div>
+                <div key={i + 1} id={i + 1} onClick={() => mineCell(i + 1)}>
+                  {cellsMined?.includes(i + 1) && (
+                    <img width={'90%'} src={moneyBag} alt="money" />
+                  )}
+                </div>
               ))}
           </div>
           {!isPlayingMinesweeper && (
@@ -420,8 +420,8 @@ const Minesweeper = () => {
               </div>
             </div>
 
-            <div style={{marginLeft: '1rem'}}>
-              <div style={{margin: 0}} className="myorder-text">
+            <div style={{ marginLeft: '1rem' }}>
+              <div style={{ margin: 0 }} className="myorder-text">
                 <div>
                   <p>Points</p>
                   <p>₹ 20</p>
@@ -438,8 +438,12 @@ const Minesweeper = () => {
                 </div>
               </div>
 
-                <p style={{marginTop: 8, fontSize: 15, color: '#e5eae7'}}>Delivery: ₹19.00 Fees: ₹1.00</p>
-                <p style={{marginTop: 8, fontSize: 15, color: '#e5eae7'}}>12/07/2023 12:32</p>
+              <p style={{ marginTop: 8, fontSize: 15, color: '#e5eae7' }}>
+                Delivery: ₹19.00 Fees: ₹1.00
+              </p>
+              <p style={{ marginTop: 8, fontSize: 15, color: '#e5eae7' }}>
+                12/07/2023 12:32
+              </p>
             </div>
           </div>
         )}

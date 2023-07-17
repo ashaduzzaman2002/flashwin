@@ -10,7 +10,7 @@ const BottomNav = () => {
         <li className={`nav-link ${pathname === '/' ? 'active-link' : ''}`}>
           <Link to={'/'}>
             <i className="fa-solid fa-house"></i>
-            <p>Home</p>
+            {/* <p>Home</p> */}
           </Link>
         </li>
         <li
@@ -18,7 +18,7 @@ const BottomNav = () => {
         >
           <Link to={'/invite'}>
             <i className="fa-solid fa-people-line"></i>
-            <p>Invite</p>
+            {/* <p>Invite</p> */}
           </Link>
         </li>
         <li
@@ -28,7 +28,7 @@ const BottomNav = () => {
         >
           <Link to={'/recharge'}>
             <i className="fa-solid fa-bolt-lightning"></i>
-            <p>Recharge</p>
+            {/* <p>Recharge</p> */}
           </Link>
         </li>
         <li
@@ -36,7 +36,7 @@ const BottomNav = () => {
         >
           <Link to={'/profile'}>
             <i className="fa-solid fa-user"></i>
-            <p>Profile</p>
+            {/* <p>Profile</p> */}
           </Link>
         </li>
       </ul>

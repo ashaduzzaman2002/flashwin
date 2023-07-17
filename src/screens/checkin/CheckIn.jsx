@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './CheckIn.css';
 import { coin, treasure } from '../../assets';
 import { dbObject } from '../../helper/constant';
@@ -7,6 +7,7 @@ import { toast, ToastContainer } from 'react-toastify';
 
 const CheckIn = () => {
   const dayList = [1, 2, 3, 4, 5, 6, 7];
+  const [data, setData] = useState([])
 
   const checkinData = [
     {
@@ -66,10 +67,9 @@ const CheckIn = () => {
   const fetchCheckinDetails = async () => {
     try {
       const { data } = await dbObject.post('/task/checkin/fetch')
-      // console.log(data.error);
+      console.log(data);
       if (!data.error) {
-        dailyCheckinList = data.data[0];
-        // console.log(dailyCheckinList.day1);
+        setData(data?.data)
       }
     } catch (error) {
       console.log(error);
@@ -79,7 +79,7 @@ const CheckIn = () => {
   const claimCheckinReward = async () => {
     try {
       const { data } = await dbObject.post("/task/checkin");
-      // console.log(data);
+      console.log(data);
       if (!data.error) {
         toast.success(data.message, {
           position: 'top-center',

@@ -13,15 +13,13 @@ const initialValues = {
 const ForgotPass = () => {
   const [showPassword, setShowPassword] = useState(false);
 
-  const {user, loading} = useContext(AuthContext)
-    const navigate = useNavigate()
-  
-    useEffect(() => {
-      console.log(loading);
-      if(user) return navigate('/')
-    }, [user])
-  
+  const { user, loading } = useContext(AuthContext);
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    console.log(loading);
+    if (user) return navigate('/');
+  }, [user]);
 
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
@@ -41,7 +39,7 @@ const ForgotPass = () => {
         <div style={{ marginBottom: '1.5rem' }}>
           <label htmlFor="number">Phone</label>
           <div className="auth-input phone-input">
-          <i class="fa-solid fa-mobile-screen-button"></i>
+            <i class="fa-solid fa-mobile-screen-button"></i>
             <p>+91</p>
             <input
               id="number"
@@ -64,7 +62,7 @@ const ForgotPass = () => {
           <label htmlFor="password">New Password</label>
 
           <div className="auth-input password-input">
-          <i class="fa-solid fa-lock"></i>
+            <i class="fa-solid fa-lock"></i>
             <input
               id="password"
               placeholder="Enter new password"
@@ -79,7 +77,9 @@ const ForgotPass = () => {
             <i
               onClick={() => setShowPassword(!showPassword)}
               className={
-                showPassword ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'  + ' password'
+                showPassword
+                  ? 'fa-solid fa-eye'
+                  : 'fa-solid fa-eye-slash' + ' password'
               }
             ></i>
           </div>

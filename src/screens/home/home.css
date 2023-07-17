@@ -154,7 +154,6 @@
 
 .balance__section__recharge__btn {
   background: #fc940d;
-  /* box-shadow: #fc940d 0 10px 20px -10px; */
   border-radius: 999px;
   box-sizing: border-box;
   color: #ffffff;
@@ -201,7 +200,7 @@
 }
 
 .balance__section__bottom {
-  padding: 1.2rem;
+  padding-top: 1.2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -216,7 +215,7 @@
 }
 
 .balance__section__bottom__icon {
-  height: 40px;
+  height: 50px;
 }
 
 .balance__section__bottom__cols__name {

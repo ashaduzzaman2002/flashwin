@@ -59,7 +59,7 @@ const Invite = () => {
       <div className="invite-content">
         <h1>Invite</h1>
 
-        <div className="invite-amount-out" style={{marginBottom: '2rem'}}>
+        <div className="invite-amount-out" style={{marginBottom: '1rem'}}>
           <div className="invite-amount">
             <p>Invite Amount</p>
             <h2>₹ {commissionWalletBalance}</h2>
@@ -88,7 +88,7 @@ const Invite = () => {
           />
         </div>
 
-        <Link to={'/agent'} className="agent-contrainer" style={{marginBottom: '2rem'}}>
+        <Link to={'/agent'} className="agent-contrainer" style={{marginBottom: '1rem'}}>
           <div>
             <h2>Agent 10 million</h2>
             <p>cash growth plan</p>
