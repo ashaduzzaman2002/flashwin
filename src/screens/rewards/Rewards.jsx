@@ -10,16 +10,6 @@ const Rewards = () => {
   const fetchTaskRewardDetails = async () => {
     try {
       const { data } = await dbObject.get('/task/reward');
-      // console.log(data.task1);
-      // if (!data.error) {
-      //   taskRewardList.task1 = data.task1;
-      //   taskRewardList.task2 = data.task2;
-      //   taskRewardList.task3 = data.task3;
-      //   taskRewardList.task4 = data.task4;
-      //   taskRewardList.task5 = data.task5;
-      //   taskRewardList.task6 = data.task6;
-      // }
-
       setTaskReward(data);
     } catch (error) {
       console.log(error);

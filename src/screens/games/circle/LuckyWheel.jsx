@@ -126,7 +126,6 @@ const LuckyWheel = () => {
     try {
       const { data } = await dbObject.post('/circle/play', values);
       setIsPlay(true);
-      console.log('okay', data?.game_id);
       setGameId(data?.game_id);
       
       toast.success(data?.message, toastOptions);
@@ -144,14 +143,12 @@ const LuckyWheel = () => {
         setIsPlay(false);
         setGameId(null);
         setResult(data)
-        console.log(data);
         if (data?.winner) {
           const index = fortuneWheelItems.findIndex(
             (item) => item.number === Number(data?.winner?.winner_number)
           );
           clearInterval(intervalId);
           setDegree(index * 9.4);
-          console.log(data);
           setShowResult(true)
         }
       }

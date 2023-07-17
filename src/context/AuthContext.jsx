@@ -15,7 +15,6 @@ export const AuthProvider = ({ children }) => {
     try {
       setLoading(true)
       const { data } = await dbObject.get("/auth");
-      console.log(data.data);
       if(!data.error){
         setUser(data.data);
       }
@@ -31,7 +30,6 @@ export const AuthProvider = ({ children }) => {
     try {
       const { data } = await dbObject.get("/wallet/fetch");
       setWalletBalance(data?.data?.total_bal.toFixed(2));
-      // console.log(data.data.total_bal);
     } catch (error) {
       console.log(error);
     }
@@ -41,7 +39,6 @@ export const AuthProvider = ({ children }) => {
     try {
       const {data} = await dbObject.get('/commision/history')
       setCommissionHistory(data.data);
-      console.log('commission', data.data);
     } catch (error) {
       console.log(error);
     }

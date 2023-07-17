@@ -16,7 +16,6 @@ const Recharge = () => {
         amount
       };
       const { data } = await dbObject.post("/payment/deposit", amountMap);
-      // console.log(data.data.payurl);
       if(!data.error){
         window.open(data.data.payurl);
       }

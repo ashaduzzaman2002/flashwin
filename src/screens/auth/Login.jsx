@@ -20,7 +20,6 @@ const Login = () => {
   const location = useLocation();
 
   useEffect(() => {
-    console.log(loading);
     if (user) {
       if (location.state) {
         navigate(location.state?.from, { replace: true });
@@ -36,7 +35,6 @@ const Login = () => {
       validationSchema: loginValidation,
       onSubmit: async () => {
         try {
-          // console.log(values);
           const { data } = await dbObject.post('/auth/login', values);
           setUser(data);
 
@@ -82,7 +80,7 @@ const Login = () => {
         <div style={{ marginBottom: '1.5rem' }}>
           <label htmlFor="number">Phone</label>
           <div className="auth-input phone-input">
-            <i class="fa-solid fa-mobile-screen-button"></i>
+            <i className="fa-solid fa-mobile-screen-button"></i>
             <p>+91</p>
             <input
               value={values.number}
@@ -105,7 +103,7 @@ const Login = () => {
           <label htmlFor="password">Password</label>
 
           <div className="auth-input password-input">
-            <i class="fa-solid fa-lock"></i>
+            <i className="fa-solid fa-lock"></i>
             <input
               value={values.password}
               onChange={handleChange}

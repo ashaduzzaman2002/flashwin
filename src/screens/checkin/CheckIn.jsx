@@ -67,7 +67,6 @@ const CheckIn = () => {
   const fetchCheckinDetails = async () => {
     try {
       const { data } = await dbObject.post('/task/checkin/fetch')
-      console.log(data);
       if (!data.error) {
         setData(data?.data)
       }
@@ -79,7 +78,6 @@ const CheckIn = () => {
   const claimCheckinReward = async () => {
     try {
       const { data } = await dbObject.post("/task/checkin");
-      console.log(data);
       if (!data.error) {
         toast.success(data.message, {
           position: 'top-center',

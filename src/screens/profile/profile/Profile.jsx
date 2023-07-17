@@ -17,7 +17,6 @@ const Profile = () => {
     try {
   
         const {data} = await dbObject.post("auth/logout")
-        console.log(data);
         
         toast.success('Logged Out!', {
           position: 'top-center',

@@ -7,7 +7,6 @@ const About = () => {
 const [aboutUsHTML, setAboutUsHTML] = useState('');
   const fetchAboutUs = async () => {
     const { data } = await dbObject.get("/more/about");
-    // console.log(data);
     setAboutUsHTML(data.data);
   }
   useEffect(() => {

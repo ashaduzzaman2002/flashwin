@@ -34,7 +34,6 @@ const Invite = () => {
     try {
       const { data } = await dbObject.get('/wallet/refer_history');
       if (!data.error) {
-        console.log(data);
         setTotalReferralCount(data.data.total_refer);
         setTotalReferralEarning(data.data.total_earning);
         setTodayReferralCount(data.today.total);

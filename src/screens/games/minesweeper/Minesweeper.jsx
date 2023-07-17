@@ -9,18 +9,6 @@ import Toaster from '../../../components/Toster/Toaster';
 import { bomb, mining, moneyBag } from '../../../assets';
 import Lottie from 'lottie-react';
 
-//   int _selectedGridType = 2;
-//   int selectedAmount = 20;
-//   String selectedPlayer = 'Other Players';
-//   String gameId = '';
-//   List<int> cellsMined = [];
-//   double rewardAmount = 0.0;
-//   double bonusAmount = 0.0;
-//   List<dynamic> randomUsers = [];
-//   Timer? userBidTimer;
-//   Map previousGameData = {};
-// bool isPlayingMinesweeper = false;
-
 const Minesweeper = () => {
   const [ratio, setRatio] = useState('2x2');
   const [contactPoint, setContactPoint] = useState(10);
@@ -70,7 +58,6 @@ const Minesweeper = () => {
       cell: selectedGridType,
     };
     const response = await dbObject.post('/mine/start', body);
-    console.log(response.data);
     if (!response.data.error) {
       setIsPlayingMinesweeper(true);
       setGameId(response.data.id);
@@ -165,10 +152,7 @@ const Minesweeper = () => {
     var b = arr.split(',').map(function (item) {
       return parseInt(item, 10);
     });
-    console.log('before b: ', b);
-    // remove last comma
     b.pop();
-    console.log('after b: ', b);
     return b;
   };
 

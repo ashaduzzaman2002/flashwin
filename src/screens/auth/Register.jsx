@@ -22,7 +22,6 @@ const Register = () => {
     const navigate = useNavigate()
   
     useEffect(() => {
-      console.log(loading);
       if(user) return navigate('/')
     }, [user])
   
@@ -56,7 +55,7 @@ const Register = () => {
         <div style={{ marginBottom: '1.5rem' }}>
           <label htmlFor="number">Phone</label>
           <div className="auth-input phone-input">
-          <i class="fa-solid fa-mobile-screen-button"></i>
+          <i className="fa-solid fa-mobile-screen-button"></i>
             <p>+91</p>
             <input
               id="number"
@@ -98,7 +97,7 @@ const Register = () => {
           <label htmlFor="password">Create Password</label>
 
           <div className="auth-input password-input">
-          <i class="fa-solid fa-lock"></i>
+          <i className="fa-solid fa-lock"></i>
             <input
               value={values.password}
               onChange={handleChange}

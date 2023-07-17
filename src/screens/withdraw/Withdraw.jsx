@@ -17,7 +17,7 @@ const Withdraw = () => {
       };
       const { data } = await dbObject.post('/withdraw/request', amountMap);
       if (!data.error) {
-        // console.log(data);
+
         toast.success(data.message, {
           position: 'top-center',
           autoClose: 2000,
@@ -53,7 +53,7 @@ const Withdraw = () => {
 
         <div className='add-bank-link'>
           <Link to={'/bank-details'}>
-            <i class="fa-solid fa-building-columns bank-icon"></i> Add Bank Account
+            <i className="fa-solid fa-building-columns bank-icon"></i> Add Bank Account
           </Link>
         </div>
 

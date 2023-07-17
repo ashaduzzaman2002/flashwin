@@ -7,7 +7,6 @@ const BankDetails = () => {
   const { user } = useContext(AuthContext);
   const [banks, setBanks] = useState(true);
   const navigate = useNavigate();
-  console.log(user?.bank);
   return (
     <div className="container">
       <div className="bankDetails-container">
@@ -38,7 +37,7 @@ const BankCard = ({setBanks}) => (
     <div className="bank-detail-card-header">
       <h3>Punjab National Bank</h3>
       <button onClick={() => setBanks(false)}>
-        <i class="fa-solid fa-trash"></i>
+        <i className="fa-solid fa-trash"></i>
       </button>
     </div>
 

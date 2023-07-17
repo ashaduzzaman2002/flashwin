@@ -9,7 +9,6 @@ const RecentTransaction = () => {
   const fetchTransactionList = async () => {
     try {
       const { data } = await dbObject.get('/wallet/transactions');
-      // console.log(data);
       if (!data.error) {
         setTransactionList(data.data);
       }

@@ -16,7 +16,6 @@ const FullParity = () => {
   const timerStart = async () => {
     try {
       const { data } = await dbObject.post('/parity/timer/start');
-      console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -27,8 +26,6 @@ const FullParity = () => {
 
     try {
       const { data } = await dbObject.post('/parity/play', { ...value, color });
-
-      console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -115,8 +112,9 @@ const FullParity = () => {
             </div>
 
             <div className="paritynum-btns">
-              {firstCardList.map((item) => (
+              {firstCardList.map((item, i) => (
                 <div
+                key={i}
                   onClick={() => {
                     setNumber(item);
                     setColor(null);
@@ -290,14 +288,14 @@ const Probability = ({ probabilityBox }) => (
     </div>
 
     <div className="probabilty-game-second-row game-second-row">
-      {probabilityBox.map((item) => (
-        <div className="game-second-row-color">
+      {probabilityBox.map((item, i) => (
+        <div key={i} className="game-second-row-color">
           <p>{item}</p>
         </div>
       ))}
 
-      {probabilityBox.map((item) => (
-        <div className="numbers">
+      {probabilityBox.map((item, i) => (
+        <div key={i} className="numbers">
           <p>{item}</p>
           <p>0</p>
         </div>
@@ -341,11 +339,11 @@ const Record = ({}) => {
     <div className="parity-record">
       <p>Parity Record</p>
       <div className="parity-record-box">
-        {numberList.map((item) => (
-          <div class="parity__records__circle">
-            <div class="parity__records__circle__no">{item}</div>
+        {numberList.map((item, i) => (
+          <div key={i} className="parity__records__circle">
+            <div className="parity__records__circle__no">{item}</div>
             <div
-              class="parity__records__circle__inner"
+              className="parity__records__circle__inner"
               style={{
                 backgroundColor:
                   item === '-'
@@ -356,14 +354,14 @@ const Record = ({}) => {
               }}
             >
               <div
-                class="parity__records__circle__col"
+                className="parity__records__circle__col"
                 style={{
                   background:
                     item === 0 ? '#f24337' : item === 5 ? '#1f98ef' : '',
                 }}
               ></div>
               <div
-                class="parity__records__circle__col"
+                className="parity__records__circle__col"
                 style={{
                   background:
                     item === 0 ? '#0f45a2' : item === 5 ? '#388e3d' : '',
@@ -405,11 +403,11 @@ function ContinuousTab({}) {
   return (
     <div className="continuous-tab">
       <div className="scroll-container">
-        {fastParityContinuousList?.map((item) => (
-          <div class="parity__records__circle">
-            <div class="parity__records__circle__no">{item}</div>
+        {fastParityContinuousList?.map((item, i) => (
+          <div key={i} className="parity__records__circle">
+            <div className="parity__records__circle__no">{item}</div>
             <div
-              class="parity__records__circle__inner"
+              className="parity__records__circle__inner"
               style={{
                 backgroundColor:
                   item === '-'
@@ -420,14 +418,14 @@ function ContinuousTab({}) {
               }}
             >
               <div
-                class="parity__records__circle__col"
+                className="parity__records__circle__col"
                 style={{
                   background:
                     item === 0 ? '#f24337' : item === 5 ? '#1f98ef' : '',
                 }}
               ></div>
               <div
-                class="parity__records__circle__col"
+                className="parity__records__circle__col"
                 style={{
                   background:
                     item === 0 ? '#0f45a2' : item === 5 ? '#388e3d' : '',
