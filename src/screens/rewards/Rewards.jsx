@@ -43,9 +43,9 @@ const Rewards = () => {
                 )
               )}
               btn={'Invite'}
-              task={"First Invitation"}
+              task={'First Invitation'}
               reward={taskReward?.task1?.reward}
-              desc= "After inviting users to complete dowload registration and purchase points, they can recive"
+              desc="After inviting users to complete dowload registration and purchase points, they can recive"
             />
             <RewardCard
               bgcolor={'#ffc008'}
@@ -129,12 +129,20 @@ const Rewards = () => {
   );
 };
 
-const RewardCard = ({ progressRate, btn, bgcolor, icon, task, reward, desc }) => {
+const RewardCard = ({
+  progressRate,
+  btn,
+  bgcolor,
+  icon,
+  task,
+  reward,
+  desc,
+}) => {
   return (
     <div className="reward-card">
       <div className="reward-card-desc">
         <div style={{ backgroundColor: bgcolor }} className="img">
-          <img  src={icon} alt="" />
+          <img src={icon} alt="" />
         </div>
 
         <div>
