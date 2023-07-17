@@ -82,6 +82,7 @@ const Login = () => {
         <div style={{ marginBottom: '1.5rem' }}>
           <label htmlFor="number">Phone</label>
           <div className="auth-input phone-input">
+            <i class="fa-solid fa-mobile-screen-button"></i>
             <p>+91</p>
             <input
               value={values.number}
@@ -104,6 +105,7 @@ const Login = () => {
           <label htmlFor="password">Password</label>
 
           <div className="auth-input password-input">
+            <i class="fa-solid fa-lock"></i>
             <input
               value={values.password}
               onChange={handleChange}
@@ -118,7 +120,9 @@ const Login = () => {
             <i
               onClick={() => setShowPassword(!showPassword)}
               className={
-                showPassword ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'
+                showPassword
+                  ? 'fa-solid fa-eye'
+                  : 'fa-solid fa-eye-slash' + ' password'
               }
             ></i>
           </div>

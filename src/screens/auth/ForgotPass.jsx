@@ -41,6 +41,7 @@ const ForgotPass = () => {
         <div style={{ marginBottom: '1.5rem' }}>
           <label htmlFor="number">Phone</label>
           <div className="auth-input phone-input">
+          <i class="fa-solid fa-mobile-screen-button"></i>
             <p>+91</p>
             <input
               id="number"
@@ -63,6 +64,7 @@ const ForgotPass = () => {
           <label htmlFor="password">New Password</label>
 
           <div className="auth-input password-input">
+          <i class="fa-solid fa-lock"></i>
             <input
               id="password"
               placeholder="Enter new password"
@@ -77,7 +79,7 @@ const ForgotPass = () => {
             <i
               onClick={() => setShowPassword(!showPassword)}
               className={
-                showPassword ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'
+                showPassword ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'  + ' password'
               }
             ></i>
           </div>
@@ -97,7 +99,7 @@ const ForgotPass = () => {
               onBlur={handleBlur}
               placeholder="Enter code here"
             />
-            <button type="button">Send Verification Code</button>
+            <button type="button">OTP</button>
           </div>
 
           {errors.otp && touched.otp ? (

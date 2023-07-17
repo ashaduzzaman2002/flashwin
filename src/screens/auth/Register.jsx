@@ -56,6 +56,7 @@ const Register = () => {
         <div style={{ marginBottom: '1.5rem' }}>
           <label htmlFor="number">Phone</label>
           <div className="auth-input phone-input">
+          <i class="fa-solid fa-mobile-screen-button"></i>
             <p>+91</p>
             <input
               id="number"
@@ -85,7 +86,7 @@ const Register = () => {
               placeholder="Enter code here"
               name="otp"
             />
-            <button type="button">Send Verification Code</button>
+            <button type="button">OTP</button>
           </div>
 
           {errors.otp && touched.otp ? (
@@ -97,6 +98,7 @@ const Register = () => {
           <label htmlFor="password">Create Password</label>
 
           <div className="auth-input password-input">
+          <i class="fa-solid fa-lock"></i>
             <input
               value={values.password}
               onChange={handleChange}
@@ -110,7 +112,7 @@ const Register = () => {
 
             <i
               onClick={() => setShowPassword(!showPassword)}
-              className={showPassword ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'}
+              className={showPassword ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash' + ' password'}
             ></i>
           </div>
 
