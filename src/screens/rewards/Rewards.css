@@ -65,7 +65,11 @@
 
 .reward-card-desc h3 {
     font-weight: 500;
-    font-size: 0.9rem;
+    font-size: 1rem;
+}
+
+.reward-card-desc p {
+    font-size: 12px;
 }
 
 

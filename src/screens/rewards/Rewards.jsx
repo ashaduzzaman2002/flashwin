@@ -43,8 +43,9 @@ const Rewards = () => {
                 )
               )}
               btn={'Invite'}
-              task={taskReward?.task1?.task}
+              task={"First Invitation"}
               reward={taskReward?.task1?.reward}
+              desc= "After inviting users to complete dowload registration and purchase points, they can recive"
             />
             <RewardCard
               bgcolor={'#ffc008'}
@@ -57,8 +58,9 @@ const Rewards = () => {
                 )
               )}
               btn={'Invite'}
-              task={taskReward?.task2?.task}
+              task="Invite Friend and Make Them 1st Recharge"
               reward={taskReward?.task2?.reward}
+              desc="Invite your frined with your referral id and ask them to make their first recharge"
             />
             <RewardCard
               bgcolor={'#62ffdb'}
@@ -71,8 +73,9 @@ const Rewards = () => {
                 )
               )}
               btn={'Invite'}
-              task={taskReward?.task3?.task}
+              task="Make your first recharge"
               reward={taskReward?.task3?.reward}
+              desc="Register and make your first recharge"
             />
             <RewardCard
               bgcolor={'#ffc008'}
@@ -85,8 +88,9 @@ const Rewards = () => {
                 )
               )}
               btn={'Invite'}
-              task={taskReward?.task4?.task}
+              task="Play more than 100 games"
               reward={taskReward?.task4?.reward}
+              desc="Play any game for more than or equal to 100 times"
             />
             <RewardCard
               bgcolor={'#ffc008'}
@@ -99,8 +103,9 @@ const Rewards = () => {
                 )
               )}
               btn={'Invite'}
-              task={taskReward?.task5?.task}
+              task="Play more than 1,000 games"
               reward={taskReward?.task5?.reward}
+              desc="Play any game for more than or equal to 1,000 times"
             />
             <RewardCard
               bgcolor={'#ffc008'}
@@ -113,8 +118,9 @@ const Rewards = () => {
                 )
               )}
               btn={'Invite'}
-              task={taskReward?.task6?.task}
+              task="Play more than 10,000 games"
               reward={taskReward?.task6?.reward}
+              desc="Play any game for more than or equal to 10,000 times"
             />
           </div>
         </div>
@@ -123,7 +129,7 @@ const Rewards = () => {
   );
 };
 
-const RewardCard = ({ progressRate, btn, bgcolor, icon, task, reward }) => {
+const RewardCard = ({ progressRate, btn, bgcolor, icon, task, reward, desc }) => {
   return (
     <div className="reward-card">
       <div className="reward-card-desc">
@@ -133,6 +139,7 @@ const RewardCard = ({ progressRate, btn, bgcolor, icon, task, reward }) => {
 
         <div>
           <h3>{task}</h3>
+          <p>{desc}</p>
         </div>
 
         <h2>+{Number(reward).toFixed(1) || 0.0}</h2>
