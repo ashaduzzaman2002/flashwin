@@ -2,6 +2,8 @@
   color: #fff;
   padding-bottom: 7rem;
   user-select: none;
+  padding-top: 2rem;
+  
 }
 
 .home-top-item {
@@ -46,6 +48,7 @@
   border-radius: 10px;
   margin-top: 2rem;
   border: 1px solid rgba(0, 255, 255, 0.239);
+  
 }
 
 .balance__section,
@@ -172,7 +175,7 @@
 
 
 .homepage__game__screen {
-  padding: 20px 5%;
+  padding: 20px 0;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 15px 5%;

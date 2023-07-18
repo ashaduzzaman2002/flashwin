@@ -25,7 +25,6 @@ const Home = () => {
       style={{
         backgroundColor: '#08224e',
         minHeight: '100vh',
-        paddingTop: '2rem',
       }}
     >
       <div className="container" style={{ marginTop: '-2rem' }}>
