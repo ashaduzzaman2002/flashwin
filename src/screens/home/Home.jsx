@@ -24,7 +24,8 @@ const Home = () => {
     <div
       style={{
         backgroundColor: '#08224e',
-        minHeight: '100vh',
+        height: '100vh',
+        overflow: 'hidden',
       }}
     >
       <div className="container" style={{ marginTop: '-2rem' }}>
@@ -93,44 +94,48 @@ const Home = () => {
               </div>
             </div>
 
-
             <div class="homepage__game__screen">
               <div class="homepage__game__cols">
                 <div class="homepage__game__cols__icon">
-                <Card2
-                url={'/game/minesweeper'}
-                icon={bomb}
-                text={'Minesweeper'}
-                bgColor='#4ec6de'
-              />
+                  <Card2
+                    url={'/game/minesweeper'}
+                    icon={bomb}
+                    text={'Minesweeper'}
+                    bgColor="#4ec6de"
+                  />
                 </div>
               </div>
 
               <div class="homepage__game__cols">
                 <div class="homepage__game__cols__icon">
-                <Card2
-                url={'/game/fortune-wheel'}
-                icon={fortuneWheel}
-                text={'Circle'}
-                bgColor={'#f88387'}
-              />
+                  <Card2
+                    url={'/game/fortune-wheel'}
+                    icon={fortuneWheel}
+                    text={'Circle'}
+                    bgColor={'#f88387'}
+                  />
                 </div>
               </div>
 
               <div class="homepage__game__cols">
                 <div class="homepage__game__cols__icon">
-                <Card2
-                url={'/game/fast-parity'}
-                icon={rocket}
-                text={'Fast Parity'}
-                bgColor={'#f18752'}
-              />
+                  <Card2
+                    url={'/game/fast-parity'}
+                    icon={rocket}
+                    text={'Fast Parity'}
+                    bgColor={'#f18752'}
+                  />
                 </div>
               </div>
 
               <div class="homepage__game__cols">
                 <div class="homepage__game__cols__icon">
-                <Card2 bgColor={'#40e48b'} url={'/game/full-parity'} icon={dice} text={'Parity'} />
+                  <Card2
+                    bgColor={'#40e48b'}
+                    url={'/game/full-parity'}
+                    icon={dice}
+                    text={'Parity'}
+                  />
                 </div>
               </div>
             </div>
