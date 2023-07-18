@@ -26,6 +26,7 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+
   const fetchWallet = async () => {
     try {
       const { data } = await dbObject.get("/wallet/fetch");

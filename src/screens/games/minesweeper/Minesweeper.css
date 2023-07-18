@@ -232,3 +232,16 @@
   }
   
 }
+
+@media screen and (max-width: 370px) {
+  .mine-myorder {
+    background-color: #283546;
+    border-radius: 1rem;
+    padding: 0.8rem;
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: 25% 75% !important;
+  }
+
+
+}

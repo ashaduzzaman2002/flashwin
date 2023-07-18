@@ -1,4 +1,134 @@
 .quick-amount-selected {
-    background-color: white !important;
-    color: black !important;
+  background-color: white !important;
+  color: black !important;
+}
+
+.app__top__nav {
+  height: 50px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.top__nav__cols {
+    flex-basis: calc(100% / 3);
+    color: #fff;
+}
+
+.top__nav__back__btn {
+    height: 50px;
+    font-size: 35px;
+    display: flex;
+    align-items: center;
+}
+
+.top__nav__title {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.top__nav__cols:last-child {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+.recharge__records__button {
+    height: 30px;
+    width: 70px;
+    background: #fedcaf;
+    color: #fff;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    color: #000;
+}
+
+/* ===== Blance ===== */
+.recharge__page__balance__section {
+    margin-top: 1rem;
+}
+
+.recharge__page__balance__section__inner {
+    padding: 25px 0;
+    background: #f5f5f534;
+    border-radius: 10px;
+}
+
+.recharge__page__balance__section__top {
+    color: #cccbcb;
+    font-size: 14px;
+}
+
+.recharge__page__balance__section__bottom {
+    font-weight: 700;
+    font-size: 30px;
+}
+
+
+/* Rechage Input */
+.recharge__screen {
+    padding: 30px 0;
+}
+
+.amount__field {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.recharge__screen input {
+    height: 50px;
+    width: 100%;
+    border: 0;
+    border-bottom: 2px solid #ccc;
+    background: none;
+    padding: 0 15px;
+    outline: 0;
+    font-size: 18px;
+    font-weight: 500;
+    color: #fff;
+}
+
+.recharge__price__options {
+    padding: 25px 3%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px 5%;
+}
+
+.recharge__price__option {
+    width: 100%;
+    height: 40px;
+    background: rgb(243, 241, 255);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2px;
+    color: #000;
+    font-size: 14px;
+}
+
+.recharge__button {
+    padding: 0 3%;
+    margin-top: 10px;
+}
+
+.recharge__btn {
+    height: 50px;
+    width: 100%;
+    background: linear-gradient(to right bottom, rgb(255, 185, 9), rgb(254, 64, 45));
+    font-size: 18px;
+    color: #fff;
+    font-weight: 600;
+    border: 0;
+    border-radius: 2px;
+}
+
+
+.recharge__btn_disabled {
+    background: #9d9d9d !important;
+    color: #d9d9d9;
 }
