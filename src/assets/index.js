@@ -15,7 +15,7 @@ import fortuneWheel from './icons/fortune-wheel.svg';
 import bomb from './icons/bomb.svg';
 import vault from './icons/vault.svg';
 import home from './icons/home.svg';
-import coin from './icons/coin.svg';
+// import coin from './icons/coin.svg';
 import treasure from './images/treasure-chest.png';
 import avatar from './icons/avatar.svg';
 import profile from './icons/profile.svg';
@@ -34,6 +34,8 @@ import mining from './gif/mining.json';
 import mineBomb from './gif/mine-bomb.json';
 import magicBag from './icons/magic-bag.json';
 import hangLoose from './icons/hang-loose.json';
+import coin from './icons/coin.png'
+import coinDisble from './icons/coin-disable.png'
 
 export {
   Home,
@@ -71,5 +73,6 @@ export {
   mining,
   mineBomb,
   magicBag,
-  hangLoose
+  hangLoose,
+  coinDisble
 };

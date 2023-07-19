@@ -15,6 +15,7 @@ export const AuthProvider = ({ children }) => {
     try {
       setLoading(true)
       const { data } = await dbObject.get("/auth");
+      console.log(data);
       if(!data.error){
         setUser(data.data);
       }
