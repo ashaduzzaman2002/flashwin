@@ -15,7 +15,7 @@
 .checkIn__page {
   height: 100%;
   width: 100%;
-  background-image: url('https://teslawin.in/static/media/CheckIn_bg.46a793f4529cc5d1946c.png');
+  background-image: url('../../assets/images/CheckIn_bg.png');
   top: 0;
   z-index: 100;
   background-size: 100% 100%;

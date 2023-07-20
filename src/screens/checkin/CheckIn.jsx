@@ -181,7 +181,7 @@ const CheckIn = () => {
             <div class="checkIn__bottom__screen__img">
               <center>
                 <img
-                  src="https://teslawin.in/static/media/Treasure_b.d88905617ada24157d96.png"
+                  src={treasure}
                   alt=""
                   class="img1"
                 />
