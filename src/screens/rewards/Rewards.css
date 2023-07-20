@@ -1,4 +1,4 @@
-.rewards-container {
+/* .rewards-container {
   color: #fff;
   user-select: none;
   padding-bottom: 5rem;
@@ -77,4 +77,91 @@
     font-weight: 600;
     font-size: 1.2rem;
     padding-bottom: 0;
+} */
+
+.task__box {
+    /* border-top: solid 1px #ccc; */
+}
+
+.task__box__top {
+    width: 100%;
+    background-color: #fff;
+    padding: 20px 5%;
+}
+
+.task__box__top__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.task__box__top__top__left {
+    display: flex;
+}
+
+.task__img {
+    flex-basis: 50px;
+    height: 50px;
+    width: 100%;
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+.task__box__top__top__left__right__top {
+    margin-left: 15px;
+    flex-basis: calc(100% - 65px);
+}
+
+.task__title {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.task__discription {
+    font-size: 12px;
+    color: #444;
+    margin-top: 4px;
+}
+
+.task__meter {
+    height: 7px;
+    width: 100%;
+    background: #e5e5e5;
+    border-radius: 10px;
+    margin-top: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.task__parameter {
+    height: 7px;
+    background: #02ac68;
+    border-radius: 0 10px 10px 0;
+}
+
+.task__meter__bottom {
+    margin-top: 3px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #555;
+    font-size: 11px;
+}
+
+.task__button {
+    height: 40px;
+    border: 3px solid #fa9d63;
+    color: #fa9d63;
+    background: transparent;
+    width: 100%;
+    font-weight: 500;
+    font-size: 16px;
+    border-radius: 30px;
+    margin-top: 20px;
+}
+
+.task__box__bottom {
+    height: 20px;
+    width: 100%;
 }
