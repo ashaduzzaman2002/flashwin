@@ -1,27 +1,22 @@
-import { createContext, useEffect, useState } from 'react';
-import { dbObject } from '../helper/constant';
-
+import { createContext, useEffect, useState } from "react";
+import { dbObject } from "../helper/constant";
 
 export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
-
-  const [user, setUser] = useState(null)
-  const [walletBalance, setWalletBalance] = useState('0.0');
-  const [commissionHistory, setCommissionHistory] = useState([])
-  const [loading, setLoading] = useState(false)
-
+  const [user, setUser] = useState(null);
+  const [walletBalance, setWalletBalance] = useState("0.0");
+  const [commissionHistory, setCommissionHistory] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const getUser = async () => {
     try {
-      setLoading(true)
+      setLoading(true);
       const { data } = await dbObject.get("/auth");
-      console.log(data.data);
-      if(!data.error){
+      // console.log(data.data);
+      if (!data.error) {
         setUser(data.data);
       }
-      setLoading(false)
-
-     
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -35,26 +30,28 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   const getCommissionHistory = async () => {
     try {
-      const {data} = await dbObject.get('/commision/history')
+      const { data } = await dbObject.get("/commision/history");
       setCommissionHistory(data.data);
-      console.log('commission', data.data);
     } catch (error) {
       console.log(error);
     }
-  }
-  
+  };
 
   useEffect(() => {
     getUser();
     fetchWallet();
-    getCommissionHistory()
+    getCommissionHistory();
   }, [setLoading]);
 
   return (
-    <AuthContext.Provider value={{ user, walletBalance, commissionHistory, loading, setUser }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider
+      value={{ user, walletBalance, commissionHistory, loading, setUser }}
+    >
+      {children}
+    </AuthContext.Provider>
   );
 };

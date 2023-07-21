@@ -1,33 +1,184 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
 import { database } from "../../../firebase.config";
 
 import "../../../components/parity/parity.css";
 import GameDetails from "../../../components/gameDetails/GameDetails";
 import Start from "../../../components/start/Start";
 import { onValue, ref } from "firebase/database";
+import { dbObject } from "../../../helper/constant";
+import GetMaskInput from "../../../helper/MaskInput";
+import { AuthContext } from "../../../context/AuthContext";
 
 const FastParity = () => {
+  const { user } = useContext(AuthContext);
   const [isFastParityPlaying, setIsFastParityPlaying] = useState(false); //check if the game is playing or not
-  const firstCardList = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const [gameid, setGameid] = useState(); //game id of the game
+  const [color, setColor] = useState(); //color of the game
+  const [number, setNumber] = useState(); //number of the game
+  const [isParticipenceAllowed, setIsParticipenceAllowed] = useState(true); //check if the participence is allowed or not
+  const [continuos, setContinuos] = useState(); //continuos of the game
+  const [records, setRecords] = useState(); //record of the game
+  const [probability, setProbability] = useState(); //probability of the game
+  const [myRecords, setMyRecords] = useState(); //my record of the game
+  const firstCardList = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
   const [activeBtn, setActiveBtn] = useState("probability");
+  const [amountModal, setAmountModal] = useState(false);
   const [timer, setTimer] = useState(0);
+  const [message, setMessage] = useState("");
+
+  const getRecords = async () => {
+    const data = await dbObject.get("/fastparity/historyall");
+    if (!data.data.error) {
+      setRecords(data.data.data);
+    }
+  };
+
+  const getProbability = async () => {
+    const data = await dbObject.get("/fastparity/probability");
+    if (!data.data.error) {
+      setProbability(data.data.data);
+    }
+  };
+
+  const getContinuos = async () => {
+    const data = await dbObject.get("/fastparity/continous");
+    if (!data.data.error) {
+      setContinuos(data.data.data);
+    }
+  };
+
+  const getMyRecords = async () => {
+    const data = await dbObject.get("/fastparity/history");
+    if (!data.data.error) {
+      setMyRecords(data.data.data);
+    }
+  };
+
+  const getResult = async () => {
+    const body = {
+      game_id: gameid,
+    };
+    const data = await dbObject.post("/fastparity/result", body);
+    console.log(data);
+    setIsFastParityPlaying(false);
+  };
 
   useEffect(() => {
     const fastParityRef = ref(database, "fast_parity/timer");
+    setIsParticipenceAllowed(false);
 
-    onValue(fastParityRef, (snapshot) => {
-      const data = snapshot.val();
-      if (data) {
-        const key = Object.keys(data)[0];
-        const { time } = data[key];
-        setTimer(time);
-      }
-    });
+    setTimeout(() => {
+      onValue(fastParityRef, (snapshot) => {
+        const data = snapshot.val();
+        if (data) {
+          const key = Object.keys(data)[0];
+          const { time } = data[key];
+          setTimer(time);
+          if (Number(time) == 12) {
+            setIsParticipenceAllowed(false);
+          }
+          if (Number(time) == 1) {
+            if (isFastParityPlaying) {
+              getResult();
+            }
+          }
+          if (Number(time) == 0 || Number(time) == 35) {
+            setIsParticipenceAllowed(true);
+          }
+        }
+      });
+      setIsParticipenceAllowed(true);
+    }, 4000);
+
+    getContinuos();
+    getMyRecords();
+    getProbability();
+    getRecords();
   }, []);
+
+  useEffect(() => {
+    if (color) {
+      setAmountModal(true);
+      setNumber();
+    } else if (number) {
+      setAmountModal(true);
+      setColor();
+    }
+  }, [color, number]);
+
+  const playGame = async (amount) => {
+    let body;
+    if (color) {
+      body = {
+        amount,
+        color,
+      };
+    }
+    if (number) {
+      body = {
+        amount,
+        number,
+      };
+    }
+    const data = await dbObject.post("/fastparity/play", body);
+    if (!data.data.error) {
+      setIsFastParityPlaying(true);
+      setGameid(data.data.game_id);
+      setIsParticipenceAllowed(false);
+      setAmountModal(false);
+      insertGameData();
+
+      // toast emitter
+      toast.success(data.data.message, {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
+  };
+
+  const insertGameData = async () => {
+    const maskNumber = GetMaskInput(user.number);
+    console.log(maskNumber);
+  };
 
   return (
     <>
-      {/* {!isFastParityPlaying && <Start name={"Fast Party - Red"} />} */}
+      <ToastContainer />
+      {amountModal && color && (
+        <Start
+          name={"Fast Party - " + color}
+          startGame={(amount) => {
+            playGame(amount);
+          }}
+          onPress={() => {
+            setAmountModal(false);
+            setColor();
+            setNumber();
+          }}
+        />
+      )}
+
+      {amountModal && number && (
+        <Start
+          name={"Fast Party - " + number}
+          startGame={(amount) => {
+            playGame(amount);
+          }}
+          onPress={() => {
+            setAmountModal(false);
+            setColor();
+            setNumber();
+          }}
+        />
+      )}
+
       <div
         style={{
           width: "100%",
@@ -56,17 +207,27 @@ const FastParity = () => {
             </div>
 
             <div className="prity-colors">
-              <div style={{ backgroundColor: "#d72e2a" }}>
+              <div
+                aria-disabled={!isParticipenceAllowed}
+                style={{ backgroundColor: "#d72e2a" }}
+                onClick={() => isParticipenceAllowed && setColor("red")}
+              >
                 <p>Join Red</p>
                 <p>1:2</p>
               </div>
 
-              <div style={{ backgroundColor: "#1976d3" }}>
+              <div
+                style={{ backgroundColor: "#1976d3" }}
+                onClick={() => isParticipenceAllowed && setColor("blue")}
+              >
                 <p>Join Blue</p>
                 <p>1:4.5</p>
               </div>
 
-              <div style={{ backgroundColor: "#388e3d" }}>
+              <div
+                style={{ backgroundColor: "#388e3d" }}
+                onClick={() => isParticipenceAllowed && setColor("green")}
+              >
                 <p>Join green</p>
                 <p>1:2</p>
               </div>
@@ -74,7 +235,10 @@ const FastParity = () => {
 
             <div className="paritynum-btns">
               {firstCardList.map((item) => (
-                <div>
+                <div
+                  onClick={() => isParticipenceAllowed && setNumber(item)}
+                  key={item}
+                >
                   <p>{item}</p>
                   <i className="fa-solid fa-bolt"></i>
                 </div>
@@ -156,13 +320,13 @@ const FastParity = () => {
 
             <div className="game-second-row">
               {firstCardList.map((item) => (
-                <div className="game-second-row-color">
+                <div className="game-second-row-color" key={item}>
                   <p>{item}</p>
                 </div>
               ))}
 
               {firstCardList.map((item) => (
-                <div>
+                <div key={item}>
                   <p>0</p>
                 </div>
               ))}

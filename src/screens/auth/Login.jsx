@@ -20,7 +20,7 @@ const Login = () => {
   const location = useLocation();
 
   useEffect(() => {
-    console.log(loading);
+    // console.log(loading);
     if (user) {
       if (location.state) {
         navigate(location.state?.from, { replace: true });

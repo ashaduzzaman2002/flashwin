@@ -1,4 +1,6 @@
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import 'react-toastify/dist/ReactToastify.css';
+
 import {
   About,
   AddBank,
@@ -244,7 +246,7 @@ const Redirect = ({ children }) => {
   const location = useLocation();
 
   useEffect(() => {
-    console.log(loading);
+    // console.log(loading);
     if (!user) return navigate('/login', { state: { from: location.pathname } });
   }, []);
 

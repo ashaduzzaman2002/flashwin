@@ -1,31 +1,38 @@
-import React, { useState } from 'react';
-import './start.css';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useContext } from "react";
+import "./start.css";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 
-const Start = ({ name, startGame, game }) => {
+const Start = ({ name, startGame, game, onPress }) => {
   const [contactPoint, setContactPoint] = useState(10);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const handleStart = () => {
-    startGame({amount: contactPoint, number: 5})
-  };
+  const { walletBalance } = useContext(AuthContext);
 
-  // const { walletBalance } = useContext(AuthContext);
-
-  const handleIncDec = (value) => {
-    // setContactPoint(contactPoint + value);
-  };
+  const handleIncDec = (value) => {};
 
   return (
     <div className="start-container">
       <div className="start-box">
-        <h2 className="game-name">{name}</h2>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <h2 className="game-name">{name?.toUpperCase()}</h2>
+          <div onClick={onPress} className="start-box-close">
+            <i className="fa-solid fa-times"></i>
+          </div>
+        </div>
+
         <p>Points</p>
 
         <div className="points-div">
-          <h3>INR 0.0</h3>
-          <button onClick={() => navigate('/recharge')}>
+          <h3>INR {walletBalance}</h3>
+          <button onClick={() => navigate("/recharge")}>
             <i className="fa-solid fa-clock-rotate-left"></i> Recharge
           </button>
         </div>
@@ -98,8 +105,8 @@ const Start = ({ name, startGame, game }) => {
           </div>
         )}
 
-        <div style={{ width: '100%', marginTop: '1rem' }}>
-          <button className="btn" onClick={handleStart}>
+        <div style={{ width: "100%", marginTop: "1rem" }}>
+          <button className="btn" onClick={() => startGame(contactPoint)}>
             Start
           </button>
         </div>
