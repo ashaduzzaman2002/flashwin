@@ -1,19 +1,40 @@
+<<<<<<< HEAD
 import React, { useState, useContext } from "react";
 import "./start.css";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 
 const Start = ({ name, startGame, game, onPress }) => {
+=======
+import React, {  useState } from 'react';
+import './start.css';
+import { useNavigate } from 'react-router-dom';
+
+const Start = ({ name, startGame, game, setStartCart }) => {
+  const [isBoxOpen, setIsBoxOpen] = useState(false);
+>>>>>>> 668bba1c6fdbd32208eb83025b63161403e4eca5
   const [contactPoint, setContactPoint] = useState(10);
+  
+
+  const closeCard = () => {
+    setStartCart(false)
+  };
 
   const navigate = useNavigate();
 
+<<<<<<< HEAD
   const { walletBalance } = useContext(AuthContext);
+=======
+  const handleStart = () => {
+    startGame(contactPoint)
+  };
+>>>>>>> 668bba1c6fdbd32208eb83025b63161403e4eca5
 
   const handleIncDec = (value) => {};
 
   return (
-    <div className="start-container">
+    <div  className="start-container">
+      <div onClick={closeCard} className='card-out-side'></div>
       <div className="start-box">
         <div
           style={{

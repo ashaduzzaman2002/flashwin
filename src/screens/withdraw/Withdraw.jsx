@@ -17,7 +17,7 @@ const Withdraw = () => {
       };
       const { data } = await dbObject.post('/withdraw/request', amountMap);
       if (!data.error) {
-        // console.log(data);
+
         toast.success(data.message, {
           position: 'top-center',
           autoClose: 2000,
@@ -51,12 +51,11 @@ const Withdraw = () => {
       <div className="withdraw-container">
         <HeaderSecondar title={'Withdraw'} />
 
-        {/* <div>
-          <Link to={'add-bank'}>
-            <i class="fa-solid fa-building-columns"></i>
-            Add Bank Account
+        <div className='add-bank-link'>
+          <Link to={'/bank-details'}>
+            <i className="fa-solid fa-building-columns bank-icon"></i> Add Bank Account
           </Link>
-        </div> */}
+        </div>
 
         <h2 className="withdraw-amount-header">Withdrawal amount</h2>
 

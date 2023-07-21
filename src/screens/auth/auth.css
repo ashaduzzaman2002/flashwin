@@ -24,13 +24,15 @@
 .auth-input {
   display: flex;
   align-items: center;
-  gap: 1rem;
   background-color: hwb(191 23% 66%);
   position: relative;
-  border-radius: 10px;
   overflow: hidden;
-  
   margin-top: 0.5rem;
+}
+
+.auth-input i {
+  font-size: 1.5rem;
+  padding-left: 1rem;
 }
 
 .auth-input input {
@@ -93,7 +95,7 @@
   color: #ffffff65;
 }
 
-.password-input i {
+.password-input .password {
   font-size: 14px;
   position: absolute;
   right: 1rem;
@@ -114,7 +116,7 @@
   background-color: #67efaf;
   border: none;
   padding: 11.5px 0;
-  border-radius: 10px;
+  border-radius: 2rem;
   font-size: 17px;
   font-weight: 500;
 }
@@ -135,25 +137,24 @@
 }
 
 .verification-input {
-  width: 330px;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 70% 30%;
   align-items: center;
   margin-top: 0.5rem;
+  background-color: #3b5257;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .verification-input input {
-  width: 48%;
   padding: 10px 10px;
-  background-color: #3b5257;
+  background-color: transparent;
   border: none;
   color: #fff;
   font-size: 17px;
-  border-radius: 10px;
 }
 
 .verification-input button {
-  width: 48%;
   padding: 10px 0;
   border-color: transparent;
   font-weight: 500;

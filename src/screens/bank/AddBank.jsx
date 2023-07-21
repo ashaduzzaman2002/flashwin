@@ -38,7 +38,6 @@ const AddBank = () => {
     };
     try {
       const { data } = await dbObject.post('/payment/add', bankMap);
-      console.log(data);
       if (!data.error) {
         toast.success(data.message, {
           position: 'top-center',

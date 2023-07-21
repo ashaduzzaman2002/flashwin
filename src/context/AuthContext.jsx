@@ -12,8 +12,13 @@ export const AuthProvider = ({ children }) => {
     try {
       setLoading(true);
       const { data } = await dbObject.get("/auth");
+<<<<<<< HEAD
       // console.log(data.data);
       if (!data.error) {
+=======
+      console.log(data);
+      if(!data.error){
+>>>>>>> 668bba1c6fdbd32208eb83025b63161403e4eca5
         setUser(data.data);
       }
       setLoading(false);
@@ -22,11 +27,11 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+
   const fetchWallet = async () => {
     try {
       const { data } = await dbObject.get("/wallet/fetch");
-      setWalletBalance(data.data.total_bal);
-      // console.log(data.data.total_bal);
+      setWalletBalance(data?.data?.total_bal.toFixed(2));
     } catch (error) {
       console.log(error);
     }

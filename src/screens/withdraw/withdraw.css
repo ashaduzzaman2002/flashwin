@@ -98,7 +98,7 @@
 .withdraw-btn {
   margin-top: 5rem;
   width: 100%;
-  padding: 1.1rem 0;
+  padding: 0.9rem 0;
   border-radius: 1rem;
   border: none;
   background: linear-gradient(to right bottom, rgb(255, 185, 9), rgb(254, 64, 45));
@@ -134,4 +134,26 @@
   border-color: transparent;
   background-color: #e8f2d4;
   color: #000700;
+}
+
+.add-bank-link {
+  background-color: #e8f3d5;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.add-bank-link a {
+  color: #060809;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.bank-icon {
+  margin-right: 0.5rem;
+  font-size: 1.3rem;
 }

@@ -39,7 +39,7 @@
   font-weight: 500;
   font-size: 0.9rem;
   transition: all 0.3s ease-in-out;
-  height: 45px;
+  height: 40px;
 }
 
 .invite-amount-out button:hover {
@@ -48,10 +48,8 @@
 
 .invite-card1-group {
   display: grid;
-  /* justify-content: space-between; */
   gap: 1rem;
   grid-template-columns: repeat(2, 1fr);
-  margin-top: 0.7rem;
 }
 
 .invite-card1 {
@@ -60,24 +58,23 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: 0.5rem;
   border-radius: 1rem;
-  padding: 1rem;
+  padding: 0.5rem;
 }
 
 .invite-card1 i {
-  font-size: 2.3rem;
+  font-size: 1.7rem;
 }
 
 .invite-card1 p {
-  font-size: 17px;
-  font-weight: 500;
+  font-size: 14px;
 }
 
 .income-history-card-group {
   display: flex;
   justify-content: space-between;
-  margin-top: 1.2rem;
+  margin-top: 1rem;
 }
 
 .income-history-card {
@@ -152,7 +149,7 @@
   );
   color: #fff;
   border: none;
-  padding: 1.1rem 1rem;
+  padding: 0.9rem 1rem;
   border-radius: 1rem;
   font-size: 1.1rem;
   font-weight: 500;
@@ -173,8 +170,8 @@
   display: flex;
   justify-content: center;
   position: relative;
-  width: 90px;
-  height: 90px;
+  width: 70px;
+  height: 70px;
 }
 
 .invite-diamond img {
@@ -185,9 +182,8 @@
 }
 
 .invite-diamond div {
-  width: 100px;
-  height: 100px;
-
+  width: 80px;
+  height: 80px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -208,13 +204,13 @@
   justify-content: space-between;
   background: linear-gradient(90deg, #42413f, #090908);
   color: #fff;
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   padding: 0.3rem;
   border-radius: 1rem;
 }
 
 .agent-contrainer h2 {
-  font-size: 1.55rem;
+  font-size: 1.4rem;
   font-weight: 700;
   background: linear-gradient(to bottom, #e4c7ab, #f9b45e);
   -webkit-background-clip: text; /* For Safari */
@@ -225,14 +221,15 @@
 }
 
 .agent-contrainer p {
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 1px;
   padding-left: 0.6rem;
+  line-height: 0.9rem;
 }
 
 @media screen and (max-width: 520px) {
   .invite-content h1 {
-    font-size: 2rem;
+    font-size: 1.4rem;
   }
 
   .income-history-card p {

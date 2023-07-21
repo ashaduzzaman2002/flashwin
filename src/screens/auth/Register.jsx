@@ -6,6 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { useFormik } from 'formik';
 import { signupValidation } from '../../validation';
 import { AuthContext } from '../../context/AuthContext';
+import Toaster, { toastOptions } from '../../components/Toster/Toaster';
 
 const initialValues = {
   number: '',
@@ -21,7 +22,6 @@ const Register = () => {
     const navigate = useNavigate()
   
     useEffect(() => {
-      console.log(loading);
       if(user) return navigate('/')
     }, [user])
   
@@ -34,27 +34,9 @@ const Register = () => {
         try {
           const { data } = await axios.post(`${baseURL}/auth/register`, values);
           if (!data?.error) {
-            toast.success('Logged In Successfully!', {
-              position: 'top-center',
-              autoClose: 2000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: 'colored',
-            });
+            toast.success('Logged In Successfully!', toastOptions);
           } else {
-            toast.error(data.message, {
-              position: 'top-center',
-              autoClose: 2000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: 'colored',
-            });
+            toast.error(data.message, toastOptions);
           }
         } catch (error) {
           console.log(error);
@@ -73,6 +55,7 @@ const Register = () => {
         <div style={{ marginBottom: '1.5rem' }}>
           <label htmlFor="number">Phone</label>
           <div className="auth-input phone-input">
+          <i className="fa-solid fa-mobile-screen-button"></i>
             <p>+91</p>
             <input
               id="number"
@@ -102,7 +85,7 @@ const Register = () => {
               placeholder="Enter code here"
               name="otp"
             />
-            <button type="button">Send Verification Code</button>
+            <button type="button">OTP</button>
           </div>
 
           {errors.otp && touched.otp ? (
@@ -114,6 +97,7 @@ const Register = () => {
           <label htmlFor="password">Create Password</label>
 
           <div className="auth-input password-input">
+          <i className="fa-solid fa-lock"></i>
             <input
               value={values.password}
               onChange={handleChange}
@@ -127,7 +111,7 @@ const Register = () => {
 
             <i
               onClick={() => setShowPassword(!showPassword)}
-              className={showPassword ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'}
+              className={showPassword ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash' + ' password'}
             ></i>
           </div>
 
@@ -162,18 +146,7 @@ const Register = () => {
         </p>
       </form>
 
-      <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-      />
+      <Toaster />
     </div>
   );
 };

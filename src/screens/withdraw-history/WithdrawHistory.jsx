@@ -10,7 +10,6 @@ const WithdrawHistory = () => {
     try {
       const { data } = await dbObject.post('/withdraw/history');
       if (!data.error) {
-        console.log(data);
         setWithdrawList(data.data);
       }
     } catch (error) {

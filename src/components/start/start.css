@@ -1,7 +1,7 @@
 .start-container {
   position: fixed;
 
-  z-index: 150;
+  z-index: 1000;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
   width: 100%;
@@ -10,14 +10,23 @@
   align-items: flex-end;
   backdrop-filter: blur(2px);
 }
+
+.card-out-side {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
 .start-box {
+  position: relative;
+  z-index: 50;
   width: 450px;
   bottom: 2rem;
   background-color: rgba(255, 255, 255, 0.1);
   padding: 1rem;
   border: 1px solid gray;
   border-radius: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 6rem;
   color: #fff;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
     rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
@@ -74,6 +83,7 @@
   font-size: 1rem;
   font-weight: 700;
   background-color: #ffdcaa;
+  height: 50px;
 }
 
 .contract-point {
@@ -163,6 +173,6 @@
 
 @media screen and (max-width: 520px) {
   .start-box {
-    width: 330px;
+    width: 95%;
   }
 }

@@ -79,7 +79,7 @@
 
 .level-card {
   margin-top: 1.5rem;
-  padding: 0.7rem 1rem;
+  padding: 5px 1rem;
   border-radius: 1rem;
   color: #fff;
   display: flex;
@@ -90,10 +90,12 @@
 .level-card div p:first-child {
   font-weight: 500;
   color: #ebe9e9;
+  font-size: 0.8rem;
+  margin-bottom: -5px;
 }
 
 .level-card div p:last-child {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 500;
 }
 

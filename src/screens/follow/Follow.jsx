@@ -7,12 +7,10 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 
 const Follow = () => {
-  const {name} = useContext(AuthContext)
   const [data, setData] = useState([])
   const getFollowLinks =  async () => {
     try {
       const {data} = await axios(`${baseURL}/more/support`)
-      console.log(data);
       setData(data);
       
     } catch (error) {
@@ -22,7 +20,6 @@ const Follow = () => {
 
   useEffect(() => {
     getFollowLinks()
-    console.log(name);
   }, [])
 
   return (

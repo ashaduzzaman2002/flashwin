@@ -276,7 +276,7 @@ const Privilege = () => {
 
           <div className="winnerAmounts">
             {winnerAmounts?.map((item, i) => (
-              <div>
+              <div key={i}>
                 <p
                   style={{
                     width: 25,

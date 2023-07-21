@@ -22,7 +22,7 @@
     border-radius: 1rem;
 }
 
-.bankDetails-container i {
+.bankDetails-container .fa-building-columns {
     font-size: 3rem;
     background-color: #798f9d;
     padding: 1.2rem;
@@ -69,4 +69,48 @@
 
 .bankDetails-container label {
     font-size: 1rem;
+}
+
+.all-bank {
+padding-top: 0.8rem;
+}
+
+.bank-detail-card {
+    background-color: #283546;
+    padding: 1rem;
+    margin-top: 0.8rem;
+    border-radius: 1rem;
+}
+
+.bank-detail-card-header {
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.bank-detail-card-header button {
+    background: none;
+    border: none;
+    color: #f29898;
+    font-size: 1.3rem;
+}
+
+.bank-detail-card-header h3 {
+    font-weight: 400;
+    font-size: 1.3rem;
+}
+
+.bank-detail-card-info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.3rem;
+}
+
+.bank-detail-card-info div p:first-child {
+    color: #868e9c;
+    font-weight: 500;
+}
+
+.bank-detail-card-info div p:last-child {
+    font-size: 1.1rem;
 }

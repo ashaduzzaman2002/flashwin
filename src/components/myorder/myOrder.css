@@ -44,3 +44,10 @@
     display: grid;
     grid-template-columns: 33% 33% 33%;
 }
+
+@media screen and (max-width: 550px) {
+  .myOrder .minesweeper-game-2x2 div {
+    height: 50px;
+  }
+  
+}
