@@ -1,113 +1,130 @@
-.agent-container {
+.agentPlan__discription {
   color: #fff;
-  margin: auto;
-  padding: 2rem 0;
+  font-size: 13px;
+  margin-top: 10px;
+  padding: 5px 5%;
 }
 
-.agent-container h2,
-.agent-container h1,
-.agent-container h3 {
-  text-align: center;
-  background: linear-gradient(to bottom, #ffd844, #feab26);
-  -webkit-background-clip: text; /* For Safari */
-  -webkit-text-fill-color: transparent; /* For Safari */
-  background-clip: text;
-  color: transparent;
+.agentIncome__levelSection {
+  padding: 10px 5%;
 }
 
-.agent-container h2 {
-  text-transform: uppercase;
-  font-size: 1.8rem;
-  font-weight: 700;
-  line-height: 1.5rem;
+.agentIncome__level__col {
+  margin-top: 10px;
 }
 
-.agent-container h1 {
-  font-size: 3rem;
-  text-transform: uppercase;
-  font-weight: 800;
-  line-height: 3.8rem;
+.startTaskPopup {
+  background: #fff;
+  width: 100%;
+  padding: 20px 6%;
+  border-radius: 5px;
+  margin-top: 3px;
 }
 
-.agent-container h3 {
-  font-size: 1.5rem;
-  letter-spacing: 1px;
-  line-height: 1.3rem;
+.startTaskHeadTxt {
+  font-family: sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 5px;
 }
 
-.agent-diamond {
-  display: flex;
-  justify-content: center;
-  position: relative;
-  width: 270px;
-  height: 270px;
-  margin: auto;
+.startTaskSillyText {
+  font-family: sans-serif;
+  font-size: 18px;
 }
 
-.agent-diamond img {
-  position: relative;
-  z-index: 2;
-  width: 85%;
-  margin: auto;
+.startTaskHeadTxt {
+  font-family: sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 5px;
 }
 
-.agent-diamond div {
-  width: 270px;
-  height: 270px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    rgba(217, 169, 24, 0.5) 0%,
-    rgba(104, 84, 22, 0) 70%
-  );
-  filter: blur(20px);
+.startTaskSillyText {
+  font-family: sans-serif;
+  font-size: 18px;
 }
 
-.agent-note {
-  text-align: center;
-  font-size: 1.1rem;
+.startTaskHeadTxt {
+  font-family: sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 5px;
 }
 
-.agent-note span {
-  color: #f0d260;
-}
-
-.level-card {
-  margin-top: 1.5rem;
-  padding: 5px 1rem;
-  border-radius: 1rem;
-  color: #fff;
+.startTaskColumns {
   display: flex;
   justify-content: space-between;
+  width: 100%;
+  gap: 0 10px;
+}
+
+.startTaskColumnLeft {
+  flex-basis: calc(100% - 70px);
+  width: 100%;
+  padding: 7px 7px;
+  background: #ccc;
+  border: 1px solid #777;
+  border-radius: 5px;
+  font-family: sans-serif;
+  font-size: 16px;
+}
+
+.startTaskHeadTxt {
+  font-family: sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.startTaskColumnRight {
+  width: 70px;
+  height: 50px;
+  font-weight: 500;
+  color: #fff;
+  font-size: 18px;
+  border: 0;
+  border-radius: 5px;
+  background: orange;
+}
+
+.startTaskHeadTxt {
+  font-family: sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.receivedTaskBtn {
+  width: 100%;
+  height: 50px;
+  font-weight: 500;
+  background: #fff;
+  font-size: 18px;
+  border: 0;
+  border-radius: 5px;
+  border: 2px solid orange;
+  color: orange;
+  margin-top: 25px;
+}
+
+.startTaskTable {
+  width: 100%;
+  background: #e9e9fe;
+}
+
+.startTaskTableRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+
+.startTaskTableColumn {
+  font-size: 13px;
+  height: 50px;
+  width: 100%;
+  display: flex;
   align-items: center;
-}
-
-.level-card div p:first-child {
-  font-weight: 500;
-  color: #ebe9e9;
-  font-size: 0.8rem;
-  margin-bottom: -5px;
-}
-
-.level-card div p:last-child {
-  font-size: 1rem;
-  font-weight: 500;
-}
-
-.level-card p:last-child {
-  font-size: 1.6rem;
-  font-weight: 700;
-}
-
-.agent-card {
-  background-color: #fff;
-  color: #000;
-  margin-top: 1.5rem;
-  border-radius: 1rem;
-  padding: 1rem;
+  justify-content: center;
+  border: 1px solid rgb(213, 220, 252);
 }

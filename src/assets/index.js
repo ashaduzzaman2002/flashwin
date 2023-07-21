@@ -25,17 +25,29 @@ import emptyBox from './images/empty-box.png';
 import upi from './images/UPI_logo_PNG_lyp5s5.png';
 import diamond from './icons/agent-diamond.png';
 import privilege from './images/privilege.svg';
-import bar1 from './images/bar1.png'
-import bar2 from './images/bar2.png'
-import bar3 from './images/bar3.png'
-import moneyBag from './images/money-bag.png'
+import bar1 from './images/bar1.png';
+import bar2 from './images/bar2.png';
+import bar3 from './images/bar3.png';
+import moneyBag from './images/money-bag.png';
 import mining from './gif/mining.json';
 import mineBomb from './gif/mine-bomb.json';
 import magicBag from './icons/magic-bag.json';
 import hangLoose from './icons/hang-loose.json';
-import coin from './icons/coin.png'
-import coinDisble from './icons/coin-disable.png'
-import checkInBg from './images/CheckIn_bg.png'
+import coin from './icons/coin.png';
+import coinDisble from './icons/coin-disable.png';
+import checkInBg from './images/CheckIn_bg.png';
+import agentBanner from './images/agent-banner.png';
+import lavel1 from './images/lavel-1.png';
+import lavel2 from './images/lavel-2.png';
+import lavel3 from './images/lavel-3.png';
+import lavel4 from './images/lavel-4.png';
+import lavel5 from './images/lavel-5.png';
+import lavel6 from './images/lavel-6.png';
+import lavel7 from './images/lavel-7.png';
+import ranking from './images/rankingIconNew1.png'
+import myLink from './images/linkNew1.png'
+import privilege1 from './images/PrivilegeNew1.png'
+import agentPlanEnter from './images/agentPlanEnter.png'
 
 export {
   Home,
@@ -75,5 +87,17 @@ export {
   magicBag,
   hangLoose,
   coinDisble,
-  checkInBg
+  checkInBg,
+  agentBanner,
+  lavel1,
+  lavel2,
+  lavel3,
+  lavel4,
+  lavel5,
+  lavel6,
+  lavel7,
+  ranking,
+  myLink,
+  privilege1,
+  agentPlanEnter
 };

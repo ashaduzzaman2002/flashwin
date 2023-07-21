@@ -1,130 +1,89 @@
-.invite-content {
-  color: #fff;
-  overflow: hidden;
-}
-
-.invite-content h1 {
-  text-align: center;
-  margin-top: 1rem;
-  font-size: 2.3rem;
-  font-weight: 500;
-  margin-bottom: 1rem;
-}
-
-.invite-amount-out {
+.invite__page__nav {
+  height: 50px;
   width: 100%;
   display: flex;
-  justify-content: space-between;
-  padding: 0.8rem;
-  border: 1px solid #5b6e78;
-  border-radius: 1rem;
-  box-shadow: rgba(90, 110, 121, 0.2) 0px 7px 29px 0px;
-  align-items: center;
-}
-
-.invite-amount p {
-  color: #ffffffd0;
-}
-
-.invite-amount h2 {
-  font-size: 1.1rem;
-  font-weight: 500;
-}
-
-.invite-amount-out button {
-  padding: 0 1.5rem;
-  border: none;
-  border-radius: 5rem;
-  background-color: #e8f3d4;
-  font-weight: 500;
-  font-size: 0.9rem;
-  transition: all 0.3s ease-in-out;
-  height: 40px;
-}
-
-.invite-amount-out button:hover {
-  background-color: #d1dac2;
-}
-
-.invite-card1-group {
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(2, 1fr);
-}
-
-.invite-card1 {
-  background-color: red;
-  display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  border-radius: 1rem;
-  padding: 0.5rem;
+  padding: 0 5%;
+  position: fixed;
+  z-index: 100000000;
 }
 
-.invite-card1 i {
-  font-size: 1.7rem;
+
+.invite__balance__section {
+  height: 75px;
+  width: 100%;
+  padding: 0;
+  z-index: 10000;
+  position: relative;
 }
 
-.invite-card1 p {
-  font-size: 14px;
-}
-
-.income-history-card-group {
+.invite__balance__section__box {
+  height: 75px;
+  width: 100%;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   display: flex;
-  justify-content: space-between;
-  margin-top: 1rem;
-}
-
-.income-history-card {
-  padding: 0.4rem;
-  width: 48%;
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
-  border: 1px solid #5b6e78;
-  border-radius: 1rem;
+  padding: 0 7%;
+  justify-content: space-between;
 }
 
-.income-history-card p {
-  font-size: 1.3rem;
-  font-weight: 400;
-}
-
-.income-history-card h2 {
-  font-size: 1.5rem;
+.invite__balance__section__box__left__top {
+  font-size: 13px;
+  color: rgb(0, 7, 82);
   font-weight: 500;
 }
 
-.income-history h3 {
-  font-weight: 400;
-  color: #f7feff;
-  font-size: 1rem;
+.invite__balance__section__box__left__bottom {
+  font-size: 20px;
+  font-weight: 600;
 }
 
+.referral__balance__transfer__btn {
+  border: 0;
+  height: 45px;
+  padding: 0 20px;
+  border-radius: 30px;
+  background: #2f00c9;
+  color: #fff;
+  font-weight: 500;
+  font-size: 17px;
+}
+
+.invitePageMenuOptions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  margin-top: 30px;
+}
+
+.invitePageMenuCol {
+  flex-basis: calc(100% / 3);
+  width: 100%;
+}
+
+.invitePageBottom {
+  padding: 15px 0;
+}
 
 .invitePageBottomBottom {
   margin-top: 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
 }
 
 .invitePageBottomBottomCols {
   flex-basis: 50%;
   width: 100%;
-  border: 0.5px solid rgb(102, 125, 132);
-  padding: 0.4rem;
-  border-radius: 1rem;
 }
 
 .invitePageBottomColTop {
   font-size: 12px;
-  color: #cccaca;
+  color: #dadada;
 }
 
 .invitePageMostBottom {
@@ -134,113 +93,33 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #fff;
+}
+
+.invitePageBottomColBottom {
+  color: #fff;
+}
+
+.invitePageIncomeDetails {
+  padding: 15px 0;
+}
+
+.invitePageIncomeDetailsTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+}
+
+.invitePageIncomeDetailsTopRight {
+  font-size: 13px;
+  color: #dbdbdb;
+}
+
+.invitePageIncomeDetailsBottom {
+  color: #fff;
 }
 
 .invitePageMostBottom img {
   margin-left: 7.5px;
-}
-
-.invite-button {
-  margin-top: 1.5rem;
-  background: linear-gradient(
-    to right bottom,
-    rgb(255, 185, 9),
-    rgb(254, 64, 45)
-  );
-  color: #fff;
-  border: none;
-  padding: 0.9rem 1rem;
-  border-radius: 1rem;
-  font-size: 1.1rem;
-  font-weight: 500;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  transition: all 0.3s ease-in-out;
-  width: 450px;
-  position: fixed;
-  bottom: 6rem;
-  left: 50%;
-  transform: translate(-50%);
-}
-
-.invite-button:hover {
-  background-color: #89dfad;
-}
-
-.invite-diamond {
-  display: flex;
-  justify-content: center;
-  position: relative;
-  width: 70px;
-  height: 70px;
-}
-
-.invite-diamond img {
-  position: relative;
-  z-index: 2;
-  width: 80%;
-  margin: auto;
-}
-
-.invite-diamond div {
-  width: 80px;
-  height: 80px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    rgba(217, 169, 24, 0.8) 0%,
-    rgba(104, 84, 22, 0) 70%
-  );
-  filter: blur(20px);
-}
-
-.agent-contrainer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: linear-gradient(90deg, #42413f, #090908);
-  color: #fff;
-  margin-top: 1rem;
-  padding: 0.3rem;
-  border-radius: 1rem;
-}
-
-.agent-contrainer h2 {
-  font-size: 1.4rem;
-  font-weight: 700;
-  background: linear-gradient(to bottom, #e4c7ab, #f9b45e);
-  -webkit-background-clip: text; /* For Safari */
-  -webkit-text-fill-color: transparent; /* For Safari */
-  background-clip: text;
-  color: transparent;
-  padding-left: 0.6rem;
-}
-
-.agent-contrainer p {
-  font-weight: 500;
-  letter-spacing: 1px;
-  padding-left: 0.6rem;
-  line-height: 0.9rem;
-}
-
-@media screen and (max-width: 520px) {
-  .invite-content h1 {
-    font-size: 1.4rem;
-  }
-
-  .income-history-card p {
-    font-size: 1rem;
-  }
-
-  .income-history h3 {
-    font-size: 1.1rem;
-  }
-
-  .invite-button {
-    width: 95%;
-  }
 }

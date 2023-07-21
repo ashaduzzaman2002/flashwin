@@ -1,113 +1,55 @@
-.profile-container {
-    padding-top: 2rem;
-    padding-bottom: 7rem;
-    height: auto;
-}
-
-
-.uid-card {
-    background: linear-gradient(to bottom right, #ffdcaa, #fedba5);
+  .user__details__section {
+    padding: 30px 7%;
     display: flex;
     align-items: center;
-    border-radius: 1rem;
-    padding: 1.2rem 1rem;
-    justify-content: space-between;
+    margin-top: 3px;
+    /* background: #2a486354; */
 }
 
-.uid-card a {
-    margin-right: 2rem;
-    color: #000000;
-    text-transform: uppercase;
-    font-weight: 500;
-    font-size: 17px;
-    transition: all 0.3s ease-in-out;
+.user__pic {
+    height: 75px;
+    width: 75px;
+    border-radius: 70px;
+    overflow: hidden;
 }
 
-.uid-card a:hover{
-    color: #252525;
+.user__details__section__right {
+    margin-left: 15px;
 }
 
-.uid-detail {
-    font-weight: 500;
+.user__details__section__right__col {
     font-size: 15px;
-    color: #323232;
+   color: #ded8d8;
 }
 
-.user-details-item {
-    margin-top: 2rem;
+.profile__records__section {
+    margin-top: 20px;
+}
+
+.profile__records__section__col {
     display: flex;
     align-items: center;
-    color: #fff;
     justify-content: space-between;
+    padding: 0 5%;
+    width: 100%;
 }
 
-.user-details-item .icon {
-    background: linear-gradient(to right bottom, rgb(255, 185, 9), rgb(254, 64, 45));
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+.profile__records__section__col__left {
     display: flex;
     align-items: center;
-    justify-content: center;
-    font-size: 1.3rem;
-    color: #000;
+    color: #ded8d8;
 }
 
-.user-details-item h2 {
-    font-size: 1.25rem;
-    font-weight: 500;
+.profile__record__section__col__icon {
+    display: flex;
+    align-items: center;
+    font-size: 22px;
 }
 
-.user-details-item p {
-    color: #ffffffd0;
-    font-size: 14px;
+.profile__record__section__col__name {
+    margin-left: 15px;
 }
 
-.user-details h3 {
-    color: #fff;
-    margin-top: 2.5rem;
-    margin-bottom: -15px;
-    font-weight: 500;
-    font-size: 1.1rem;
+.profile__records__section__col__right svg {
+    fill: #ded8d8 !important;
 }
-
-
-@media screen and (max-width: 520px) {
-    .uid-card {
-        
-        padding: 0.8rem 1rem;
-    }
-    
-    .user-details-item {
-        margin-top: 1.6rem;
-    }
-    
-    .user-details-item .icon {
-        width: 45px;
-        height: 45px;
-        border-radius: 50%;
-        font-size: 1.1rem;
-    }
-    
-    .user-details-item h2 {
-        font-size: 1.1rem;
-    }
-    
-    .user-details-item p {
-        font-size: 13px;
-    }
-    
-    .user-details h3 {
-        margin-top: 2.2rem;
-        margin-bottom: -10px;
-        font-size: 1rem;
-    }
-    
-    .user-details-item .fa-chevron-right {
-        font-size: 13px;
-    }
-
-    .uid-card img {
-        width: 50px;
-    }
-  }
