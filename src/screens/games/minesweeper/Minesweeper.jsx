@@ -300,7 +300,7 @@ const Minesweeper = () => {
               .map((_, i) => (
                 <div key={i + 1} id={i + 1} onClick={() => mineCell(i + 1)}>
                   {cellsMined?.includes(i + 1) && (
-                    <img width={'90%'} src={moneyBag} alt="money" />
+                    <img width={'90%'}  src={moneyBag} alt="money" />
                   )}
                 </div>
               ))}
