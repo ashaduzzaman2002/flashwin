@@ -116,8 +116,9 @@ const Invite = () => {
                 </div>
               </div>
             </div>
+
             <div class="invitePageBottom">
-              <div class="invitePageBottomTop">
+              <div class="invitePageBottomTop" onClick={() => navigate('/agent')}>
                 <img src={agentPlanEnter} width="100%" alt="" />
               </div>
               <div class="invitePageBottomBottom">

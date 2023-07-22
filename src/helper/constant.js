@@ -1,10 +1,10 @@
 import axios from "axios";
 
-export const baseURL = 'https://dipantan.live:4430';
+export const baseURL = 'https://dipantan.live:4431/';
 
 export const dbObject = axios.create({
     withCredentials: true,
-    baseURL: "https://dipantan.live:4430"
+    baseURL: "https://dipantan.live:4431/"
 });
 
 // const respnse = await dbObject.get("/auth");
