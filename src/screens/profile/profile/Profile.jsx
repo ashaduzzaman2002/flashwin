@@ -206,6 +206,7 @@ const Profile = () => {
                     </div>
                   </div>
                   <div class="profile__records__section__col__right">
+                    <div>Happy Rupees</div>
                     <svg
                       stroke="currentColor"
                       fill="currentColor"

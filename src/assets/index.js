@@ -5,8 +5,6 @@ import roulette from './images/roulette-flashwin-02.png';
 import Cow from './icons/cow.svg';
 import tiger from './icons/tiger.svg';
 import Money from './icons/withdraw-money.svg';
-import recharge from './icons/recharge.svg';
-import rechargeFilled from './icons/recharge-filled.svg';
 import check from './icons/check.svg';
 import reward from './icons/reward.svg';
 import rocket from './icons/rocket.svg';
@@ -57,8 +55,7 @@ export {
   Cow,
   tiger,
   Money,
-  recharge,
-  rechargeFilled,
+ 
   check,
   reward,
   rocket,

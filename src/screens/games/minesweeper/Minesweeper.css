@@ -133,24 +133,12 @@
   margin-top: 1rem;
 }
 
-.minnig-outer {
-  position: absolute;
-  z-index: 2;
-  background-color: #0000004e;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+
 .minnig {
- 
-  width: 12rem;
-  height: 12rem;
   background-color: #fff;
   border-radius: 2rem;
+  width: 100%;
+  height: 100%;
 }
 
 .mine-myorder {
@@ -196,20 +184,15 @@
   position: relative;
 }
 
-
-
 .myorder-text {
-    display: grid;
-    grid-template-columns: 33% 33% 33%;
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
 }
-
-
 
 @media screen and (max-width: 520px) {
   .minesweeper-container {
     width: 94%;
   }
-
 
   .minesweeper-game-2x2 {
     margin-bottom: 2rem;
@@ -219,20 +202,16 @@
     margin-bottom: 2rem;
   }
 
-
-
   .minesweeper-game button {
     width: 6.5rem;
     height: 6.5rem;
   }
 }
 
-
 @media screen and (max-width: 483px) {
-  .mine-myorder .minesweeper-game-2x2 {  
+  .mine-myorder .minesweeper-game-2x2 {
     gap: 0.3rem;
   }
-  
 }
 
 @media screen and (max-width: 370px) {
@@ -244,6 +223,21 @@
     display: grid;
     grid-template-columns: 25% 75% !important;
   }
+}
 
-
+.toast-custom {
+  position: absolute;
+  background-color: #07bc0c;
+  color: #fff;
+  min-width: 250px;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  bottom: 25%;
+  right: 50%;
+  transform: translate(50%);
+  box-shadow: rgba(49, 235, 71, 0.2) 0px 8px 24px;
+  min-height: 55px;
 }

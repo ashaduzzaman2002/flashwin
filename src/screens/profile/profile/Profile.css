@@ -52,4 +52,26 @@
 
 .profile__records__section__col__right svg {
     fill: #ded8d8 !important;
+
+}
+
+
+.profile__records__section__col__right {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.profile__records__section__col__right div {
+    background-color: #ff9805;
+    padding: 0.2rem 1rem;
+    min-width: 120px;
+    color: #fff;
+    font-weight: 500;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+    font-size: 14px;
 }
