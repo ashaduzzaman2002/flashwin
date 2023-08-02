@@ -114,16 +114,16 @@ const CheckIn = () => {
   }, []);
 
   return (
-    <div class="App">
-      <div class="app__responsive">
-        <div class="checkIn__page">
+    <div className="App">
+      <div className="app__responsive">
+        <div className="checkIn__page">
           <div className='container'>
             
-          <div class="checkIn__nav">
-            <div class="checkIn__nav__col">
+          <div className="checkIn__nav">
+            <div className="checkIn__nav__col">
               <div
               onClick={() => navigate('/')}
-                class="top__nav__back__btn"
+                className="top__nav__back__btn"
                 style={{ color: 'rgb(255, 255, 255)' }}
               >
                 <svg
@@ -140,15 +140,15 @@ const CheckIn = () => {
               </div>
             </div>
             <div
-              class="checkIn__nav__col"
+              className="checkIn__nav__col"
               style={{ color: 'rgb(255, 255, 255)', fontWeight: '500' }}
             >
               <center>Check In</center>
             </div>
-            <div class="checkIn__nav__col"></div>
+            <div className="checkIn__nav__col"></div>
           </div>
-          <div class="checkIn__screen" style={{ position: 'relative' }}>
-            <div class="checkIn__screen__container">
+          <div className="checkIn__screen" style={{ position: 'relative' }}>
+            <div className="checkIn__screen__container">
               <CoinCard title='Day 1' point="1" />
               <CoinCard title='Day 2' point="2" />
               <CoinCard title='Day 3' point="2" />
@@ -160,10 +160,10 @@ const CheckIn = () => {
               
               
             </div>
-            <div class="checkIn__button__container">
+            <div className="checkIn__button__container">
               <button
               onClick={claimCheckinReward}
-                class="checkIn__button"
+                className="checkIn__button"
                 style={{
                   background: 'rgb(253, 221, 12)',
                   color: 'rgb(255, 255, 255)',
@@ -173,17 +173,17 @@ const CheckIn = () => {
               </button>
             </div>
           </div>
-          <div class="checkIn__bottom__screen">
-            <div class="checkIn__bottom__screen__text container">
+          <div className="checkIn__bottom__screen">
+            <div className="checkIn__bottom__screen__text container">
               Check in for 7 consecutive days to get the key, use the key
               treasure box, and receive mysterious prizes!
             </div>
-            <div class="checkIn__bottom__screen__img">
+            <div className="checkIn__bottom__screen__img">
               <center>
                 <img
                   src={treasure}
                   alt=""
-                  class="img1"
+                  className="img1"
                 />
               </center>
             </div>
@@ -197,11 +197,11 @@ const CheckIn = () => {
 };
 
 const CoinCard = ({title, point}) => (
-  <div class="checkIn__screen__col">
+  <div className="checkIn__screen__col">
     <center>
-      <div class="checkIn__screen__col__day">{title}</div>
-      <img src={coin} alt="" height="40" class="checkIn__screen__col__img" />
-      <div class="checkIn__screen__col__bonus">
+      <div className="checkIn__screen__col__day">{title}</div>
+      <img src={coin} alt="" height="40" className="checkIn__screen__col__img" />
+      <div className="checkIn__screen__col__bonus">
         <span>+</span> {point}
       </div>
     </center>

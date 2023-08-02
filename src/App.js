@@ -32,6 +32,7 @@ import WithdrawHistory from './screens/withdraw-history/WithdrawHistory';
 import RecentTransaction from './screens/recent-transaction/RecentTransaction';
 import { useContext, useEffect } from 'react';
 import { AuthContext } from './context/AuthContext';
+import Loading from './components/loading/Loading';
 
 function App() {
   return (
@@ -244,12 +245,12 @@ const Redirect = ({ children }) => {
   const location = useLocation();
 
   useEffect(() => {
-    console.log(loading);
     if (!user) return navigate('/login', { state: { from: location.pathname } });
   }, []);
 
-  if (loading) return <h1>Loading...</h1>;
-  return <>{children}</>;
+  if (loading) return <Loading />;
+  else return <>{children}</>;
+  
 };
 
 export default App;

@@ -39,7 +39,6 @@ const Login = () => {
       onSubmit: async () => {
         try {
           const { data } = await dbObject.post('/auth/login', values);
-          setUser(data);
 
           if (!data?.error) {
             toast.success('Logged In Successfully!', {
@@ -55,7 +54,8 @@ const Login = () => {
 
             setTimeout(() => {
               navigate('/');
-            }, 2000);
+              setUser(data.data[0])
+            }, 1000);
           } else {
             toast.error(data.message, {
               position: 'top-center',
@@ -74,9 +74,9 @@ const Login = () => {
       },
     });
 
-  if(loading) {
+  if (loading) {
     return <Loading />
-  }else {
+  } else {
     return (
       <div className="auth-container">
         <h2>
@@ -99,15 +99,15 @@ const Login = () => {
                 onBlur={handleBlur}
               />
             </div>
-  
+
             {errors.number && touched.number ? (
               <small style={{ color: 'red' }}>{errors.number}</small>
             ) : null}
           </div>
-  
+
           <div style={{ marginBottom: '1.5rem' }}>
             <label htmlFor="password">Password</label>
-  
+
             <div className="auth-input password-input">
               <i className="fa-solid fa-lock"></i>
               <input
@@ -120,7 +120,7 @@ const Login = () => {
                 type={showPassword ? 'text' : 'password'}
                 name="password"
               />
-  
+
               <i
                 onClick={() => setShowPassword(!showPassword)}
                 className={
@@ -130,25 +130,25 @@ const Login = () => {
                 }
               ></i>
             </div>
-  
+
             {errors.password && touched.password ? (
               <small style={{ color: 'red' }}>{errors.password}</small>
             ) : null}
           </div>
-  
+
           <Link className="forgotPassword" to="/forgot-password">
             Forgot Password?
           </Link>
-  
+
           <button type="submit" className="auth-btn">
             Login
           </button>
-  
+
           <p className="auth-other-link">
             Don't have an account? <Link to="/register">Register</Link>
           </p>
         </form>
-  
+
         <ToastContainer
           position="top-center"
           autoClose={2000}
@@ -165,7 +165,7 @@ const Login = () => {
     );
   }
 
-  
+
 };
 
 export default Login;

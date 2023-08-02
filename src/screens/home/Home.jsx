@@ -12,7 +12,6 @@ import {
   vault,
 } from '../../assets';
 import { useNavigate } from 'react-router-dom';
-import { dbObject } from '../../helper/constant';
 import { AuthContext } from '../../context/AuthContext';
 
 const Home = () => {
@@ -94,9 +93,9 @@ const Home = () => {
               </div>
             </div>
 
-            <div class="homepage__game__screen">
-              <div class="homepage__game__cols">
-                <div class="homepage__game__cols__icon">
+            <div className="homepage__game__screen">
+              <div className="homepage__game__cols">
+                <div className="homepage__game__cols__icon">
                   <Card2
                     url={'/game/minesweeper'}
                     icon={bomb}
@@ -106,8 +105,8 @@ const Home = () => {
                 </div>
               </div>
 
-              <div class="homepage__game__cols">
-                <div class="homepage__game__cols__icon">
+              <div className="homepage__game__cols">
+                <div className="homepage__game__cols__icon">
                   <Card2
                     url={'/game/fortune-wheel'}
                     icon={fortuneWheel}
@@ -117,8 +116,8 @@ const Home = () => {
                 </div>
               </div>
 
-              <div class="homepage__game__cols">
-                <div class="homepage__game__cols__icon">
+              <div className="homepage__game__cols">
+                <div className="homepage__game__cols__icon">
                   <Card2
                     url={'/game/fast-parity'}
                     icon={rocket}
@@ -128,8 +127,8 @@ const Home = () => {
                 </div>
               </div>
 
-              <div class="homepage__game__cols">
-                <div class="homepage__game__cols__icon">
+              <div className="homepage__game__cols">
+                <div className="homepage__game__cols__icon">
                   <Card2
                     bgColor={'#40e48b'}
                     url={'/game/full-parity'}

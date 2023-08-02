@@ -52,11 +52,11 @@ const Recharge = () => {
         <Header title="Recharge" path="/recharge-history" btn="Records" />
 
         {/* ====== Blance ====== */}
-        <div class="recharge__page__balance__section">
-          <div class="recharge__page__balance__section__inner">
+        <div className="recharge__page__balance__section">
+          <div className="recharge__page__balance__section__inner">
             <center>
-              <div class="recharge__page__balance__section__top">Balance</div>
-              <div class="recharge__page__balance__section__bottom">
+              <div className="recharge__page__balance__section__top">Balance</div>
+              <div className="recharge__page__balance__section__bottom">
                 ₹{walletBalance}
               </div>
             </center>
@@ -64,15 +64,15 @@ const Recharge = () => {
         </div>
 
         {/* ===== Recharge Input ===== */}
-        <div class="recharge__screen">
-          <div class="amount__field">Amount</div>
+        <div className="recharge__screen">
+          <div className="amount__field">Amount</div>
           <input
             type="number"
             onChange={handleChange}
             placeholder="₹ (100 - 150000)"
             value={amount}
           />
-          <div class="recharge__price__options">
+          <div className="recharge__price__options">
             {quickAmount?.map((item) => (
               <div
                 onClick={() => {
@@ -80,16 +80,16 @@ const Recharge = () => {
                   setError(false);
                 }}
                 key={item}
-                class="recharge__price__option"
+                className="recharge__price__option"
               >
                 ₹{item}
               </div>
             ))}
           </div>
-          <div class="recharge__button">
+          <div className="recharge__button">
             <button
               onClick={rechargeRequest}
-              class={`recharge__btn ${error && 'recharge__btn_disabled'}`}
+              className={`recharge__btn ${error && 'recharge__btn_disabled'}`}
             >
               Recharge
             </button>

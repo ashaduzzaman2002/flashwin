@@ -15,9 +15,9 @@ const CommissionCard = ({ data }) => {
   console.log(data);
 
   return (
-    <div class="invitePageIncomeBox">
-      <div class="invitePageIncomeBoxLeft">
-        <div class="invitePageIncomeBoxIcon">
+    <div className="invitePageIncomeBox">
+      <div className="invitePageIncomeBoxLeft">
+        <div className="invitePageIncomeBoxIcon">
           <img
             src={"https://res.cloudinary.com/fiewin/image/upload/images/Cash.png"}
             width="100%"
@@ -25,16 +25,16 @@ const CommissionCard = ({ data }) => {
             style={{borderRadius: 100}}
           />
         </div>
-        <div class="invitePageIncomeBoxLeftRight">
-          <div class="invitePageIncomeDetail1">Invite cashback</div>
-          <div class="invitePageIncomeDetailBottom">
-            <div class="invitePageIncomeTime">
+        <div className="invitePageIncomeBoxLeftRight">
+          <div className="invitePageIncomeDetail1">Invite cashback</div>
+          <div className="invitePageIncomeDetailBottom">
+            <div className="invitePageIncomeTime">
               {formattedDate} {formattedTime} &nbsp;&nbsp;&nbsp; from {data.refer}
             </div>
           </div>
         </div>
       </div>
-      <div class="invitePageIncomeAmount">+₹{data.amount}</div>
+      <div className="invitePageIncomeAmount">+₹{data.amount}</div>
     </div>
   );
 };

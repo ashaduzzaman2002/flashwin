@@ -63,38 +63,38 @@ const Invite = () => {
     <div className="container" style={{ paddingBottom: '0rem' }}>
       <BottomNav />
 
-      <div class="App">
-        <div class="app__responsive">
+      <div className="App">
+        <div className="app__responsive">
           <div style={{ minHeight: '100vh' }}>
             <div
-              class="invite__page__nav"
+              className="invite__page__nav"
               style={{ color: 'rgb(255, 255, 255)', fontWeight: '500' }}
             >
               Invite &amp; Earn
             </div>
             <div style={{ height: 50, width: '100%' }}></div>
-            <div class="invite__page__top">
-              <div class="invite__balance__section">
-                <div class="invite__balance__section__box">
-                  <div class="invite__balance__section__box__left">
-                    <div class="invite__balance__section__box__left__top">
+            <div className="invite__page__top">
+              <div className="invite__balance__section">
+                <div className="invite__balance__section__box">
+                  <div className="invite__balance__section__box__left">
+                    <div className="invite__balance__section__box__left__top">
                       Referral Income
                     </div>
                     <div
-                      class="invite__balance__section__box__left__bottom"
+                      className="invite__balance__section__box__left__bottom"
                       style={{ fontFamily: 'sans-serif' }}
                     >
                       ₹54.00
                     </div>
                   </div>
-                  <button class="referral__balance__transfer__btn">
+                  <button className="referral__balance__transfer__btn">
                     Withdraw
                   </button>
                 </div>
               </div>
 
-              <div class="invitePageMenuOptions">
-                <div class="invitePageMenuCol">
+              <div className="invitePageMenuOptions">
+                <div className="invitePageMenuCol">
                   <img
                     src={privilege1}
                     onClick={() => navigate('/privilege')}
@@ -103,7 +103,7 @@ const Invite = () => {
                   />
                 </div>
 
-                <div class="invitePageMenuCol">
+                <div className="invitePageMenuCol">
                   <img
                     onClick={() => navigate('/ranking')}
                     src={ranking}
@@ -111,23 +111,23 @@ const Invite = () => {
                     alt=""
                   />
                 </div>
-                <div class="invitePageMenuCol">
+                <div className="invitePageMenuCol">
                   <img src={myLink} width="100%" alt="" />
                 </div>
               </div>
             </div>
 
-            <div class="invitePageBottom">
-              <div class="invitePageBottomTop" onClick={() => navigate('/agent')}>
+            <div className="invitePageBottom">
+              <div className="invitePageBottomTop" onClick={() => navigate('/agent')}>
                 <img src={agentPlanEnter} width="100%" alt="" />
               </div>
-              <div class="invitePageBottomBottom">
-                <div class="invitePageBottomBottomCols">
+              <div className="invitePageBottomBottom">
+                <div className="invitePageBottomBottomCols">
                   <center>
-                    <div class="invitePageBottomColTop">Invited Today</div>
-                    <div class="invitePageBottomColBottom">0</div>
-                    <div class="invitePageMostBottom">
-                      <div class="invitePageMostBottomLeft">Total 1</div>
+                    <div className="invitePageBottomColTop">Invited Today</div>
+                    <div className="invitePageBottomColBottom">0</div>
+                    <div className="invitePageMostBottom">
+                      <div className="invitePageMostBottomLeft">Total 1</div>
                       <img
                         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADZ0lEQVRYCcVXTUhUURT+7hs0KDP7UabJ3/4gF7VJLAS1kCKloEVtWrWIloGbFv2ZJrQI27QLauWmFoGQ0aZ/wrSoLAxKiGwyf7BkcsjfuZ1z73v5fPPe+N4w4oHhvrn3nPOde865554r4JPknWPZGP+2D5g7AohyEotAyogSF2KQRvrJPiDUgbySx+L43Wk/qsViTPJ2RRjTiYsEeoIAchfj1+siRrztyDaaxcmeoVQyngbIzkMr8H3kHAQaIbEqlRLPNYE4ybahqKBV1D+YcuNzNUDteiZxj4T3uAkFnhPoQpZx1M0bSQbIm5U7IefuU3wLAwOlEhAiSjrrxek3H+xsCwzQO5c9GQe3ENmILFFh94RhramYK7dneOcWAI/sVcJQWOb8fwNUwmUq5nZQ5zdjcHKbpEJgJl2/72xfUwzER4DZSUtPsJFPR5axlUOhPcDn3O9R21YPHGwDKs8AK3yWBad5jKVqC1UXVeF+fx31XWTqrgKb6ziewJdOoOs6MDnuhPDxn4rV2rJ8Q5dXvxWO9L69BcSiZDpFb3sDUHUWWLnBB6CThTCptIeaDocbaanCuez5/+8YMPoJyN9BwOuBdVuA3CJg6B0wE/cUc10QMkY5oC4W13XPyeH3wJMmYOSjZimtAaovADkbPUXcF0Q5J6G+0dw5vGfHPgOP6I4afK15ivYCtZfIK/neMskrEYOSKT0DWFlsQHti4KVWHdkN7L+SDOM1Q9j6GHox+JlPzAGJ2XlOrg9+SQhpUDZzM5Ee5YQp9ueB0motP9wLdN8IousneyA9A3LpsqyhmBdXacAf3ZQTZEx8OIgBg2QAt1EBKa+MEu4ysMk8vdEu4Gkz8CfoXmQfGUA9XBDio3bgGhDepaU4AZ9R4k2k7Lw8EEIdBjeQVAuoh/NJXP3ySjTzwAvgeWua4IRJ2IbuXqmB9EtcfH71A/0PaecEHizmNhTZztjpXcerqXRMkdOmJ2wKA3w6r2PVInH36pc42dIFZwzCstoyPoaaqHWmFpzSeYmJMRjLJBUC68+yNqVshHKLCDVQdYxaRmVstNpyx0tpPgQmkjj1qpdb54yGQz1MqB13vAkYMskAnlSeKCyopc8WMiRgl8EaTNKyLSBdVtJZS9a4IAesSfuo8mI5Hqd2I/h7qZ7n/wBZfz7VBRipQAAAAABJRU5ErkJggg=="
                         height="17.5"
@@ -136,12 +136,12 @@ const Invite = () => {
                     </div>
                   </center>
                 </div>
-                <div class="invitePageBottomBottomCols">
+                <div className="invitePageBottomBottomCols">
                   <center>
-                    <div class="invitePageBottomColTop">Today's Income</div>
-                    <div class="invitePageBottomColBottom">₹0</div>
-                    <div class="invitePageMostBottom">
-                      <div class="invitePageMostBottomLeft">Total ₹1</div>
+                    <div className="invitePageBottomColTop">Today's Income</div>
+                    <div className="invitePageBottomColBottom">₹0</div>
+                    <div className="invitePageMostBottom">
+                      <div className="invitePageMostBottomLeft">Total ₹1</div>
                       <img
                         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADZ0lEQVRYCcVXTUhUURT+7hs0KDP7UabJ3/4gF7VJLAS1kCKloEVtWrWIloGbFv2ZJrQI27QLauWmFoGQ0aZ/wrSoLAxKiGwyf7BkcsjfuZ1z73v5fPPe+N4w4oHhvrn3nPOde865554r4JPknWPZGP+2D5g7AohyEotAyogSF2KQRvrJPiDUgbySx+L43Wk/qsViTPJ2RRjTiYsEeoIAchfj1+siRrztyDaaxcmeoVQyngbIzkMr8H3kHAQaIbEqlRLPNYE4ybahqKBV1D+YcuNzNUDteiZxj4T3uAkFnhPoQpZx1M0bSQbIm5U7IefuU3wLAwOlEhAiSjrrxek3H+xsCwzQO5c9GQe3ENmILFFh94RhramYK7dneOcWAI/sVcJQWOb8fwNUwmUq5nZQ5zdjcHKbpEJgJl2/72xfUwzER4DZSUtPsJFPR5axlUOhPcDn3O9R21YPHGwDKs8AK3yWBad5jKVqC1UXVeF+fx31XWTqrgKb6ziewJdOoOs6MDnuhPDxn4rV2rJ8Q5dXvxWO9L69BcSiZDpFb3sDUHUWWLnBB6CThTCptIeaDocbaanCuez5/+8YMPoJyN9BwOuBdVuA3CJg6B0wE/cUc10QMkY5oC4W13XPyeH3wJMmYOSjZimtAaovADkbPUXcF0Q5J6G+0dw5vGfHPgOP6I4afK15ivYCtZfIK/neMskrEYOSKT0DWFlsQHti4KVWHdkN7L+SDOM1Q9j6GHox+JlPzAGJ2XlOrg9+SQhpUDZzM5Ee5YQp9ueB0motP9wLdN8IousneyA9A3LpsqyhmBdXacAf3ZQTZEx8OIgBg2QAt1EBKa+MEu4ysMk8vdEu4Gkz8CfoXmQfGUA9XBDio3bgGhDepaU4AZ9R4k2k7Lw8EEIdBjeQVAuoh/NJXP3ySjTzwAvgeWua4IRJ2IbuXqmB9EtcfH71A/0PaecEHizmNhTZztjpXcerqXRMkdOmJ2wKA3w6r2PVInH36pc42dIFZwzCstoyPoaaqHWmFpzSeYmJMRjLJBUC68+yNqVshHKLCDVQdYxaRmVstNpyx0tpPgQmkjj1qpdb54yGQz1MqB13vAkYMskAnlSeKCyopc8WMiRgl8EaTNKyLSBdVtJZS9a4IAesSfuo8mI5Hqd2I/h7qZ7n/wBZfz7VBRipQAAAAABJRU5ErkJggg=="
                         height="17.5"
@@ -152,18 +152,18 @@ const Invite = () => {
                 </div>
               </div>
             </div>
-            <div class="invitePageBreaker"></div>
-            <div class="invitePageIncomeDetails">
-              <div class="invitePageIncomeDetailsTop">
-                <div class="invitePageIncomeDetailsTopLeft">
+            <div className="invitePageBreaker"></div>
+            <div className="invitePageIncomeDetails">
+              <div className="invitePageIncomeDetailsTop">
+                <div className="invitePageIncomeDetailsTopLeft">
                   Income Detail's
                 </div>
-                <div class="invitePageIncomeDetailsTopRight">More &gt;</div>
+                <div className="invitePageIncomeDetailsTopRight">More &gt;</div>
               </div>
-              <div class="invitePageIncomeDetailsBottom">
-                <div class="invitePageIncomeBox">
-                  <div class="invitePageIncomeBoxLeft">
-                    <div class="invitePageIncomeBoxIcon">
+              <div className="invitePageIncomeDetailsBottom">
+                <div className="invitePageIncomeBox">
+                  <div className="invitePageIncomeBoxLeft">
+                    <div className="invitePageIncomeBoxIcon">
                       <img
                         src="https://res.cloudinary.com/fiewin/image/upload/images/Cash.png"
                         width="100%"
@@ -171,16 +171,16 @@ const Invite = () => {
                         style={{ borderRadius: 100 }}
                       />
                     </div>
-                    <div class="invitePageIncomeBoxLeftRight">
-                      <div class="invitePageIncomeDetail1">Invite cashback</div>
-                      <div class="invitePageIncomeDetailBottom">
-                        <div class="invitePageIncomeTime">
+                    <div className="invitePageIncomeBoxLeftRight">
+                      <div className="invitePageIncomeDetail1">Invite cashback</div>
+                      <div className="invitePageIncomeDetailBottom">
+                        <div className="invitePageIncomeTime">
                           11/01 09:10 &nbsp;&nbsp;&nbsp; from 07B4UMIV
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div class="invitePageIncomeAmount">+₹1</div>
+                  <div className="invitePageIncomeAmount">+₹1</div>
                 </div>
 
                 <div

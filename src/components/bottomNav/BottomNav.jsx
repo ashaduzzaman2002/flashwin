@@ -9,12 +9,12 @@ const BottomNav = () => {
       <ul className="container nav">
         <li className={`nav-link ${pathname === '/' ? 'active-link' : ''}`}>
           <Link to={'/'}>
-            <div class="bottomBar__col__icon">
+            <div className="bottomBar__col__icon">
               {pathname === '/' ? (
                 <svg
                   stroke="currentColor"
                   fill="currentColor"
-                  stroke-width="0"
+                  strokeWidth="0"
                   viewBox="0 0 512 512"
                   height="1em"
                   width="1em"
@@ -27,7 +27,7 @@ const BottomNav = () => {
                 <svg
                   stroke="currentColor"
                   fill="currentColor"
-                  stroke-width="0"
+                  strokeWidth="0"
                   viewBox="0 0 512 512"
                   height="1em"
                   width="1em"
@@ -35,22 +35,22 @@ const BottomNav = () => {
                 >
                   <path
                     fill="none"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="32"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="32"
                     d="M80 212v236a16 16 0 0016 16h96V328a24 24 0 0124-24h80a24 24 0 0124 24v136h96a16 16 0 0016-16V212"
                   ></path>
                   <path
                     fill="none"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="32"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="32"
                     d="M480 256L266.89 52c-5-5.28-16.69-5.34-21.78 0L32 256m368-77V64h-48v69"
                   ></path>
                 </svg>
               )}
             </div>
-            <div class="bottomBar__col__name">Home</div>
+            <div className="bottomBar__col__name">Home</div>
           </Link>
         </li>
 
@@ -58,12 +58,12 @@ const BottomNav = () => {
           className={`nav-link ${pathname === '/invite' ? 'active-link' : ''}`}
         >
           <Link to={'/invite'}>
-            <div class="bottomBar__col__icon">
+            <div className="bottomBar__col__icon">
               {pathname === '/invite' ? (
                 <svg
                   stroke="currentColor"
                   fill="currentColor"
-                  stroke-width="0"
+                  strokeWidth="0"
                   viewBox="0 0 24 24"
                   height="1em"
                   width="1em"
@@ -78,7 +78,7 @@ const BottomNav = () => {
                 <svg
                   stroke="currentColor"
                   fill="currentColor"
-                  stroke-width="0"
+                  strokeWidth="0"
                   viewBox="0 0 24 24"
                   height="1em"
                   width="1em"
@@ -91,7 +91,7 @@ const BottomNav = () => {
                 </svg>
               )}
             </div>
-            <div class="bottomBar__col__name">Invite</div>
+            <div className="bottomBar__col__name">Invite</div>
           </Link>
         </li>
         <li
@@ -100,12 +100,12 @@ const BottomNav = () => {
           }`}
         >
           <Link to={'/recharge'}>
-            <div class="bottomBar__col__icon">
+            <div className="bottomBar__col__icon">
               {pathname === '/recharge' ? (
                 <svg
                   stroke="currentColor"
                   fill="currentColor"
-                  stroke-width="0"
+                  strokeWidth="0"
                   viewBox="0 0 512 512"
                   height="1em"
                   width="1em"
@@ -117,7 +117,7 @@ const BottomNav = () => {
                 <svg
                   stroke="currentColor"
                   fill="currentColor"
-                  stroke-width="0"
+                  strokeWidth="0"
                   viewBox="0 0 512 512"
                   height="1em"
                   width="1em"
@@ -125,34 +125,34 @@ const BottomNav = () => {
                 >
                   <path
                     fill="none"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="32"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="32"
                     d="M336 176h40a40 40 0 0140 40v208a40 40 0 01-40 40H136a40 40 0 01-40-40V216a40 40 0 0140-40h40"
                   ></path>
                   <path
                     fill="none"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="32"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="32"
                     d="M176 272l80 80 80-80M256 48v288"
                   ></path>
                 </svg>
               )}
             </div>
-            <div class="bottomBar__col__name">Recharge</div>
+            <div className="bottomBar__col__name">Recharge</div>
           </Link>
         </li>
         <li
           className={`nav-link ${pathname === '/profile' ? 'active-link' : ''}`}
         >
           <Link to={'/profile'}>
-            <div class="bottomBar__col__icon">
+            <div className="bottomBar__col__icon">
               {pathname === '/profile' ? (
                 <svg
                   stroke="currentColor"
                   fill="currentColor"
-                  stroke-width="0"
+                  strokeWidth="0"
                   viewBox="0 0 24 24"
                   height="1em"
                   width="1em"
@@ -167,7 +167,7 @@ const BottomNav = () => {
                 <svg
                   stroke="currentColor"
                   fill="currentColor"
-                  stroke-width="0"
+                  strokeWidth="0"
                   viewBox="0 0 24 24"
                   height="1em"
                   width="1em"
@@ -180,7 +180,7 @@ const BottomNav = () => {
                 </svg>
               )}
             </div>
-            <div class="bottomBar__col__name">My</div>
+            <div className="bottomBar__col__name">My</div>
           </Link>
         </li>
       </ul>

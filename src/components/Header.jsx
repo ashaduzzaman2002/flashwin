@@ -4,9 +4,9 @@ import { Link, useNavigate } from 'react-router-dom';
 const Header = ({ title, path, btn }) => {
   const navigate = useNavigate();
   return (
-    <div class="app__top__nav">
-      <Link to="/" class="top__nav__cols">
-        <div class="top__nav__back__btn">
+    <div className="app__top__nav">
+      <Link to="/" className="top__nav__cols">
+        <div className="top__nav__back__btn">
           <svg
             stroke="currentColor"
             fill="currentColor"
@@ -20,13 +20,13 @@ const Header = ({ title, path, btn }) => {
           </svg>
         </div>
       </Link>
-      <div class="top__nav__cols">
+      <div className="top__nav__cols">
         <center>
-          <div class="top__nav__title">{title}</div>
+          <div className="top__nav__title">{title}</div>
         </center>
       </div>
-      <div class="top__nav__cols">
-        <div onClick={() => navigate(path)} class="recharge__records__button">
+      <div className="top__nav__cols">
+        <div onClick={() => navigate(path)} className="recharge__records__button">
           {btn}
         </div>
       </div>

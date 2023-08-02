@@ -1,24 +1,24 @@
-import React, { useState } from 'react';
-import { dbObject } from '../../helper/constant';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { useFormik } from 'formik';
-import { bankValidation } from '../../validation';
+import React, { useState } from "react";
+import { dbObject } from "../../helper/constant";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useFormik } from "formik";
+import { bankValidation } from "../../validation";
 
 const initialValues = {
-  bank_name: '',
-  account_number: '',
-  ifsc_code: '',
-  account_holder: '',
-  upi: '',
+  bank_name: "",
+  account_number: "",
+  ifsc_code: "",
+  account_holder: "",
+  upi: "",
 };
 
 const AddBank = () => {
-  const [bank_name, setBankName] = useState('');
-  const [account_number, setAccountNumber] = useState('');
-  const [ifsc_code, setIfscCode] = useState('');
-  const [account_holder, setAccountHolder] = useState('');
-  const [upi, setUpiId] = useState('');
+  const [bank_name, setBankName] = useState("");
+  const [account_number, setAccountNumber] = useState("");
+  const [ifsc_code, setIfscCode] = useState("");
+  const [account_holder, setAccountHolder] = useState("");
+  const [upi, setUpiId] = useState("");
 
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
@@ -37,28 +37,28 @@ const AddBank = () => {
       upi,
     };
     try {
-      const { data } = await dbObject.post('/payment/add', bankMap);
+      const { data } = await dbObject.post("/payment/add", bankMap);
       if (!data.error) {
         toast.success(data.message, {
-          position: 'top-center',
+          position: "top-center",
           autoClose: 2000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: 'colored',
+          theme: "colored",
         });
       } else {
         toast.error(data.message, {
-          position: 'top-center',
+          position: "top-center",
           autoClose: 2000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: 'colored',
+          theme: "colored",
         });
       }
     } catch (error) {
@@ -86,7 +86,7 @@ const AddBank = () => {
               onChange={handleChange}
             />
             {errors.bank_name && touched.bank_name ? (
-              <small style={{ color: 'red' }}>{errors.bank_name}</small>
+              <small style={{ color: "red" }}>{errors.bank_name}</small>
             ) : null}
           </div>
 
@@ -103,7 +103,7 @@ const AddBank = () => {
             />
 
             {errors.account_number && touched.account_number ? (
-              <small style={{ color: 'red' }}>{errors.account_number}</small>
+              <small style={{ color: "red" }}>{errors.account_number}</small>
             ) : null}
           </div>
 
@@ -119,7 +119,7 @@ const AddBank = () => {
               onChange={handleChange}
             />
             {errors.ifsc_code && touched.ifsc_code ? (
-              <small style={{ color: 'red' }}>{errors.ifsc_code}</small>
+              <small style={{ color: "red" }}>{errors.ifsc_code}</small>
             ) : null}
           </div>
 
@@ -135,7 +135,7 @@ const AddBank = () => {
               onChange={handleChange}
             />
             {errors.account_holder && touched.account_holder ? (
-              <small style={{ color: 'red' }}>{errors.account_holder}</small>
+              <small style={{ color: "red" }}>{errors.account_holder}</small>
             ) : null}
           </div>
 
@@ -152,14 +152,14 @@ const AddBank = () => {
             />
 
             {errors.upi && touched.upi ? (
-              <small style={{ color: 'red' }}>{errors.upi}</small>
+              <small style={{ color: "red" }}>{errors.upi}</small>
             ) : null}
           </div>
-          <div style={{ width: '100%' }}>
+          <div style={{ width: "100%" }}>
             <button
               className="btn"
-              style={{ marginTop: '1.5rem' }}
-              type='submit'
+              style={{ marginTop: "1.5rem" }}
+              type="submit"
             >
               Add bank account
             </button>

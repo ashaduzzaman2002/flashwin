@@ -51,7 +51,7 @@ export const AuthProvider = ({ children }) => {
     getUser();
     fetchWallet();
     getCommissionHistory()
-  }, [setLoading]);
+  }, []);
 
   return (
     <AuthContext.Provider value={{ user, walletBalance, commissionHistory, loading, setUser }}>{children}</AuthContext.Provider>
