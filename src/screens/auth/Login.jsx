@@ -39,7 +39,7 @@ const Login = () => {
       onSubmit: async () => {
         try {
           const { data } = await dbObject.post('/auth/login', values);
-
+          console.log(data)
           if (!data?.error) {
             toast.success('Logged In Successfully!', {
               position: 'top-center',
