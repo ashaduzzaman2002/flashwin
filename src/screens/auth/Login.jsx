@@ -8,6 +8,7 @@ import { loginValidation } from '../../validation';
 import { dbObject } from '../../helper/constant';
 import { AuthContext } from '../../context/AuthContext';
 import Loading from '../../components/loading/Loading';
+import Toaster, { toastOptions } from '../../components/Toster/Toaster';
 
 const initialValues = {
   number: '',
@@ -16,7 +17,7 @@ const initialValues = {
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const { user, loading, setUser } = useContext(AuthContext);
+  const { user, loading, setUser, setIsLogin } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -41,32 +42,15 @@ const Login = () => {
           const { data } = await dbObject.post('/auth/login', values);
           console.log(data)
           if (!data?.error) {
-            toast.success('Logged In Successfully!', {
-              position: 'top-center',
-              autoClose: 2000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: 'colored',
-            });
+            toast.success('Logged In Successfully!', toastOptions);
 
             setTimeout(() => {
               navigate('/');
               setUser(data.data[0])
+              setIsLogin(true)
             }, 1000);
           } else {
-            toast.error(data.message, {
-              position: 'top-center',
-              autoClose: 2000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: 'colored',
-            });
+            toast.error(data.message, toastOptions);
           }
         } catch (error) {
           console.log(error);
@@ -149,18 +133,7 @@ const Login = () => {
           </p>
         </form>
 
-        <ToastContainer
-          position="top-center"
-          autoClose={2000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="colored"
-        />
+        <Toaster />
       </div>
     );
   }

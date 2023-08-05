@@ -1,9 +1,9 @@
-import React, {  useState } from 'react';
+import React, {  useContext, useState } from 'react';
 import './start.css';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthContext';
 
 const Start = ({ name, startGame, game, setStartCart }) => {
-  const [isBoxOpen, setIsBoxOpen] = useState(false);
   const [contactPoint, setContactPoint] = useState(10);
   
 
@@ -17,7 +17,7 @@ const Start = ({ name, startGame, game, setStartCart }) => {
     startGame(contactPoint)
   };
 
-  // const { walletBalance } = useContext(AuthContext);
+  const { walletBalance } = useContext(AuthContext);
 
   const handleIncDec = (value) => {
     // setContactPoint(contactPoint + value);
@@ -31,7 +31,7 @@ const Start = ({ name, startGame, game, setStartCart }) => {
         <p>Points</p>
 
         <div className="points-div">
-          <h3>INR 0.0</h3>
+          <h3>INR {walletBalance}</h3>
           <button onClick={() => navigate('/recharge')}>
             <i className="fa-solid fa-clock-rotate-left"></i> Recharge
           </button>

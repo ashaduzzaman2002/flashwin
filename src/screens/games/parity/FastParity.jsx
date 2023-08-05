@@ -2,13 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { database } from '../../../firebase.config';
 
 import '../../../components/parity/parity.css';
-import GameDetails from '../../../components/gameDetails/GameDetails';
 import Start from '../../../components/start/Start';
 import { onValue, ref } from 'firebase/database';
 import { dbObject } from '../../../helper/constant';
 
 const FastParity = () => {
-  const [isFastParityPlaying, setIsFastParityPlaying] = useState(false); //check if the game is playing or not
   const firstCardList = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   const probabilityBox = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const [activeBtn, setActiveBtn] = useState('probability');
@@ -251,7 +249,7 @@ const FastParity = () => {
   );
 };
 
-function ContinuousTab({}) {
+function ContinuousTab() {
   const fastParityContinuousList = [
     0,
     7,
@@ -315,7 +313,7 @@ function ContinuousTab({}) {
   );
 }
 
-const Record = ({}) => {
+const Record = () => {
   const numberList = [
     2,
     2,

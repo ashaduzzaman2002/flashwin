@@ -1,8 +1,8 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { baseURL } from '../../helper/constant';
-import { ToastContainer, toast } from 'react-toastify';
+import { baseURL, dbObject } from '../../helper/constant';
+import { toast } from 'react-toastify';
 import { useFormik } from 'formik';
 import { signupValidation } from '../../validation';
 import { AuthContext } from '../../context/AuthContext';
@@ -17,14 +17,16 @@ const initialValues = {
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [seconds, setSeconds] = useState(0);
+  const [otpSent, setOtpSent] = useState(false)
 
-    const {user, loading} = useContext(AuthContext)
-    const navigate = useNavigate()
-  
-    useEffect(() => {
-      if(user) return navigate('/')
-    }, [user])
-  
+  const { user, loading } = useContext(AuthContext)
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (user) return navigate('/')
+  }, [user])
+
 
   const { values, errors, handleChange, handleSubmit, handleBlur, touched } =
     useFormik({
@@ -35,6 +37,10 @@ const Register = () => {
           const { data } = await axios.post(`${baseURL}/auth/register`, values);
           if (!data?.error) {
             toast.success('Logged In Successfully!', toastOptions);
+
+            setTimeout(() => {
+              navigate('/login')
+            }, 1000)
           } else {
             toast.error(data.message, toastOptions);
           }
@@ -43,6 +49,39 @@ const Register = () => {
         }
       },
     });
+
+  useEffect(() => {
+    if (seconds > 0 && otpSent) {
+      const interval = setInterval(() => {
+        setSeconds(seconds - 1);
+      }, 1000);
+
+      return () => clearInterval(interval);
+    }
+
+    if (seconds <= 0) {
+      setOtpSent(false)
+    }
+  }, [seconds, otpSent]);
+
+
+  const sendOtp = async () => {
+    if (!values.number) {
+      return toast.error('Number is required', toastOptions)
+    }
+
+    try {
+      console.log(values.number)
+      const { data } = await dbObject.post('/auth/sendotp', { number: values.number })
+      console.log(data)
+      toast.success('OTP sent to ' + values.number, toastOptions)
+      setSeconds(60)
+      setOtpSent(true)
+    } catch (error) {
+      console.log(error)
+    }
+
+  }
 
 
   return (
@@ -55,7 +94,7 @@ const Register = () => {
         <div style={{ marginBottom: '1.5rem' }}>
           <label htmlFor="number">Phone</label>
           <div className="auth-input phone-input">
-          <i className="fa-solid fa-mobile-screen-button"></i>
+            <i className="fa-solid fa-mobile-screen-button"></i>
             <p>+91</p>
             <input
               id="number"
@@ -75,9 +114,16 @@ const Register = () => {
         </div>
 
         <div style={{ marginBottom: '1.5rem' }}>
-          <label htmlFor="verification">Verification Code</label>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <label htmlFor="verification">Verification Code</label>
+            {
+              otpSent && seconds > 0 ? <div >Resend otp in <span>{seconds}</span> s</div> : null
+            }
+
+          </div>
           <div className="verification-input">
             <input
+              maxLength={6}
               value={values.otp}
               onChange={handleChange}
               onBlur={handleBlur}
@@ -85,7 +131,7 @@ const Register = () => {
               placeholder="Enter code here"
               name="otp"
             />
-            <button type="button">OTP</button>
+            <button disabled={otpSent} onClick={sendOtp} type="button">OTP</button>
           </div>
 
           {errors.otp && touched.otp ? (
@@ -97,7 +143,7 @@ const Register = () => {
           <label htmlFor="password">Create Password</label>
 
           <div className="auth-input password-input">
-          <i className="fa-solid fa-lock"></i>
+            <i className="fa-solid fa-lock"></i>
             <input
               value={values.password}
               onChange={handleChange}

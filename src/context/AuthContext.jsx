@@ -9,6 +9,7 @@ export const AuthProvider = ({ children }) => {
   const [walletBalance, setWalletBalance] = useState('0.0');
   const [commissionHistory, setCommissionHistory] = useState([])
   const [loading, setLoading] = useState(false)
+  const [isLoggin, setIsLogin] = useState(false)
 
 
   const getUser = async () => {
@@ -51,9 +52,9 @@ export const AuthProvider = ({ children }) => {
     getUser();
     fetchWallet();
     getCommissionHistory()
-  }, []);
+  }, [isLoggin]);
 
   return (
-    <AuthContext.Provider value={{ user, walletBalance, commissionHistory, loading, setUser }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ user, walletBalance, commissionHistory, loading, setUser, setIsLogin }}>{children}</AuthContext.Provider>
   );
 };

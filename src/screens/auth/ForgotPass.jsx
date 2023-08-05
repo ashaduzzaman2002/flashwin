@@ -3,6 +3,9 @@ import React, { useContext, useEffect, useState } from 'react';
 import { signupValidation } from '../../validation';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
+import Toaster, { toastOptions } from '../../components/Toster/Toaster';
+import { toast } from 'react-toastify';
+import { dbObject } from '../../helper/constant';
 
 const initialValues = {
   number: '',
@@ -12,25 +15,84 @@ const initialValues = {
 
 const ForgotPass = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [seconds, setSeconds] = useState(0);
+  const [otpSent, setOtpSent] = useState(false)
 
-  const { user, loading } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (user) return navigate('/');
   }, [user]);
 
+  useEffect(() => {
+    if (seconds > 0 && otpSent) {
+      const interval = setInterval(() => {
+        setSeconds(seconds - 1);
+      }, 1000);
+
+      return () => clearInterval(interval);
+    }
+
+    if (seconds <= 0) {
+      setOtpSent(false)
+    }
+  }, [seconds, otpSent]);
+
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues: initialValues,
       validationSchema: signupValidation,
 
-      onSubmit: () => {
-        console.log(values);
+      onSubmit: async () => {
+        try {
+          const { data } = await dbObject.post('/auth/forget', {
+            new_password: values.password,
+            number: values.number,
+            otp: values.otp,
+          })
+          if (!data.error) {
+            values.number = ''
+            values.otp = ''
+            values.password = ''
+            setOtpSent(false)
+            toast.success(data.message, toastOptions)
+
+            setTimeout(() => {
+              navigate('/login')
+            }, 1000)
+          } else {
+            toast.error(data.message, toastOptions)
+          }
+
+        } catch (error) {
+          console.log(error)
+        }
       },
     });
+
+
+  const sendOtp = async () => {
+    if (!values.number) {
+      return toast.error('Number is required', toastOptions)
+    }
+
+    if (seconds === 0) {
+      try {
+        const { data } = await dbObject.post('/auth/sendotp', { number: values.number })
+        toast.success('OTP sent to ' + values.number, toastOptions)
+        setSeconds(60)
+        setOtpSent(true)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
+
+
   return (
     <div className="auth-container">
+      <Toaster />
       <h2>
         Forgot <span style={{ color: '#67efaf' }}>Password</span>{' '}
       </h2>
@@ -88,8 +150,16 @@ const ForgotPass = () => {
         </div>
 
         <div style={{ marginBottom: '1.5rem' }}>
-          <label htmlFor="verification">Verification Code</label>
+
+          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <label htmlFor="verification">Verification Code</label>
+            {
+              otpSent && seconds > 0 ? <div >Resend otp in <span>{seconds}</span> s</div> : null
+            }
+
+          </div>
           <div className="verification-input">
+
             <input
               name="otp"
               type="number"
@@ -98,7 +168,7 @@ const ForgotPass = () => {
               onBlur={handleBlur}
               placeholder="Enter code here"
             />
-            <button type="button">OTP</button>
+            <button disabled={otpSent} onClick={sendOtp} type="button">OTP</button>
           </div>
 
           {errors.otp && touched.otp ? (

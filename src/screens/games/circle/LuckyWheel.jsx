@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 // import SpinWheel from '../components/SpinWheel'
 import './LuckyWheel.css';
 import { Cow, ElephantIcon, Wheel, roulette, tiger } from '../../../assets';
-import GameDetails from '../../../components/gameDetails/GameDetails';
-import WheelComponent from '../../../components/WheelComponent';
 import { database } from '../../../firebase.config';
 import { onValue, ref } from 'firebase/database';
 import { dbObject } from '../../../helper/constant';

@@ -1,19 +1,19 @@
 import React from 'react';
 import { ToastContainer } from 'react-toastify';
 
-const Toaster = ({position}) => {
+const Toaster = ({ position }) => {
   return (
     <ToastContainer
-    position={ position}
-    autoClose={1000}
-    hideProgressBar
-    newestOnTop={false}
-    closeOnClick
-    rtl={false}
-    pauseOnFocusLoss
-    draggable
-    pauseOnHover
-    theme="colored"    
+      position={position}
+      autoClose={1000}
+      hideProgressBar
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss={false}
+      draggable
+      pauseOnHover
+      theme="colored"
     />
   );
 };

@@ -140,6 +140,10 @@ const Minesweeper = () => {
     return b;
   };
 
+  const closeCard = () => {
+    setStartCart(false)
+  };
+
   return (
     <div
       className="container"
@@ -154,6 +158,7 @@ const Minesweeper = () => {
       <Toaster position={"top-left"} />
       {startCart && (
         <div className="start-container">
+          <div onClick={closeCard} className='card-out-side'></div>
           <div className="start-box">
             <h2 className="game-name">{name}</h2>
             <p>Points</p>
