@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import BottomNav from '../../components/bottomNav/BottomNav';
 import './invite.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { dbObject } from '../../helper/constant';
 import {
   agentPlanEnter,
@@ -14,7 +14,12 @@ import { AuthContext } from '../../context/AuthContext';
 
 const Invite = () => {
   const navigate = useNavigate();
-  const { commissionHistory } = useContext(AuthContext);
+  // const { commissionHistory } = useContext(AuthContext);
+  const location = useLocation()
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+
 
   // const [commissionWalletBalance, setCommissionWalletBalance] = useState('0.0');
   // const [totalReferralCount, setTotalReferralCount] = useState('0');

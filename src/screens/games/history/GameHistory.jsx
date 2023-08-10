@@ -31,7 +31,7 @@ const GameHistory = () => {
 
   return (
     <div className="container">
-      <div className="gameHistory-container">
+      <div className="gameHistory-container" style={{marginBottom: '-65px'}}>
         <h2>Game History</h2>
 
         <div className="gameHistory-content">

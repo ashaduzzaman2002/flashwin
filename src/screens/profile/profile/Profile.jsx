@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import BottomNav from '../../../components/bottomNav/BottomNav';
 import { Bot, avatar } from '../../../assets';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Profile.css';
 import ConfirmModal from '../../../components/modal/ConfirmModal';
 import { AuthContext } from '../../../context/AuthContext';
@@ -36,6 +36,12 @@ const Profile = () => {
       console.log(error);
     }
   };
+
+  const location = useLocation()
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+
   return (
     <>
       {showModal && (

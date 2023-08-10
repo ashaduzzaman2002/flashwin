@@ -23,7 +23,7 @@ const RecentTransaction = () => {
 
   return (
     <div className="container">
-      <div className="transaction-history-container">
+      <div className="transaction-history-container" style={{marginBottom: '-65px'}}>
         <h2>Recharge History</h2>
 
         <div className="transaction-history-card-group">

@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import './Recharge.css';
 import BottomNav from '../../components/bottomNav/BottomNav';
 import HeaderSecondar from '../../components/HeaderSecondar';
 import { useState } from 'react';
 import { dbObject } from '../../helper/constant';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Header from '../../components/Header';
 import { AuthContext } from '../../context/AuthContext';
 
@@ -14,6 +14,12 @@ const Recharge = () => {
   const [amount, setAmount] = useState();
 
   const { walletBalance } = useContext(AuthContext);
+
+  const location = useLocation()
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+
 
   const rechargeRequest = async () => {
     try {
