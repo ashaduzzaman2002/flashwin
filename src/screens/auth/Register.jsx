@@ -7,6 +7,7 @@ import { useFormik } from 'formik';
 import { signupValidation } from '../../validation';
 import { AuthContext } from '../../context/AuthContext';
 import Toaster, { toastOptions } from '../../components/Toster/Toaster';
+import {Toast} from '../../helper'
 
 const initialValues = {
   number: '',
@@ -36,13 +37,15 @@ const Register = () => {
         try {
           const { data } = await axios.post(`${baseURL}/auth/register`, values);
           if (!data?.error) {
-            toast.success('Logged In Successfully!', toastOptions);
+            // toast.success('Sign In Successfully!', toastOptions);
+            Toast('Sign In Successfully!', toastOptions)
 
             setTimeout(() => {
               navigate('/login')
             }, 1000)
           } else {
-            toast.error(data.message, toastOptions);
+            // toast.error(data.message, toastOptions);
+            Toast(data.message, '')
           }
         } catch (error) {
           console.log(error);
@@ -67,14 +70,16 @@ const Register = () => {
 
   const sendOtp = async () => {
     if (!values.number) {
-      return toast.error('Number is required', toastOptions)
+      // return toast.error('Number is required', toastOptions)
+      return Toast('Number is required', '')
     }
 
     try {
       console.log(values.number)
       const { data } = await dbObject.post('/auth/sendotp', { number: values.number })
       console.log(data)
-      toast.success('OTP sent to ' + values.number, toastOptions)
+      // toast.success('OTP sent to ' + values.number, toastOptions)
+      Toast('OTP sent to ', values.number)
       setSeconds(60)
       setOtpSent(true)
     } catch (error) {

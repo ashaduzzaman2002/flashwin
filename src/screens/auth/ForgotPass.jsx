@@ -6,6 +6,7 @@ import { AuthContext } from '../../context/AuthContext';
 import Toaster, { toastOptions } from '../../components/Toster/Toaster';
 import { toast } from 'react-toastify';
 import { dbObject } from '../../helper/constant';
+import {Toast} from '../../helper'
 
 const initialValues = {
   number: '',
@@ -56,13 +57,15 @@ const ForgotPass = () => {
             values.otp = ''
             values.password = ''
             setOtpSent(false)
-            toast.success(data.message, toastOptions)
+            // toast.success(data.message, toastOptions)
+            Toast(data.message, '')
 
             setTimeout(() => {
               navigate('/login')
             }, 1000)
           } else {
-            toast.error(data.message, toastOptions)
+            // toast.error(data.message, toastOptions)
+            Toast(data.message, '')
           }
 
         } catch (error) {
@@ -74,7 +77,8 @@ const ForgotPass = () => {
 
   const sendOtp = async () => {
     if (!values.number) {
-      return toast.error('Number is required', toastOptions)
+      // return toast.error('Number is required', toastOptions)
+      return Toast('Number is required', '')
     }
 
     if (seconds === 0) {

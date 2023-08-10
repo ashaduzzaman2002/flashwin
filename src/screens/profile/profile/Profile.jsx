@@ -7,6 +7,7 @@ import ConfirmModal from '../../../components/modal/ConfirmModal';
 import { AuthContext } from '../../../context/AuthContext';
 import { dbObject } from '../../../helper/constant';
 import { ToastContainer, toast } from 'react-toastify';
+import { Toast } from '../../../helper';
 
 const Profile = () => {
   const [showModal, setShowModal] = useState(false);
@@ -15,18 +16,10 @@ const Profile = () => {
 
   const logout = async () => {
     try {
-      const { data } = await dbObject.post('auth/logout');
+      await dbObject.post('auth/logout');
 
-      toast.success('Logged Out!', {
-        position: 'top-center',
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'colored',
-      });
+
+      Toast('Logged Out!', '')
 
       setTimeout(() => {
         navigate('/login');
@@ -59,7 +52,7 @@ const Profile = () => {
         <div className="App">
           <div className="app__responsive">
             <div>
-            {/* Top Navbar */}
+              {/* Top Navbar */}
               <div className="app__top__nav">
                 <div className="top__nav__cols">
                   <div className="top__nav__back__btn" onClick={() => navigate('/')}>
@@ -84,7 +77,7 @@ const Profile = () => {
                 <div className="top__nav__cols"></div>
               </div>
 
-            {/* User details */}
+              {/* User details */}
               <div className="user__details__section">
                 <div className="user__pic">
                   <img
@@ -142,7 +135,7 @@ const Profile = () => {
                 </div>
 
                 {/* Recent Transaction */}
-                <div className="profile__records__section__col" style={{marginTop: 20}} onClick={() => navigate('/recent-transaction')}>
+                <div className="profile__records__section__col" style={{ marginTop: 20 }} onClick={() => navigate('/recent-transaction')}>
                   <div className="profile__records__section__col__left">
                     <div className="profile__record__section__col__icon">
                       <svg
@@ -185,13 +178,13 @@ const Profile = () => {
                       <path d="M294.1 256L167 129c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.3 34 0L345 239c9.1 9.1 9.3 23.7.7 33.1L201.1 417c-4.7 4.7-10.9 7-17 7s-12.3-2.3-17-7c-9.4-9.4-9.4-24.6 0-33.9l127-127.1z"></path>
                     </svg>
                   </div>
-                 
+
                 </div>
               </div>
 
 
               <div className="profile__records__section">
-               {/* Follow us */}
+                {/* Follow us */}
                 <div className="profile__records__section__col" onClick={() => navigate('/follow-us')}>
                   <div className="profile__records__section__col__left">
                     <div className="profile__record__section__col__icon">
@@ -272,44 +265,10 @@ const Profile = () => {
             </div>
           </div>
         </div>
-        <ToastContainer
-          position="top-center"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="colored"
-        />
       </div>
     </>
   );
 };
 
-const UserDetailsItem = ({ title, desc, icon, navigateUrl }) => {
-  const navigate = useNavigate();
-  return (
-    <div onClick={() => navigate(navigateUrl)} className="user-details-item">
-      <div style={{ display: 'flex', alignItems: 'center', gap: '1.4rem' }}>
-        <div className="icon">
-          <i className={icon}></i>
-        </div>
-
-        <div>
-          <h2>{title}</h2>
-          <p>{desc}</p>
-        </div>
-      </div>
-
-      <i
-        style={{ cursor: 'pointer' }}
-        className="fa-solid fa-chevron-right"
-      ></i>
-    </div>
-  );
-};
 
 export default Profile;

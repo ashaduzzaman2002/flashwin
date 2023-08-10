@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import Toaster from "../../../components/Toster/Toaster";
 import { bomb, mining, moneyBag } from "../../../assets";
 import Lottie from "lottie-react";
+import {Toast} from '../../../helper'
 
 const Minesweeper = () => {
   const [ratio, setRatio] = useState("2x2");
@@ -27,9 +28,10 @@ const Minesweeper = () => {
   const game = "minesweeper";
   const name = "Minesweeper";
   const [activeBtn2, setActiveBtn2] = useState("OtherPlayers");
-  const [toastMsg, setToastMsg] = useState(null);
 
   const { walletBalance } = useContext(AuthContext);
+
+
 
   const handleStart = () => {
     setStartCart(true);
@@ -48,7 +50,8 @@ const Minesweeper = () => {
     if (!response.data.error) {
       setIsPlayingMinesweeper(true);
       setGameId(response.data.id);
-      toast.success(response?.data?.message);
+      // toast.success(response?.data?.message);
+      Toast(response?.data?.message, '')
     } else if (
       response.data.error &&
       response.data.message === "Game is already running"
@@ -60,7 +63,8 @@ const Minesweeper = () => {
       setCellsMined(removeLastComma(response.data.data?.tapped_cells));
       setRewardAmount(response.data.data?.total_transaction);
       setBonusAmount(response.data.data?.total_transaction);
-      toast.warning("Game is already running");
+      // toast.warning("Game is already running");
+      Toast("Game is already running", '')
     } else {
       setIsPlayingMinesweeper(false);
       setGameId("");
@@ -85,14 +89,13 @@ const Minesweeper = () => {
         setRewardAmount(0.0);
         setBonusAmount(0.0);
         setSelectedAmount(20);
-        toast.success(
-          data?.message + " Wallet balance " + data.total_transaction
-        );
+        Toast(data?.message + " Wallet balance " + data.total_transaction, '')
       } else {
         toast.success(data?.message);
       }
     } else {
       toast.success("Please mine atleast one cell");
+      Toast("Please mine atleast one cell", '')
     }
   };
 
@@ -108,20 +111,18 @@ const Minesweeper = () => {
 
       const { data } = await dbObject.post("/mine/bonus", body);
       if (!data.error) {
-        // toast.success('You won ' + data.bonus + ' bonus');
-        setToastMsg("You won " + data.bonus + " bonus");
+        Toast("You won " + data.bonus + " bonus")
 
         setCellsMined((prev) => [...prev, cell]);
         setBonusAmount(data.bonus);
         setRewardAmount(data.total_transaction);
 
-        setTimeout(() => {
-          setToastMsg(null);
-        }, 2000);
+
       }
       setMiningAnimation(null);
     } else {
-      toast.warning("Already mined");
+      // toast.warning("Already mined");
+      Toast("Already mined", '')
       setMiningAnimation(null);
     }
     if (
@@ -169,11 +170,10 @@ const Minesweeper = () => {
       className="container"
       style={{
         width: "100%",
-        // minHeight: "100vh",
+        minHeight: "100vh",
         background: "linear-gradient(180deg, #424242, #071724)",
       }}
     >
-      {toastMsg ? <div className="toast-custom">{toastMsg}</div> : null}
 
       <Toaster position={"top-left"} />
       {startCart && (
@@ -273,7 +273,7 @@ const Minesweeper = () => {
         </div>
       )}
 
-      <div className="minesweeper-container" style={{marginBottom: '-65px'}}>
+      <div className="minesweeper-container" style={{ marginBottom: '-65px' }}>
         <h2>Minesweeper</h2>
 
         <div className="minesweeper-ratio">
@@ -401,60 +401,60 @@ const Minesweeper = () => {
               minesweeperHistory.map((item, i) => (
                 <div className="mine-myorder" key={i}>
                   <div className="game-type">
-                      {item?.game_mode === '2*2' ? (
-                        <div
-                          className={`minesweeper-game-2x2`}
-                          style={{ marginBottom: 0 }}
-                        >
-                          <div>
-                            {item?.bomb_cell === '1' && (
-                              <img style={{ width: '80%' }} src={bomb} alt="" />
-                            )}
-                          </div>
-                          <div>
-                            {item?.bomb_cell === '2' && (
-                              <img style={{ width: '80%' }} src={bomb} alt="" />
-                            )}
-                          </div>
-                          <div>
-                            {item?.bomb_cell === '3' && (
-                              <img style={{ width: '80%' }} src={bomb} alt="" />
-                            )}
-                          </div>
-                          <div>
-                            {item?.bomb_cell === '4' && (
-                              <img style={{ width: '80%' }} src={bomb} alt="" />
-                            )}
-                          </div>
+                    {item?.game_mode === '2*2' ? (
+                      <div
+                        className={`minesweeper-game-2x2`}
+                        style={{ marginBottom: 0 }}
+                      >
+                        <div>
+                          {item?.bomb_cell === '1' && (
+                            <img style={{ width: '80%' }} src={bomb} alt="" />
+                          )}
                         </div>
-                      ) : (
-                        <div
-                          className={`minesweeper-game-4x4`}
-                          style={{ marginBottom: 0 }}
-                        >
-                          <div>
-                            {item?.bomb_cell === '1' && (
-                              <img style={{ width: '80%' }} src={bomb} alt="" />
-                            )}
-                          </div>
-                          <div>
-                            {item?.bomb_cell === '2' && (
-                              <img style={{ width: '80%' }} src={bomb} alt="" />
-                            )}
-                          </div>
-                          <div>
-                            {item?.bomb_cell === '3' && (
-                              <img style={{ width: '80%' }} src={bomb} alt="" />
-                            )}
-                          </div>
-                          <div>
-                            {item?.bomb_cell === '4' && (
-                              <img style={{ width: '80%' }} src={bomb} alt="" />
-                            )}
-                          </div>
+                        <div>
+                          {item?.bomb_cell === '2' && (
+                            <img style={{ width: '80%' }} src={bomb} alt="" />
+                          )}
                         </div>
-                      )}
-                    </div>
+                        <div>
+                          {item?.bomb_cell === '3' && (
+                            <img style={{ width: '80%' }} src={bomb} alt="" />
+                          )}
+                        </div>
+                        <div>
+                          {item?.bomb_cell === '4' && (
+                            <img style={{ width: '80%' }} src={bomb} alt="" />
+                          )}
+                        </div>
+                      </div>
+                    ) : (
+                      <div
+                        className={`minesweeper-game-4x4`}
+                        style={{ marginBottom: 0 }}
+                      >
+                        <div>
+                          {item?.bomb_cell === '1' && (
+                            <img style={{ width: '80%' }} src={bomb} alt="" />
+                          )}
+                        </div>
+                        <div>
+                          {item?.bomb_cell === '2' && (
+                            <img style={{ width: '80%' }} src={bomb} alt="" />
+                          )}
+                        </div>
+                        <div>
+                          {item?.bomb_cell === '3' && (
+                            <img style={{ width: '80%' }} src={bomb} alt="" />
+                          )}
+                        </div>
+                        <div>
+                          {item?.bomb_cell === '4' && (
+                            <img style={{ width: '80%' }} src={bomb} alt="" />
+                          )}
+                        </div>
+                      </div>
+                    )}
+                  </div>
 
                   <div style={{ marginLeft: "1rem" }}>
                     <div style={{ margin: 0 }} className="myorder-text">

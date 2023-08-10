@@ -34,6 +34,8 @@ const GameHistory = () => {
     window.scrollTo(0, 0);
   }, [location]);
 
+ 
+
   return (
     <div className="container">
       <div className="gameHistory-container" style={{ marginBottom: '-65px' }}>

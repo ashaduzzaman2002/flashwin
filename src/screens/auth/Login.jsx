@@ -9,6 +9,7 @@ import { dbObject } from '../../helper/constant';
 import { AuthContext } from '../../context/AuthContext';
 import Loading from '../../components/loading/Loading';
 import Toaster, { toastOptions } from '../../components/Toster/Toaster';
+import {Toast} from '../../helper'
 
 const initialValues = {
   number: '',
@@ -42,7 +43,8 @@ const Login = () => {
           const { data } = await dbObject.post('/auth/login', values);
           console.log(data)
           if (!data?.error) {
-            toast.success('Logged In Successfully!', toastOptions);
+            // toast.success('Logged In Successfully!', toastOptions);
+            Toast('Logged In Successfully!', '')
 
             setTimeout(() => {
               navigate('/');
@@ -50,7 +52,8 @@ const Login = () => {
               setIsLogin(true)
             }, 1000);
           } else {
-            toast.error(data.message, toastOptions);
+            // toast.error(data.message, toastOptions);
+            Toast(data.message, '')
           }
         } catch (error) {
           console.log(error);
