@@ -231,6 +231,8 @@ function App() {
           }
         />
 
+        {/*  */}
+
         <Route path="/login" element={<Login />} />
         <Route path="/forgot-password" element={<ForgotPass />} />
         <Route path="/register" element={<Register />} />
