@@ -143,24 +143,24 @@ const GameHistory = () => {
                       <div style={{ margin: 0 }} className="myorder-text">
                         <div>
                           <p>Points</p>
-                          <p>₹ {item.game_amount}</p>
+                          <p>₹{item.actual_amount}</p>
                         </div>
 
                         <div>
                           <p>Pass</p>
-                          <p>{item.bomb_cell}</p>
+                          <p>{item.number_of_taps}</p>
                         </div>
 
                         <div>
                           <p>Bonous</p>
-                          <p style={{ color: '#7eb298' }}>+₹20.50</p>
+                          <p style={{ color: '#7eb298' }}>+₹{item.total_transaction}</p>
                         </div>
                       </div>
 
                       <p
                         style={{ marginTop: 8, fontSize: 15, color: '#e5eae7' }}
                       >
-                        Delivery: ₹19.00 Fees: ₹1.00
+                        Delivery: ₹{item.game_amount} Fees: ₹1.00
                       </p>
                       <p
                         style={{ marginTop: 8, fontSize: 15, color: '#e5eae7' }}
