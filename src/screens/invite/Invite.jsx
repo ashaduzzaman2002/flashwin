@@ -149,7 +149,7 @@ const Invite = () => {
                 </div>
               </div>
             </div>
-            <div className="invitePageBreaker"></div>
+        
             <div className="invitePageIncomeDetails">
               <div className="invitePageIncomeDetailsTop">
                 <div className="invitePageIncomeDetailsTopLeft">
@@ -178,15 +178,6 @@ const Invite = () => {
                     </div>
                   </div>
                   <div className="invitePageIncomeAmount">+₹1</div>
-                </div>
-
-                <div
-                  className="commission-container"
-                  style={{ marginBottom: '9rem' }}
-                >
-                  {commissionHistory?.map((item) => (
-                    <CommissionCard key={item.id} data={item} />
-                  ))}
                 </div>
               </div>
             </div>
