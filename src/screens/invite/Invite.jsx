@@ -155,7 +155,7 @@ const Invite = () => {
                 <div className="invitePageIncomeDetailsTopLeft">
                   Income Detail's
                 </div>
-                <div className="invitePageIncomeDetailsTopRight">More &gt;</div>
+                <div className="invitePageIncomeDetailsTopRight" onClick={() => navigate('/commission-history')}>More &gt;</div>
               </div>
               <div className="invitePageIncomeDetailsBottom">
                 <div className="invitePageIncomeBox">
