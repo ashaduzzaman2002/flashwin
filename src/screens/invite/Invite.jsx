@@ -5,12 +5,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import { dbObject } from '../../helper/constant';
 import {
   agentPlanEnter,
-  diamond,
   myLink,
-  privilege,
   privilege1,
   ranking,
-  treasure,
 } from '../../assets';
 import CommissionCard from '../../components/commission/CommissionCard';
 import { AuthContext } from '../../context/AuthContext';
@@ -19,17 +16,17 @@ const Invite = () => {
   const navigate = useNavigate();
   const { commissionHistory } = useContext(AuthContext);
 
-  const [commissionWalletBalance, setCommissionWalletBalance] = useState('0.0');
-  const [totalReferralCount, setTotalReferralCount] = useState('0');
-  const [totalReferralEarning, setTotalReferralEarning] = useState('0');
-  const [todayReferralCount, setTodayReferralCount] = useState('0');
-  const [todayReferralEarning, setTodayReferralEarning] = useState('0');
+  // const [commissionWalletBalance, setCommissionWalletBalance] = useState('0.0');
+  // const [totalReferralCount, setTotalReferralCount] = useState('0');
+  // const [totalReferralEarning, setTotalReferralEarning] = useState('0');
+  // const [todayReferralCount, setTodayReferralCount] = useState('0');
+  // const [todayReferralEarning, setTodayReferralEarning] = useState('0');
 
   const fetchCommissionWallet = async () => {
     try {
       const { data } = await dbObject.get('/commision/wallet');
       if (!data.error) {
-        setCommissionWalletBalance(data.data[0].balance);
+        // setCommissionWalletBalance(data.data[0].balance);
       } else {
         console.log('Issue from Server Side');
       }
@@ -42,10 +39,10 @@ const Invite = () => {
     try {
       const { data } = await dbObject.get('/wallet/refer_history');
       if (!data.error) {
-        setTotalReferralCount(data.data.total_refer);
-        setTotalReferralEarning(data.data.total_earning);
-        setTodayReferralCount(data.today.total);
-        setTodayReferralEarning(data.today.amount);
+        // setTotalReferralCount(data.data.total_refer);
+        // setTotalReferralEarning(data.data.total_earning);
+        // setTodayReferralCount(data.today.total);
+        // setTodayReferralEarning(data.today.amount);
       } else {
         console.log('Issue from Server Side');
       }
@@ -65,7 +62,7 @@ const Invite = () => {
 
       <div className="App">
         <div className="app__responsive">
-          <div style={{ minHeight: '100vh' }}>
+          <div>
             <div
               className="invite__page__nav"
               style={{ color: 'rgb(255, 255, 255)', fontWeight: '500' }}
