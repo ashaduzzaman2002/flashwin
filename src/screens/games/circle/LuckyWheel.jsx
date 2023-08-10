@@ -9,6 +9,7 @@ import Start from '../../../components/start/Start';
 import Toaster, { toastOptions } from '../../../components/Toster/Toaster';
 import { toast } from 'react-toastify';
 import Result from '../../../components/result/Result';
+import { useLocation } from 'react-router-dom';
 
 const LuckyWheel = () => {
   const [activeNumbers, setActiveNumbers] = useState('1-10');
@@ -172,6 +173,11 @@ const LuckyWheel = () => {
   useEffect(() => {
     gameHistory();
   }, []);
+
+  const location = useLocation()
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
 
   return (
     <div

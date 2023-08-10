@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import './GameHistory.css';
 import { bomb, emptyBox } from '../../../assets';
 import { dbObject } from '../../../helper/constant';
+import { useLocation } from 'react-router-dom';
 
 const GameHistory = () => {
   const [activeBtn, setActiveBtn] = useState('minesweeper');
-  const [minesweeper, setMinesweeper] = useState(true);
   const [circle, setCircle] = useState(false);
   const [fastParity, setFastParity] = useState(true);
   const [fullParity, setFullParity] = useState(true);
@@ -29,9 +29,14 @@ const GameHistory = () => {
     getMinesweeperHistory();
   }, []);
 
+  const location = useLocation()
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+
   return (
     <div className="container">
-      <div className="gameHistory-container" style={{marginBottom: '-65px'}}>
+      <div className="gameHistory-container" style={{ marginBottom: '-65px' }}>
         <h2>Game History</h2>
 
         <div className="gameHistory-content">
@@ -40,9 +45,8 @@ const GameHistory = () => {
               onClick={() => {
                 setActiveBtn('minesweeper');
               }}
-              className={`${
-                activeBtn === 'minesweeper' ? 'gameHistory-activeBtn' : ''
-              }`}
+              className={`${activeBtn === 'minesweeper' ? 'gameHistory-activeBtn' : ''
+                }`}
             >
               Minesweeper
             </button>
@@ -50,9 +54,8 @@ const GameHistory = () => {
               onClick={() => {
                 setActiveBtn('circle');
               }}
-              className={`${
-                activeBtn === 'circle' ? 'gameHistory-activeBtn' : ''
-              }`}
+              className={`${activeBtn === 'circle' ? 'gameHistory-activeBtn' : ''
+                }`}
             >
               Circle
             </button>
@@ -60,9 +63,8 @@ const GameHistory = () => {
               onClick={() => {
                 setActiveBtn('fast-parity');
               }}
-              className={`${
-                activeBtn === 'fast-parity' ? 'gameHistory-activeBtn' : ''
-              }`}
+              className={`${activeBtn === 'fast-parity' ? 'gameHistory-activeBtn' : ''
+                }`}
             >
               Fast-Parity
             </button>
@@ -70,9 +72,8 @@ const GameHistory = () => {
               onClick={() => {
                 setActiveBtn('full-parity');
               }}
-              className={`${
-                activeBtn === 'full-parity' ? 'gameHistory-activeBtn' : ''
-              }`}
+              className={`${activeBtn === 'full-parity' ? 'gameHistory-activeBtn' : ''
+                }`}
             >
               Parity
             </button>
