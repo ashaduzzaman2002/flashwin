@@ -96,6 +96,10 @@ const Profile = () => {
                   <div className="user__details__section__right__col">Name: </div>
                 </div>
               </div>
+              <div style={{height: 20, backgroundColor: '#0a2134ad'}}>
+
+</div>
+              
 
               {/* Game history */}
               <div className="profile__records__section">
@@ -164,6 +168,7 @@ const Profile = () => {
                       Recent Transaction
                     </div>
                   </div>
+                  
 
                   <div className="profile__records__section__col__right">
                     <svg
@@ -180,6 +185,9 @@ const Profile = () => {
                   </div>
 
                 </div>
+              </div>
+
+              <div style={{height: 20, backgroundColor: '#0a2134ad', marginTop: '20px'}}>
               </div>
 
 
