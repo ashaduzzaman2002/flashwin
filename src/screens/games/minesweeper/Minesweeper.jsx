@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import Toaster from "../../../components/Toster/Toaster";
 import { bomb, mining, moneyBag } from "../../../assets";
 import Lottie from "lottie-react";
-import {Toast} from '../../../helper'
+import { Toast } from '../../../helper'
 
 const Minesweeper = () => {
   const [ratio, setRatio] = useState("2x2");
@@ -398,91 +398,106 @@ const Minesweeper = () => {
         ) : (
           <div>
             {
-              minesweeperHistory.map((item, i) => (
-                <div className="mine-myorder" key={i}>
-                  <div className="game-type">
-                    {item?.game_mode === '2*2' ? (
-                      <div
-                        className={`minesweeper-game-2x2`}
-                        style={{ marginBottom: 0 }}
-                      >
-                        <div>
-                          {item?.bomb_cell === '1' && (
-                            <img style={{ width: '80%' }} src={bomb} alt="" />
-                          )}
-                        </div>
-                        <div>
-                          {item?.bomb_cell === '2' && (
-                            <img style={{ width: '80%' }} src={bomb} alt="" />
-                          )}
-                        </div>
-                        <div>
-                          {item?.bomb_cell === '3' && (
-                            <img style={{ width: '80%' }} src={bomb} alt="" />
-                          )}
-                        </div>
-                        <div>
-                          {item?.bomb_cell === '4' && (
-                            <img style={{ width: '80%' }} src={bomb} alt="" />
-                          )}
-                        </div>
-                      </div>
-                    ) : (
-                      <div
-                        className={`minesweeper-game-4x4`}
-                        style={{ marginBottom: 0 }}
-                      >
-                        <div>
-                          {item?.bomb_cell === '1' && (
-                            <img style={{ width: '80%' }} src={bomb} alt="" />
-                          )}
-                        </div>
-                        <div>
-                          {item?.bomb_cell === '2' && (
-                            <img style={{ width: '80%' }} src={bomb} alt="" />
-                          )}
-                        </div>
-                        <div>
-                          {item?.bomb_cell === '3' && (
-                            <img style={{ width: '80%' }} src={bomb} alt="" />
-                          )}
-                        </div>
-                        <div>
-                          {item?.bomb_cell === '4' && (
-                            <img style={{ width: '80%' }} src={bomb} alt="" />
-                          )}
-                        </div>
-                      </div>
-                    )}
-                  </div>
+              minesweeperHistory.map((item, i) => {
+                var inputDate = new Date(item.date);
+                var outputFormat = new Intl.DateTimeFormat('en-US', {
+                  year: 'numeric',
+                  month: '2-digit',
+                  day: '2-digit',
+                  hour: '2-digit',
+                  minute: '2-digit'
+                });
+                var formattedOutput = outputFormat.format(inputDate);
 
-                  <div style={{ marginLeft: "1rem" }}>
-                    <div style={{ margin: 0 }} className="myorder-text">
-                      <div>
-                        <p>Points</p>
-                        <p>₹{item.actual_amount}</p>
-                      </div>
-
-                      <div>
-                        <p>Pass</p>
-                        <p>{item.number_of_taps}</p>
-                      </div>
-
-                      <div>
-                        <p>Bonous</p>
-                        <p style={{ color: "#7eb298" }}>+₹{item.total_transaction}</p>
-                      </div>
+                return (
+                  <div className="mine-myorder" key={i}>
+                    <div className="game-type">
+                      {item?.game_mode === '2*2' ? (
+                        <div
+                          className={`minesweeper-game-2x2`}
+                          style={{ marginBottom: 0 }}
+                        >
+                          <div>
+                            {item?.bomb_cell === '1' && (
+                              <img style={{ width: '80%' }} src={bomb} alt="" />
+                            )}
+                          </div>
+                          <div>
+                            {item?.bomb_cell === '2' && (
+                              <img style={{ width: '80%' }} src={bomb} alt="" />
+                            )}
+                          </div>
+                          <div>
+                            {item?.bomb_cell === '3' && (
+                              <img style={{ width: '80%' }} src={bomb} alt="" />
+                            )}
+                          </div>
+                          <div>
+                            {item?.bomb_cell === '4' && (
+                              <img style={{ width: '80%' }} src={bomb} alt="" />
+                            )}
+                          </div>
+                        </div>
+                      ) : (
+                        <div
+                          className={`minesweeper-game-4x4`}
+                          style={{ marginBottom: 0 }}
+                        >
+                          <div>
+                            {item?.bomb_cell === '1' && (
+                              <img style={{ width: '80%' }} src={bomb} alt="" />
+                            )}
+                          </div>
+                          <div>
+                            {item?.bomb_cell === '2' && (
+                              <img style={{ width: '80%' }} src={bomb} alt="" />
+                            )}
+                          </div>
+                          <div>
+                            {item?.bomb_cell === '3' && (
+                              <img style={{ width: '80%' }} src={bomb} alt="" />
+                            )}
+                          </div>
+                          <div>
+                            {item?.bomb_cell === '4' && (
+                              <img style={{ width: '80%' }} src={bomb} alt="" />
+                            )}
+                          </div>
+                        </div>
+                      )}
                     </div>
 
-                    <p style={{ marginTop: 8, fontSize: 15, color: "#e5eae7" }}>
-                      Delivery: ₹{item.game_amount} Fees: ₹1.00
-                    </p>
-                    <p style={{ marginTop: 8, fontSize: 15, color: "#e5eae7" }}>
-                      12/07/2023 12:32
-                    </p>
+                    <div style={{ marginLeft: "1rem" }}>
+                      <div style={{ margin: 0 }} className="myorder-text">
+                        <div>
+                          <p>Points</p>
+                          <p>₹{item.actual_amount}</p>
+                        </div>
+
+                        <div>
+                          <p>Pass</p>
+                          <p>{item.number_of_taps}</p>
+                        </div>
+
+                        <div>
+                          <p>Bonous</p>
+                          <p style={{ color: "#7eb298" }}>+₹{item.total_transaction}</p>
+                        </div>
+                      </div>
+
+                      <p style={{
+                        marginTop: 8, fontSize: 15, color: "#e5eae7", display: 'flex',
+                        justifyContent: 'space-between'
+                      }}>
+                        <span>Delivery: ₹{item.game_amount}</span> <span>Fees: ₹1.00</span>
+                      </p>
+                      <p style={{ marginTop: 8, fontSize: 15, color: "#e5eae7" }}>
+                        {formattedOutput}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              ))
+                )
+              })
             }
           </div>
         )}
