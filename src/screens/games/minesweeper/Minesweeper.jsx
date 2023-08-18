@@ -8,6 +8,7 @@ import Toaster from "../../../components/Toster/Toaster";
 import { bomb, mining, moneyBag } from "../../../assets";
 import Lottie from "lottie-react";
 import { Toast } from '../../../helper'
+import ResultPopup from '../../../components/result-popup/ResultPopup'
 
 const Minesweeper = () => {
   const [ratio, setRatio] = useState("2x2");
@@ -24,6 +25,8 @@ const Minesweeper = () => {
   const game = "minesweeper";
   const name = "Minesweeper";
   const [activeBtn2, setActiveBtn2] = useState("OtherPlayers");
+  const [showResult, setShowResult] = useState(false)
+  const [winAmount, setWinAmount] = useState()
 
   const { walletBalance } = useContext(AuthContext);
 
@@ -83,7 +86,14 @@ const Minesweeper = () => {
         setCellsMined([]);
         setBonusAmount(0.0);
         setSelectedAmount(20);
-        Toast(data?.message + " Wallet balance " + data.total_transaction, '')
+        // Toast(data?.message + " Wallet balance " + data.total_transaction, '')
+        setWinAmount(data.total_transaction)
+        setShowResult(true)
+
+        setTimeout(() => {
+          setWinAmount(null)
+          setShowResult(false)
+        }, 3000)
       } else {
         toast.success(data?.message);
       }
@@ -166,7 +176,9 @@ const Minesweeper = () => {
       }}
     >
 
-
+      {
+        showResult && (<ResultPopup winAmount={winAmount} setShowResult={setShowResult} />)
+      }
 
       <Toaster position={"top-left"} />
       {startCart && (
