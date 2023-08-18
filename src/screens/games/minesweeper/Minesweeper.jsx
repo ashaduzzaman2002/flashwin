@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Minesweeper.css";
 import { dbObject } from "../../../helper/constant";
-import GameDetails from "../../../components/gameDetails/GameDetails";
 import { AuthContext } from "../../../context/AuthContext";
 import { useContext } from "react";
 import { toast } from "react-toastify";
@@ -18,10 +17,7 @@ const Minesweeper = () => {
   const [selectedGridType, setSelectedGridType] = useState(2);
   const [selectedAmount, setSelectedAmount] = useState(20);
   const [gameId, setGameId] = useState("");
-  const [rewardAmount, setRewardAmount] = useState(0.0);
   const [bonusAmount, setBonusAmount] = useState(0.0);
-  const [randomUsers, setRandomUsers] = useState([]);
-  const [previousGameData, setPreviousGameData] = useState({});
   const [isPlayingMinesweeper, setIsPlayingMinesweeper] = useState(false);
   const [startCart, setStartCart] = useState(false);
   const [miningAnimation, setMiningAnimation] = useState(false);
@@ -56,12 +52,10 @@ const Minesweeper = () => {
       response.data.error &&
       response.data.message === "Game is already running"
     ) {
-      setPreviousGameData(response.data.data);
       setIsPlayingMinesweeper(true);
       setSelectedGridType(response?.data?.data?.game_mode === "2*2" ? 2 : 4);
       setGameId(response.data.data?.game_id);
       setCellsMined(removeLastComma(response.data.data?.tapped_cells));
-      setRewardAmount(response.data.data?.total_transaction);
       setBonusAmount(response.data.data?.total_transaction);
       // toast.warning("Game is already running");
       Toast("Game is already running", '')
@@ -83,10 +77,10 @@ const Minesweeper = () => {
   const stopAndClaimBonus = async () => {
     if (cellsMined?.length > 0) {
       const { data } = await dbObject.post("/mine/stop", { game_id: gameId });
+      console.log(data)
       if (!data.error) {
         setIsPlayingMinesweeper(false);
         setCellsMined([]);
-        setRewardAmount(0.0);
         setBonusAmount(0.0);
         setSelectedAmount(20);
         Toast(data?.message + " Wallet balance " + data.total_transaction, '')
@@ -115,9 +109,6 @@ const Minesweeper = () => {
 
         setCellsMined((prev) => [...prev, cell]);
         setBonusAmount(data.bonus);
-        setRewardAmount(data.total_transaction);
-
-
       }
       setMiningAnimation(null);
     } else {
@@ -126,8 +117,8 @@ const Minesweeper = () => {
       setMiningAnimation(null);
     }
     if (
-      (selectedGridType == 2 && cellsMined.length + 1 == 2 * 2) ||
-      (selectedGridType == 4 && cellsMined.length + 1 == 4 * 4)
+      (selectedGridType === 2 && cellsMined.length + 1 === 2 * 2) ||
+      (selectedGridType === 4 && cellsMined.length + 1 === 4 * 4)
     ) {
       stopAndClaimBonus();
     }
@@ -174,6 +165,8 @@ const Minesweeper = () => {
         background: "linear-gradient(180deg, #424242, #071724)",
       }}
     >
+
+
 
       <Toaster position={"top-left"} />
       {startCart && (

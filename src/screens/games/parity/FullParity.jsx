@@ -26,6 +26,7 @@ const FullParity = () => {
 
     try {
       const { data } = await dbObject.post('/parity/play', { ...value, color });
+      console.log(data)
     } catch (error) {
       console.log(error);
     }
