@@ -5,6 +5,10 @@ import '../../../components/parity/parity.css';
 import Start from '../../../components/start/Start';
 import { onValue, ref } from 'firebase/database';
 import { dbObject } from '../../../helper/constant';
+import { toast } from 'react-toastify';
+import Toaster from '../../../components/Toster/Toaster';
+import { Toast } from '../../../helper';
+// import GetMaskInput from "../../../helper/MaskInput";
 
 const FastParity = () => {
   const firstCardList = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -15,6 +19,10 @@ const FastParity = () => {
   const [startCart, setStartCart] = useState(false);
   const [color, setColor] = useState(null);
   const [number, setNumber] = useState(null);
+  const [gameid, setGameid] = useState(); //game id of the game
+  const [isFastParityPlaying, setIsFastParityPlaying] = useState(false);
+  const [isParticipenceAllowed, setIsParticipenceAllowed] = useState(true);
+  const [amountModal, setAmountModal] = useState(false);
 
   useEffect(() => {
     const fastParityRef = ref(database, 'fast_parity/timer');
@@ -41,16 +49,64 @@ const FastParity = () => {
     }
   };
 
+  const playGame = async (amount) => {
+    let body;
+    if (color) {
+      body = {
+        amount,
+        color,
+      };
+    }
+    if (number) {
+      body = {
+        amount,
+        number,
+      };
+    }
+    const {data} = await dbObject.post("/fastparity/play", body);
+    console.log(data)
+    if (!data.error) {
+      setIsFastParityPlaying(true);
+      setGameid(data.game_id);
+      setIsParticipenceAllowed(false);
+      setAmountModal(false);
+      insertGameData();
+
+
+
+      // // toast emitter
+      // toast.success(data.message, {
+      //   position: "top-center",
+      //   autoClose: 2000,
+      //   hideProgressBar: false,
+      //   closeOnClick: true,
+      //   pauseOnHover: true,
+      //   draggable: true,
+      //   progress: undefined,
+      //   theme: "colored",
+      // });
+      Toast(data.message, '')
+
+      setStartCart(false);
+    }
+  };
+
+  const insertGameData = async () => {
+    // const maskNumber = GetMaskInput(user.number);
+    // console.log(maskNumber);
+  };
+
   return (
     <>
       {startCart && (
         <Start
-          startGame={startGame}
+          startGame={playGame}
           name={`Fast Parity - ${color || number}`}
           setStartCart={setStartCart}
           color={color}
         />
       )}
+      <Toaster />
       <div
         style={{
           width: '100%',

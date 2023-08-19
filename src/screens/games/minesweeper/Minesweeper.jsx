@@ -61,7 +61,7 @@ const Minesweeper = () => {
       setCellsMined(removeLastComma(response.data.data?.tapped_cells));
       setBonusAmount(response.data.data?.total_transaction);
       // toast.warning("Game is already running");
-      Toast("Game is already running", '')
+      Toast("Game is already running", 30000)
     } else {
       setIsPlayingMinesweeper(false);
       setGameId("");
@@ -89,6 +89,7 @@ const Minesweeper = () => {
         // Toast(data?.message + " Wallet balance " + data.total_transaction, '')
         setWinAmount(data.total_transaction)
         setShowResult(true)
+        getMinesweeperHistory()
 
         setTimeout(() => {
           setWinAmount(null)
@@ -119,6 +120,7 @@ const Minesweeper = () => {
 
         setCellsMined((prev) => [...prev, cell]);
         setBonusAmount(data.bonus);
+        getMinesweeperHistory()
       }
       setMiningAnimation(null);
     } else {
@@ -151,11 +153,9 @@ const Minesweeper = () => {
   const getMinesweeperHistory = async () => {
     try {
       const { data } = await dbObject.get('/mine/history');
-      console.log(data)
 
       if (!data?.error) {
         setMinesweeperHistory(data?.data);
-        console.log(data.data);
       }
     } catch (error) {
       console.log(error);
@@ -164,7 +164,7 @@ const Minesweeper = () => {
 
   useEffect(() => {
     getMinesweeperHistory()
-  }, [cellsMined])
+  }, [])
 
   return (
     <div

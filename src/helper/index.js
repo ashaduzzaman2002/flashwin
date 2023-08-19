@@ -12,6 +12,6 @@ export function Toast(msg, duration) {
     m.style.opacity = "0";
     setTimeout(function () {
       document.body.removeChild(m);
-    }, d * 1000);
+    }, d * 3000);
   }, duration);
 }
