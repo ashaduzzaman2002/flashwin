@@ -27,6 +27,7 @@ const Minesweeper = () => {
   const [activeBtn2, setActiveBtn2] = useState("OtherPlayers");
   const [showResult, setShowResult] = useState(false)
   const [winAmount, setWinAmount] = useState()
+  const [result, setResult] = useState()
 
   const { walletBalance } = useContext(AuthContext);
 
@@ -87,14 +88,15 @@ const Minesweeper = () => {
         setBonusAmount(0.0);
         setSelectedAmount(20);
         // Toast(data?.message + " Wallet balance " + data.total_transaction, '')
-        setWinAmount(data.total_transaction)
+        // setWinAmount(data.total_transaction)
+        setResult(data)
         setShowResult(true)
         getMinesweeperHistory()
 
-        setTimeout(() => {
-          setWinAmount(null)
-          setShowResult(false)
-        }, 3000)
+        // setTimeout(() => {
+        //   setWinAmount(null)
+        //   setShowResult(false)
+        // }, 3000)
       } else {
         toast.success(data?.message);
       }
@@ -177,7 +179,7 @@ const Minesweeper = () => {
     >
 
       {
-        showResult && (<ResultPopup winAmount={winAmount} setShowResult={setShowResult} />)
+        showResult && (<ResultPopup result={result} ratio={ratio} winAmount={winAmount} setShowResult={setShowResult} />)
       }
 
       <Toaster position={"top-left"} />

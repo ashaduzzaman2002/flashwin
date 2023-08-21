@@ -1,7 +1,10 @@
 import React from "react";
 import "./result-popup.css";
+import { moneyBag } from "../../assets";
 
-const ResultPopup = ({setShowResult, winAmount}) => {
+const ResultPopup = ({ setShowResult, winAmount, ratio, result }) => {
+  const ratio2x2 = [1, 2, 3, 4];
+  const ratio4x4 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
   return (
     <div className="result-popup">
       <div className="result-popup-close"></div>
@@ -14,12 +17,48 @@ const ResultPopup = ({setShowResult, winAmount}) => {
             <h2>Win</h2>
           </div>
 
-
           <div className="result-popup-text">
-            
-            <p style={{textAlign: 'center', fontSize: '2rem', color: 'green'}}>You own {winAmount}</p>
+            <p
+              style={{ textAlign: "center", fontSize: "2rem", color: "green" }}
+            >
+              +₹{result.total_transaction}
+            </p>
 
-            <button onClick={() => setShowResult(false)} className="w-100 mt-4 btn" style={{padding: '0.8rem'}}>CLOSE</button>
+            <div>
+              {ratio === "2x2" ? (
+                <div className="mineswiper-result-box">
+                  {ratio2x2.map((item, i) => (
+                    <div key={i}>
+                      {item.bomb === i + 1 ? (
+                        <img width={"90%"} src={moneyBag} alt="money" />
+                      ) : (
+                        ""
+                      )}
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="mineswiper-result-box-4x4">
+                  {ratio4x4.map((item, i) => (
+                    <div key={i}>
+                      {item.bomb === i + 1 ? (
+                        <img width={"90%"} src={moneyBag} alt="money" />
+                      ) : (
+                        ""
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <button
+              onClick={() => setShowResult(false)}
+              className="w-100 mt-4 btn"
+              style={{ padding: "0.8rem" }}
+            >
+              CLOSE
+            </button>
           </div>
         </div>
       </div>

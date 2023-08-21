@@ -3,6 +3,7 @@ import Start from '../../../components/start/Start';
 import { dbObject } from '../../../helper/constant';
 import GameDetails from '../../../components/gameDetails/GameDetails';
 import './FullParity.css';
+import { Toast } from '../../../helper';
 
 const FullParity = () => {
   const [startCart, setStartCart] = useState(false);
@@ -32,6 +33,48 @@ const FullParity = () => {
     }
   };
 
+  const playGame = async (amount) => {
+    let body;
+    if (color) {
+      body = {
+        amount,
+        color,
+      };
+    }
+    if (number) {
+      body = {
+        amount,
+        number,
+      };
+    }
+    const { data } = await dbObject.post("/fastparity/play", body);
+    console.log(data);
+    if (!data.error) {
+      // setIsFastParityPlaying(true);
+      // setGameid(data.game_id);
+      // setIsParticipenceAllowed(false);
+      // setAmountModal(false);
+      // insertGameData();
+      Toast(data.message, "");
+
+      setStartCart(false);
+    }
+  };
+
+  const getHistory = async () => {
+    try {
+      const { data } = await dbObject("/fastparity/history");
+      console.log(data);
+
+      if (!data.error) {
+        setResultHistory(data.result);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+
   useEffect(() => {
     timerStart();
   }, []);
@@ -40,7 +83,7 @@ const FullParity = () => {
     <>
       {startCart && (
         <Start
-          startGame={startGame}
+          startGame={playGame}
           setStartCart={setStartCart}
           name={`Parity - ${color || number}`}
           color={color}

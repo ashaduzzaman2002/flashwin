@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import { database } from '../../../firebase.config';
+import React, { useEffect, useState } from "react";
+import { database } from "../../../firebase.config";
 
-import '../../../components/parity/parity.css';
-import Start from '../../../components/start/Start';
-import { onValue, ref } from 'firebase/database';
-import { dbObject } from '../../../helper/constant';
-import { toast } from 'react-toastify';
-import Toaster from '../../../components/Toster/Toaster';
-import { Toast } from '../../../helper';
+import "../../../components/parity/parity.css";
+import Start from "../../../components/start/Start";
+import { onValue, ref } from "firebase/database";
+import { dbObject } from "../../../helper/constant";
+import { toast } from "react-toastify";
+import Toaster from "../../../components/Toster/Toaster";
+import { Toast } from "../../../helper";
 // import GetMaskInput from "../../../helper/MaskInput";
 
 const FastParity = () => {
   const firstCardList = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   const probabilityBox = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  const [activeBtn, setActiveBtn] = useState('probability');
-  const [activeBtn2, setActiveBtn2] = useState('OtherPlayers');
+  const [activeBtn, setActiveBtn] = useState("probability");
+  const [activeBtn2, setActiveBtn2] = useState("OtherPlayers");
   const [timer, setTimer] = useState(0);
   const [startCart, setStartCart] = useState(false);
   const [color, setColor] = useState(null);
@@ -23,9 +23,10 @@ const FastParity = () => {
   const [isFastParityPlaying, setIsFastParityPlaying] = useState(false);
   const [isParticipenceAllowed, setIsParticipenceAllowed] = useState(true);
   const [amountModal, setAmountModal] = useState(false);
+  const [resultHistory, setResultHistory] = useState();
 
   useEffect(() => {
-    const fastParityRef = ref(database, 'fast_parity/timer');
+    const fastParityRef = ref(database, "fast_parity/timer");
 
     onValue(fastParityRef, (snapshot) => {
       const data = snapshot.val();
@@ -41,7 +42,7 @@ const FastParity = () => {
     setStartCart(false);
 
     try {
-      const { data } = await dbObject.post('/parity/play', { ...value, color });
+      const { data } = await dbObject.post("/parity/play", { ...value, color });
 
       console.log(data);
     } catch (error) {
@@ -63,29 +64,15 @@ const FastParity = () => {
         number,
       };
     }
-    const {data} = await dbObject.post("/fastparity/play", body);
-    console.log(data)
+    const { data } = await dbObject.post("/fastparity/play", body);
+    console.log(data);
     if (!data.error) {
       setIsFastParityPlaying(true);
       setGameid(data.game_id);
       setIsParticipenceAllowed(false);
       setAmountModal(false);
       insertGameData();
-
-
-
-      // // toast emitter
-      // toast.success(data.message, {
-      //   position: "top-center",
-      //   autoClose: 2000,
-      //   hideProgressBar: false,
-      //   closeOnClick: true,
-      //   pauseOnHover: true,
-      //   draggable: true,
-      //   progress: undefined,
-      //   theme: "colored",
-      // });
-      Toast(data.message, '')
+      Toast(data.message, "");
 
       setStartCart(false);
     }
@@ -95,6 +82,23 @@ const FastParity = () => {
     // const maskNumber = GetMaskInput(user.number);
     // console.log(maskNumber);
   };
+
+  const getHistory = async () => {
+    try {
+      const { data } = await dbObject("/fastparity/history");
+      console.log(data);
+
+      if (!data.error) {
+        setResultHistory(data.result);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getHistory();
+  }, []);
 
   return (
     <>
@@ -109,10 +113,10 @@ const FastParity = () => {
       <Toaster />
       <div
         style={{
-          width: '100%',
-          minHeight: '95vh',
-          background: 'linear-gradient(180deg, #310b5e, #0a1527)',
-          marginBottom: '-2rem',
+          width: "100%",
+          minHeight: "95vh",
+          background: "linear-gradient(180deg, #310b5e, #0a1527)",
+          marginBottom: "-2rem",
         }}
       >
         <div className="container">
@@ -137,11 +141,11 @@ const FastParity = () => {
             <div className="prity-colors">
               <div
                 onClick={() => {
-                  setColor('Red');
+                  setColor("Red");
                   setNumber(null);
                   setStartCart(true);
                 }}
-                style={{ backgroundColor: '#d72e2a' }}
+                style={{ backgroundColor: "#d72e2a" }}
               >
                 <p>Join Red</p>
                 <p>1:2</p>
@@ -149,11 +153,11 @@ const FastParity = () => {
 
               <div
                 onClick={() => {
-                  setColor('Blue');
+                  setColor("Blue");
                   setNumber(null);
                   setStartCart(true);
                 }}
-                style={{ backgroundColor: '#1976d3' }}
+                style={{ backgroundColor: "#1976d3" }}
               >
                 <p>Join Blue</p>
                 <p>1:4.5</p>
@@ -161,11 +165,11 @@ const FastParity = () => {
 
               <div
                 onClick={() => {
-                  setColor('Green');
+                  setColor("Green");
                   setNumber(null);
                   setStartCart(true);
                 }}
-                style={{ backgroundColor: '#388e3d' }}
+                style={{ backgroundColor: "#388e3d" }}
               >
                 <p>Join green</p>
                 <p>1:2</p>
@@ -175,7 +179,7 @@ const FastParity = () => {
             <div className="paritynum-btns">
               {firstCardList.map((item, i) => (
                 <div
-                key={i}
+                  key={i}
                   onClick={() => {
                     setNumber(item);
                     setColor(null);
@@ -190,80 +194,80 @@ const FastParity = () => {
 
             <div className="parity-btn">
               <button
-                onClick={() => setActiveBtn('continuos')}
-                className={activeBtn === 'continuos' ? 'parity-btn-active' : ''}
+                onClick={() => setActiveBtn("continuos")}
+                className={activeBtn === "continuos" ? "parity-btn-active" : ""}
               >
                 Continuos
               </button>
               <button
-                onClick={() => setActiveBtn('record')}
-                className={activeBtn === 'record' ? 'parity-btn-active' : ''}
+                onClick={() => setActiveBtn("record")}
+                className={activeBtn === "record" ? "parity-btn-active" : ""}
               >
                 Record
               </button>
               <button
-                onClick={() => setActiveBtn('probability')}
+                onClick={() => setActiveBtn("probability")}
                 className={
-                  activeBtn === 'probability' ? 'parity-btn-active' : ''
+                  activeBtn === "probability" ? "parity-btn-active" : ""
                 }
               >
                 Probability
               </button>
             </div>
 
-            {activeBtn === 'continuos' && <ContinuousTab />}
+            {activeBtn === "continuos" && <ContinuousTab />}
 
-            {activeBtn === 'record' && <Record />}
+            {activeBtn === "record" && <Record />}
 
-            {activeBtn === 'probability' && (
+            {activeBtn === "probability" && (
               <Probability probabilityBox={probabilityBox} />
             )}
 
             <div className="gameDetails-btn-group">
               <button
-                onClick={() => setActiveBtn2('OtherPlayers')}
+                onClick={() => setActiveBtn2("OtherPlayers")}
                 className={`${
-                  activeBtn2 === 'OtherPlayers' ? 'gameDetails-activeBtn' : ''
+                  activeBtn2 === "OtherPlayers" ? "gameDetails-activeBtn" : ""
                 }`}
               >
                 Other Players
               </button>
 
               <button
-                onClick={() => setActiveBtn2('MyOrder')}
+                onClick={() => setActiveBtn2("MyOrder")}
                 className={`${
-                  activeBtn2 === 'MyOrder' ? 'gameDetails-activeBtn' : ''
+                  activeBtn2 === "MyOrder" ? "gameDetails-activeBtn" : ""
                 }`}
               >
                 My Orders
               </button>
             </div>
 
-            {activeBtn2 === 'OtherPlayers' ? (
+            {activeBtn2 === "OtherPlayers" ? (
               <div className="gameDetails-others">
                 <div>
                   <p>Period</p>
                   <small>18:54</small>
                 </div>
 
-                <div style={{ textAlign: 'center' }}>
+                <div style={{ textAlign: "center" }}>
                   <p>User</p>
                   <small>****18787</small>
                 </div>
 
-                <div style={{ textAlign: 'center' }}>
+                <div style={{ textAlign: "center" }}>
                   <p>Select</p>
                   <small>2x2</small>
                 </div>
 
-                <div style={{ textAlign: 'right' }}>
+                <div style={{ textAlign: "right" }}>
                   <p>Point</p>
                   <small>₹ 90</small>
                 </div>
               </div>
             ) : (
               <div>
-                <table style={{ width: '100%', marginTop: '1rem' }}>
+                <table style={{ width: "100%", marginTop: "1rem" }}>
                   <thead>
                     <tr className="parity-myorder-header parity-myorder">
                       <td>Period</td>
@@ -275,25 +279,27 @@ const FastParity = () => {
                   </thead>
 
                   <tbody>
-                    <tr className="parity-myorder">
-                      <td>18:01</td>
-                      <td className="parity-selected">
-                        <p
-                          style={{
-                            backgroundColor: '#1776d7',
-                            width: '100%',
-                            color: '#fff',
-                          }}
-                        >
-                          blue
-                        </p>
-                      </td>
-                      <td>₹10</td>
-                      <td className="parity-selected parity-result">
-                        <p style={{ backgroundColor: '#388e3d' }}>7</p>
-                      </td>
-                      <td>+₹0.00</td>
-                    </tr>
+                    {resultHistory.map((item, i) => (
+                      <tr key={i} className="parity-myorder">
+                        <td>18:01</td>
+                        <td className="parity-selected">
+                          <p
+                            style={{
+                              backgroundColor: item.user_color,
+                              width: "100%",
+                              color: "#fff",
+                            }}
+                          >
+                           {item.user_color}
+                          </p>
+                        </td>
+                        <td>₹{item.actual_amount}</td>
+                        <td className="parity-selected parity-result">
+                          <p style={{ backgroundColor: "#388e3d" }}>7</p>
+                        </td>
+                        <td>+₹{item.amount}</td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </div>
@@ -309,7 +315,7 @@ function ContinuousTab() {
   const fastParityContinuousList = [
     0,
     7,
-    '-',
+    "-",
     8,
     0,
     6,
@@ -340,25 +346,25 @@ function ContinuousTab() {
               className="parity__records__circle__inner"
               style={{
                 backgroundColor:
-                  item === '-'
-                    ? '#fec007'
+                  item === "-"
+                    ? "#fec007"
                     : item % 2 === 0
-                    ? '#f44238'
-                    : '#3b8d3c',
+                    ? "#f44238"
+                    : "#3b8d3c",
               }}
             >
               <div
                 className="parity__records__circle__col"
                 style={{
                   background:
-                    item === 0 ? '#f24337' : item === 5 ? '#1f98ef' : '',
+                    item === 0 ? "#f24337" : item === 5 ? "#1f98ef" : "",
                 }}
               ></div>
               <div
                 className="parity__records__circle__col"
                 style={{
                   background:
-                    item === 0 ? '#0f45a2' : item === 5 ? '#388e3d' : '',
+                    item === 0 ? "#0f45a2" : item === 5 ? "#388e3d" : "",
                 }}
               ></div>
             </div>
@@ -378,7 +384,7 @@ const Record = () => {
     9,
     9,
     0,
-    '-',
+    "-",
     5,
     9,
     8,
@@ -411,25 +417,25 @@ const Record = () => {
               className="parity__records__circle__inner"
               style={{
                 backgroundColor:
-                  item === '-'
-                    ? '#fec007'
+                  item === "-"
+                    ? "#fec007"
                     : item % 2 === 0
-                    ? '#f44238'
-                    : '#3b8d3c',
+                    ? "#f44238"
+                    : "#3b8d3c",
               }}
             >
               <div
                 className="parity__records__circle__col"
                 style={{
                   background:
-                    item === 0 ? '#f24337' : item === 5 ? '#1f98ef' : '',
+                    item === 0 ? "#f24337" : item === 5 ? "#1f98ef" : "",
                 }}
               ></div>
               <div
                 className="parity__records__circle__col"
                 style={{
                   background:
-                    item === 0 ? '#0f45a2' : item === 5 ? '#388e3d' : '',
+                    item === 0 ? "#0f45a2" : item === 5 ? "#388e3d" : "",
                 }}
               ></div>
             </div>
@@ -445,8 +451,8 @@ const Probability = ({ probabilityBox }) => (
     <div>
       <p
         style={{
-          textAlign: 'center',
-          marginTop: '1.2rem',
+          textAlign: "center",
+          marginTop: "1.2rem",
           fontSize: 15,
         }}
       >
@@ -468,26 +474,26 @@ const Probability = ({ probabilityBox }) => (
       </div>
 
       <div className="game-first-row-box-out">
-        <p style={{ backgroundColor: '#d72e2a' }}>R</p>
+        <p style={{ backgroundColor: "#d72e2a" }}>R</p>
         <div
           className="game-first-row-box"
-          style={{ backgroundColor: '#ffcdd2' }}
+          style={{ backgroundColor: "#ffcdd2" }}
         ></div>
       </div>
 
       <div className="game-first-row-box-out">
-        <p style={{ backgroundColor: '#1976d3' }}>B</p>
+        <p style={{ backgroundColor: "#1976d3" }}>B</p>
         <div
           className="game-first-row-box"
-          style={{ backgroundColor: '#bbdefa' }}
+          style={{ backgroundColor: "#bbdefa" }}
         ></div>
       </div>
 
       <div className="game-first-row-box-out">
-        <p style={{ backgroundColor: '#388e3d' }}>G</p>
+        <p style={{ backgroundColor: "#388e3d" }}>G</p>
         <div
           className="game-first-row-box"
-          style={{ backgroundColor: '#c8e6ca' }}
+          style={{ backgroundColor: "#c8e6ca" }}
         ></div>
       </div>
     </div>
