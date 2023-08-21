@@ -67,7 +67,7 @@ const FullParity = () => {
       console.log(data);
 
       if (!data.error) {
-        setResultHistory(data.result);
+        // setResultHistory(data.result);
       }
     } catch (error) {
       console.log(error);
