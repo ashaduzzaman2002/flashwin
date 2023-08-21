@@ -50,7 +50,6 @@ const FullParity = () => {
       <div
         style={{
           width: '100%',
-          minHeight: '100vh',
           background: 'linear-gradient(180deg, #1b5d21, #0a1d24)',
           marginBottom: '-2rem',
         }}
