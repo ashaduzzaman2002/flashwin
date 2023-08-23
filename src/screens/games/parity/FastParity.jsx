@@ -24,6 +24,8 @@ const FastParity = () => {
   const [isParticipenceAllowed, setIsParticipenceAllowed] = useState(true);
   const [amountModal, setAmountModal] = useState(false);
   const [resultHistory, setResultHistory] = useState();
+  const [showResult, setShowResult] = useState(false);
+  const [result, setResult] = useState([]);
 
   useEffect(() => {
     const fastParityRef = ref(database, "fast_parity/timer");
@@ -37,18 +39,6 @@ const FastParity = () => {
       }
     });
   }, []);
-
-  const startGame = async (value) => {
-    setStartCart(false);
-
-    try {
-      const { data } = await dbObject.post("/parity/play", { ...value, color });
-
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   const playGame = async (amount) => {
     let body;
@@ -64,17 +54,22 @@ const FastParity = () => {
         number,
       };
     }
-    const { data } = await dbObject.post("/fastparity/play", body);
-    console.log(data);
-    if (!data.error) {
-      setIsFastParityPlaying(true);
-      setGameid(data.game_id);
-      setIsParticipenceAllowed(false);
-      setAmountModal(false);
-      insertGameData();
-      Toast(data.message, "");
+    if (timer > 10) {
+      const { data } = await dbObject.post("/fastparity/play", body);
+      console.log(data);
+      if (!data.error) {
+        setIsFastParityPlaying(true);
+        setGameid(data.game_id);
+        setIsParticipenceAllowed(false);
+        setAmountModal(false);
+        insertGameData();
+        Toast(data.message, "");
 
-      setStartCart(false);
+        setStartCart(false);
+        // if (timer == 0) {
+        //   getResult();
+        // }
+      }
     }
   };
 
@@ -96,9 +91,44 @@ const FastParity = () => {
     }
   };
 
+  const getResult = async () => {
+    try {
+      const { data } = await dbObject.post("/parity/result", {
+        game_id: gameid,
+      });
+      console.log(data);
+
+      if (!data.error && data.result !== []) {
+        setResult(data.result[0]);
+        setShowResult(true);
+
+        setTimeout(() => {
+          setShowResult(false);
+          setResult([]);
+          setGameid(null);
+        }, 3000);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     getHistory();
   }, []);
+
+  useEffect(() => {
+    if (timer == 0) {
+      getResult();
+    }
+  }, [timer]);
+
+  const convertTimestamp = (timestamp) => {
+    const date = new Date(timestamp);
+    const hours = String(date.getUTCHours()).padStart(2, "0");
+    const minutes = String(date.getUTCMinutes()).padStart(2, "0");
+    return `${hours}:${minutes}`;
+  };
 
   return (
     <>
@@ -109,6 +139,75 @@ const FastParity = () => {
           setStartCart={setStartCart}
           color={color}
         />
+      )}
+
+      {showResult && (
+        <div className="result-popup">
+          <div className="result-popup-close"></div>
+
+          <div className="container h-100 d-flex align-items-center justify-content-center">
+            <div className="result-popup-content">
+              <div className="result-popup-heading">
+                <img className="coin" src="/images/coin.png" alt="coin" />
+                <img className="crown" src="/images/crown2.png" alt="crown" />
+                <h2>Win</h2>
+              </div>
+
+              <div className="result-popup-text">
+                <p
+                  style={{
+                    textAlign: "center",
+                    fontSize: "2rem",
+                    color: "green",
+                  }}
+                >
+                  +₹{result.transaction}
+                </p>
+
+                <div className="result-popup-text">
+                  <div className="d-flex justify-content-between">
+                    <p className="mb-0">Period</p>
+                    <p className="mb-0">{result.game_id}</p>
+                  </div>
+
+                  <div className="mt-4 result-popup-text-box">
+                    <div
+                      className="d-flex justify-content-between align-items-center mb-2"
+                      style={{
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                      }}
+                    >
+                      <p className="mb-0">Selected</p>
+
+                      <p className="" style={{ color: result.user_color }}>
+                        {result.user_color || result.user_number}
+                      </p>
+                    </div>
+
+                    <div className="d-flex justify-content-between align-items-center">
+                      <p className="mb-0">Point</p>
+                      <h2
+                        className="mb-0 text-success"
+                        style={{ color: "#111" }}
+                      >
+                        {result.amount}
+                      </h2>
+                    </div>
+                  </div>
+                </div>
+
+                <button
+                  onClick={() => setShowResult(false)}
+                  className="w-100 mt-4 btn"
+                  style={{ padding: "0.8rem" }}
+                >
+                  CLOSE
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       )}
       <Toaster />
       <div
@@ -139,19 +238,21 @@ const FastParity = () => {
             </div>
 
             <div className="prity-colors">
-              <div
+              <button
                 onClick={() => {
                   setColor("Red");
                   setNumber(null);
                   setStartCart(true);
                 }}
                 style={{ backgroundColor: "#d72e2a" }}
+                disabled={timer < 11}
               >
                 <p>Join Red</p>
                 <p>1:2</p>
-              </div>
+              </button>
 
-              <div
+              <button
+                disabled={timer < 11}
                 onClick={() => {
                   setColor("Blue");
                   setNumber(null);
@@ -161,34 +262,36 @@ const FastParity = () => {
               >
                 <p>Join Blue</p>
                 <p>1:4.5</p>
-              </div>
+              </button>
 
-              <div
+              <button
                 onClick={() => {
                   setColor("Green");
                   setNumber(null);
                   setStartCart(true);
                 }}
                 style={{ backgroundColor: "#388e3d" }}
+                disabled={timer < 11}
               >
                 <p>Join green</p>
                 <p>1:2</p>
-              </div>
+              </button>
             </div>
 
             <div className="paritynum-btns">
               {firstCardList.map((item, i) => (
-                <div
+                <button
                   key={i}
                   onClick={() => {
                     setNumber(item);
                     setColor(null);
                     setStartCart(true);
                   }}
+                  disabled={timer < 11}
                 >
                   <p>{item}</p>
                   <i className="fa-solid fa-bolt"></i>
-                </div>
+                </button>
               ))}
             </div>
 
@@ -281,21 +384,23 @@ const FastParity = () => {
                   <tbody>
                     {resultHistory.map((item, i) => (
                       <tr key={i} className="parity-myorder">
-                        <td>18:01</td>
+                        <td>{convertTimestamp(item.date)}</td>
                         <td className="parity-selected">
                           <p
                             style={{
-                              backgroundColor: item.user_color,
+                              backgroundColor: item.user_color || "transparent",
                               width: "100%",
                               color: "#fff",
                             }}
                           >
-                           {item.user_color}
+                            {item.user_color || item.user_number}
                           </p>
                         </td>
                         <td>₹{item.actual_amount}</td>
                         <td className="parity-selected parity-result">
-                          <p style={{ backgroundColor: "#388e3d" }}>7</p>
+                          <p style={{ backgroundColor: "#388e3d" }}>
+                            {item.result || "?"}
+                          </p>
                         </td>
                         <td>+₹{item.amount}</td>
                       </tr>
