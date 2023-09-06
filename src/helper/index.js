@@ -1,5 +1,4 @@
 export function Toast(msg, duration) {
-  duration = isNaN(duration) ? 3000 : duration;
   var m = document.createElement("div");
   m.innerHTML = msg;
   m.style.cssText =
@@ -13,5 +12,5 @@ export function Toast(msg, duration) {
     setTimeout(function () {
       document.body.removeChild(m);
     }, d * 3000);
-  }, duration);
+  }, 3000);
 }

@@ -84,7 +84,6 @@ const ForgotPass = () => {
     if (seconds === 0) {
       try {
         const { data } = await dbObject.post('/auth/sendotp', { number: values.number })
-        toast.success('OTP sent to ' + values.number, toastOptions)
         setSeconds(60)
         setOtpSent(true)
       } catch (error) {
