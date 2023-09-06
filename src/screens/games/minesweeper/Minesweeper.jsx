@@ -7,8 +7,8 @@ import { toast } from "react-toastify";
 import Toaster from "../../../components/Toster/Toaster";
 import { bomb, mining, moneyBag } from "../../../assets";
 import Lottie from "lottie-react";
-import { Toast } from '../../../helper'
-import ResultPopup from '../../../components/result-popup/ResultPopup'
+import { Toast } from "../../../helper";
+import ResultPopup from "../../../components/result-popup/ResultPopup";
 
 const Minesweeper = () => {
   const [ratio, setRatio] = useState("2x2");
@@ -25,13 +25,11 @@ const Minesweeper = () => {
   const game = "minesweeper";
   const name = "Minesweeper";
   const [activeBtn2, setActiveBtn2] = useState("OtherPlayers");
-  const [showResult, setShowResult] = useState(false)
-  const [winAmount, setWinAmount] = useState()
-  const [result, setResult] = useState()
+  const [showResult, setShowResult] = useState(false);
+  const [winAmount, setWinAmount] = useState();
+  const [result, setResult] = useState();
 
   const { walletBalance } = useContext(AuthContext);
-
-
 
   const handleStart = () => {
     setStartCart(true);
@@ -51,7 +49,7 @@ const Minesweeper = () => {
       setIsPlayingMinesweeper(true);
       setGameId(response.data.id);
       // toast.success(response?.data?.message);
-      Toast(response?.data?.message, '')
+      Toast(response?.data?.message, "");
     } else if (
       response.data.error &&
       response.data.message === "Game is already running"
@@ -62,7 +60,7 @@ const Minesweeper = () => {
       setCellsMined(removeLastComma(response.data.data?.tapped_cells));
       setBonusAmount(response.data.data?.total_transaction);
       // toast.warning("Game is already running");
-      Toast("Game is already running", 30000)
+      Toast("Game is already running", 30000);
     } else {
       setIsPlayingMinesweeper(false);
       setGameId("");
@@ -80,29 +78,34 @@ const Minesweeper = () => {
 
   const stopAndClaimBonus = async () => {
     if (cellsMined?.length > 0) {
-      const { data } = await dbObject.post("/mine/stop", { game_id: gameId });
-      console.log(data)
-      if (!data.error) {
-        setIsPlayingMinesweeper(false);
-        setCellsMined([]);
-        setBonusAmount(0.0);
-        setSelectedAmount(20);
-        // Toast(data?.message + " Wallet balance " + data.total_transaction, '')
-        // setWinAmount(data.total_transaction)
-        setResult(data)
-        setShowResult(true)
-        getMinesweeperHistory()
+      try {
+        // return console.log('first')
+        const { data } = await dbObject.post("/mine/stop", { game_id: gameId });
+        console.log(data);
+        if (!data.error) {
+          setIsPlayingMinesweeper(false);
+          setCellsMined([]);
+          setBonusAmount(0.0);
+          setSelectedAmount(20);
+          // Toast(data?.message + " Wallet balance " + data.total_transaction, '')
+          // setWinAmount(data.total_transaction)
+          setResult(data);
+          setShowResult(true);
+          getMinesweeperHistory();
 
-        // setTimeout(() => {
-        //   setWinAmount(null)
-        //   setShowResult(false)
-        // }, 3000)
-      } else {
-        toast.success(data?.message);
+          // setTimeout(() => {
+          //   setWinAmount(null)
+          //   setShowResult(false)
+          // }, 3000)
+        } else {
+          toast.success(data?.message);
+        }
+      } catch (error) {
+        console.log(error);
       }
     } else {
       toast.success("Please mine atleast one cell");
-      Toast("Please mine atleast one cell", '')
+      Toast("Please mine atleast one cell", "");
     }
   };
 
@@ -118,16 +121,16 @@ const Minesweeper = () => {
 
       const { data } = await dbObject.post("/mine/bonus", body);
       if (!data.error) {
-        Toast("You won " + data.bonus + " bonus")
+        Toast("You won " + data.bonus + " bonus");
 
         setCellsMined((prev) => [...prev, cell]);
         setBonusAmount(data.bonus);
-        getMinesweeperHistory()
+        getMinesweeperHistory();
       }
       setMiningAnimation(null);
     } else {
       // toast.warning("Already mined");
-      Toast("Already mined", '')
+      Toast("Already mined", "");
       setMiningAnimation(null);
     }
     if (
@@ -147,14 +150,14 @@ const Minesweeper = () => {
   };
 
   const closeCard = () => {
-    setStartCart(false)
+    setStartCart(false);
   };
 
   const [minesweeperHistory, setMinesweeperHistory] = useState([]);
 
   const getMinesweeperHistory = async () => {
     try {
-      const { data } = await dbObject.get('/mine/history');
+      const { data } = await dbObject.get("/mine/history");
 
       if (!data?.error) {
         setMinesweeperHistory(data?.data);
@@ -165,8 +168,8 @@ const Minesweeper = () => {
   };
 
   useEffect(() => {
-    getMinesweeperHistory()
-  }, [])
+    getMinesweeperHistory();
+  }, []);
 
   return (
     <div
@@ -177,15 +180,19 @@ const Minesweeper = () => {
         background: "linear-gradient(180deg, #424242, #071724)",
       }}
     >
-
-      {
-        showResult && (<ResultPopup result={result} ratio={ratio} winAmount={winAmount} setShowResult={setShowResult} />)
-      }
+      {showResult && (
+        <ResultPopup
+          result={result}
+          ratio={ratio}
+          winAmount={winAmount}
+          setShowResult={setShowResult}
+        />
+      )}
 
       <Toaster position={"top-left"} />
       {startCart && (
         <div className="start-container">
-          <div onClick={closeCard} className='card-out-side'></div>
+          <div onClick={closeCard} className="card-out-side"></div>
           <div className="start-box">
             <h2 className="game-name">{name}</h2>
             <p>Points</p>
@@ -280,7 +287,7 @@ const Minesweeper = () => {
         </div>
       )}
 
-      <div className="minesweeper-container" style={{ marginBottom: '-65px' }}>
+      <div className="minesweeper-container" style={{ marginBottom: "-65px" }}>
         <h2>Minesweeper</h2>
 
         <div className="minesweeper-ratio">
@@ -365,16 +372,18 @@ const Minesweeper = () => {
         <div className="gameDetails-btn-group">
           <button
             onClick={() => setActiveBtn2("OtherPlayers")}
-            className={`${activeBtn2 === "OtherPlayers" ? "gameDetails-activeBtn" : ""
-              }`}
+            className={`${
+              activeBtn2 === "OtherPlayers" ? "gameDetails-activeBtn" : ""
+            }`}
           >
             Other Players
           </button>
 
           <button
             onClick={() => setActiveBtn2("MyOrder")}
-            className={`${activeBtn2 === "MyOrder" ? "gameDetails-activeBtn" : ""
-              }`}
+            className={`${
+              activeBtn2 === "MyOrder" ? "gameDetails-activeBtn" : ""
+            }`}
           >
             My Orders
           </button>
@@ -404,108 +413,114 @@ const Minesweeper = () => {
           </div>
         ) : (
           <div>
-            {
-              minesweeperHistory.map((item, i) => {
-                var inputDate = new Date(item.date);
-                var outputFormat = new Intl.DateTimeFormat('en-US', {
-                  year: 'numeric',
-                  month: '2-digit',
-                  day: '2-digit',
-                  hour: '2-digit',
-                  minute: '2-digit'
-                });
-                var formattedOutput = outputFormat.format(inputDate);
+            {minesweeperHistory.map((item, i) => {
+              var inputDate = new Date(item.date);
+              var outputFormat = new Intl.DateTimeFormat("en-US", {
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+                hour: "2-digit",
+                minute: "2-digit",
+              });
+              var formattedOutput = outputFormat.format(inputDate);
 
-                return (
-                  <div className="mine-myorder" key={i}>
-                    <div className="game-type">
-                      {item?.game_mode === '2*2' ? (
-                        <div
-                          className={`minesweeper-game-2x2`}
-                          style={{ marginBottom: 0 }}
-                        >
-                          <div>
-                            {item?.bomb_cell === '1' && (
-                              <img style={{ width: '80%' }} src={bomb} alt="" />
-                            )}
-                          </div>
-                          <div>
-                            {item?.bomb_cell === '2' && (
-                              <img style={{ width: '80%' }} src={bomb} alt="" />
-                            )}
-                          </div>
-                          <div>
-                            {item?.bomb_cell === '3' && (
-                              <img style={{ width: '80%' }} src={bomb} alt="" />
-                            )}
-                          </div>
-                          <div>
-                            {item?.bomb_cell === '4' && (
-                              <img style={{ width: '80%' }} src={bomb} alt="" />
-                            )}
-                          </div>
-                        </div>
-                      ) : (
-                        <div
-                          className={`minesweeper-game-4x4`}
-                          style={{ marginBottom: 0 }}
-                        >
-                          <div>
-                            {item?.bomb_cell === '1' && (
-                              <img style={{ width: '80%' }} src={bomb} alt="" />
-                            )}
-                          </div>
-                          <div>
-                            {item?.bomb_cell === '2' && (
-                              <img style={{ width: '80%' }} src={bomb} alt="" />
-                            )}
-                          </div>
-                          <div>
-                            {item?.bomb_cell === '3' && (
-                              <img style={{ width: '80%' }} src={bomb} alt="" />
-                            )}
-                          </div>
-                          <div>
-                            {item?.bomb_cell === '4' && (
-                              <img style={{ width: '80%' }} src={bomb} alt="" />
-                            )}
-                          </div>
-                        </div>
-                      )}
-                    </div>
-
-                    <div style={{ marginLeft: "1rem" }}>
-                      <div style={{ margin: 0 }} className="myorder-text">
+              return (
+                <div className="mine-myorder" key={i}>
+                  <div className="game-type">
+                    {item?.game_mode === "2*2" ? (
+                      <div
+                        className={`minesweeper-game-2x2`}
+                        style={{ marginBottom: 0 }}
+                      >
                         <div>
-                          <p>Points</p>
-                          <p>₹{item.actual_amount}</p>
+                          {item?.bomb_cell === "1" && (
+                            <img style={{ width: "80%" }} src={bomb} alt="" />
+                          )}
                         </div>
-
                         <div>
-                          <p>Pass</p>
-                          <p>{item.number_of_taps}</p>
+                          {item?.bomb_cell === "2" && (
+                            <img style={{ width: "80%" }} src={bomb} alt="" />
+                          )}
                         </div>
-
                         <div>
-                          <p>Bonous</p>
-                          <p style={{ color: "#7eb298" }}>+₹{item.total_transaction}</p>
+                          {item?.bomb_cell === "3" && (
+                            <img style={{ width: "80%" }} src={bomb} alt="" />
+                          )}
+                        </div>
+                        <div>
+                          {item?.bomb_cell === "4" && (
+                            <img style={{ width: "80%" }} src={bomb} alt="" />
+                          )}
                         </div>
                       </div>
-
-                      <p style={{
-                        marginTop: 8, fontSize: 15, color: "#e5eae7", display: 'flex',
-                        justifyContent: 'space-between'
-                      }}>
-                        <span>Delivery: ₹{item.game_amount}</span> <span>Fees: ₹1.00</span>
-                      </p>
-                      <p style={{ marginTop: 8, fontSize: 15, color: "#e5eae7" }}>
-                        {formattedOutput}
-                      </p>
-                    </div>
+                    ) : (
+                      <div
+                        className={`minesweeper-game-4x4`}
+                        style={{ marginBottom: 0 }}
+                      >
+                        <div>
+                          {item?.bomb_cell === "1" && (
+                            <img style={{ width: "80%" }} src={bomb} alt="" />
+                          )}
+                        </div>
+                        <div>
+                          {item?.bomb_cell === "2" && (
+                            <img style={{ width: "80%" }} src={bomb} alt="" />
+                          )}
+                        </div>
+                        <div>
+                          {item?.bomb_cell === "3" && (
+                            <img style={{ width: "80%" }} src={bomb} alt="" />
+                          )}
+                        </div>
+                        <div>
+                          {item?.bomb_cell === "4" && (
+                            <img style={{ width: "80%" }} src={bomb} alt="" />
+                          )}
+                        </div>
+                      </div>
+                    )}
                   </div>
-                )
-              })
-            }
+
+                  <div style={{ marginLeft: "1rem" }}>
+                    <div style={{ margin: 0 }} className="myorder-text">
+                      <div>
+                        <p>Points</p>
+                        <p>₹{item.actual_amount}</p>
+                      </div>
+
+                      <div>
+                        <p>Pass</p>
+                        <p>{item.number_of_taps}</p>
+                      </div>
+
+                      <div>
+                        <p>Bonous</p>
+                        <p style={{ color: "#7eb298" }}>
+                          +₹{item.total_transaction}
+                        </p>
+                      </div>
+                    </div>
+
+                    <p
+                      style={{
+                        marginTop: 8,
+                        fontSize: 15,
+                        color: "#e5eae7",
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <span>Delivery: ₹{item.game_amount}</span>{" "}
+                      <span>Fees: ₹1.00</span>
+                    </p>
+                    <p style={{ marginTop: 8, fontSize: 15, color: "#e5eae7" }}>
+                      {formattedOutput}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         )}
       </div>

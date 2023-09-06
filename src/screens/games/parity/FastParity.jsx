@@ -92,22 +92,23 @@ const FastParity = () => {
   };
 
   const getResult = async () => {
+    console.log(gameid)
     try {
       const { data } = await dbObject.post("/parity/result", {
-        game_id: gameid,
+        game_id: 'NcVvZIuRUM50clkrC1o',
       });
       console.log(data);
 
-      if (!data.error && data.result !== []) {
-        setResult(data.result[0]);
-        setShowResult(true);
+      // if (!data.error && data.result !== []) {
+      //   setResult(data.result[0]);
+      //   setShowResult(true);
 
-        setTimeout(() => {
-          setShowResult(false);
-          setResult([]);
-          setGameid(null);
-        }, 3000);
-      }
+      //   setTimeout(() => {
+      //     setShowResult(false);
+      //     setResult([]);
+      //     setGameid(null);
+      //   }, 3000);
+      // }
     } catch (error) {
       console.log(error);
     }
@@ -161,7 +162,7 @@ const FastParity = () => {
                     color: "green",
                   }}
                 >
-                  +₹{result.transaction}
+                  +₹{result?.transaction}
                 </p>
 
                 <div className="result-popup-text">
