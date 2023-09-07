@@ -112,9 +112,7 @@ const Minesweeper = () => {
   const mineCell = async (cell) => {
     setMiningAnimation(cell);
     if (!cellsMined?.includes(cell)) {
-      // mining popup animation
-
-      // call bonus api
+      
       const body = {
         cell: cell,
       };

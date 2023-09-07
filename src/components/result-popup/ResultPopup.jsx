@@ -29,7 +29,7 @@ const ResultPopup = ({ setShowResult, winAmount, ratio, result }) => {
                 <div className="mineswiper-result-box">
                   {ratio2x2.map((item, i) => (
                     <div key={i}>
-                      {item.bomb.bomb_cell == i + 1 ? (
+                      {result.bomb.bomb_cell === String(i + 1) ? (
                         <img width={"90%"} src={moneyBag} alt="money" />
                       ) : (
                         ""
@@ -41,7 +41,7 @@ const ResultPopup = ({ setShowResult, winAmount, ratio, result }) => {
                 <div className="mineswiper-result-box-4x4">
                   {ratio4x4.map((item, i) => (
                     <div key={i}>
-                      {item.bomb.bomb_cell == i + 1 ? (
+                      {result.bomb.bomb_cell === String(i + 1) ? (
                         <img width={"90%"} src={moneyBag} alt="money" />
                       ) : (
                         ""

@@ -1,4 +1,4 @@
-export function Toast(msg, duration) {
+export function Toast(msg) {
   var m = document.createElement("div");
   m.innerHTML = msg;
   m.style.cssText =
