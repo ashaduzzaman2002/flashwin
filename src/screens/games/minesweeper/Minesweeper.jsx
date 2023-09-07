@@ -46,7 +46,7 @@ const Minesweeper = () => {
     };
     const response = await dbObject.post("/mine/start", body);
 
-    console.log(response.data)
+    console.log(response.data);
     if (!response.data.error) {
       setIsPlayingMinesweeper(true);
       setGameId(response.data.id);
@@ -99,9 +99,9 @@ const Minesweeper = () => {
           getMinesweeperHistory();
 
           setTimeout(() => {
-            setWinAmount(null)
-            setShowResult(false)
-          }, 3000)
+            setWinAmount(null);
+            setShowResult(false);
+          }, 3000);
         } else {
           toast.success(data?.message);
         }
@@ -115,32 +115,52 @@ const Minesweeper = () => {
   };
 
   const mineCell = async (cell) => {
-    setMiningAnimation(cell);
-    if (!cellsMined?.includes(cell)) {
-      
-      const body = {
-        cell: cell,
-      };
+    if (isPlayingMinesweeper) {
+      setMiningAnimation(cell);
+      if (!cellsMined?.includes(cell)) {
+        const body = {
+          cell: String(cell),
+        };
 
-      const { data } = await dbObject.post("/mine/bonus", body);
-      if (!data.error) {
-        Toast("You won " + data.bonus + " bonus");
+        const { data } = await dbObject.post("/mine/bonus", body);
+        console.log(data);
+        if (!data.error) {
+          Toast("You won " + data.bonus + " bonus");
 
-        setCellsMined((prev) => [...prev, cell]);
-        setBonusAmount(data.bonus);
-        getMinesweeperHistory();
+          setCellsMined((prev) => [...prev, cell]);
+          setBonusAmount(data.bonus);
+          getMinesweeperHistory();
+        } else {
+          setResult({
+            bomb: {
+              bomb_cell: data?.bomb,
+            },
+            total_transaction: "0",
+          });
+          setShowResult(true);
+          setIsPlayingMinesweeper(false);
+          setCellsMined([]);
+          setBonusAmount(0.0);
+          setSelectedAmount(20);
+
+          getMinesweeperHistory();
+
+          setTimeout(() => {
+            setShowResult(false);
+          }, 3000);
+        }
+        setMiningAnimation(null);
+      } else {
+        // toast.warning("Already mined");
+        Toast("Already mined", "");
+        setMiningAnimation(null);
       }
-      setMiningAnimation(null);
-    } else {
-      // toast.warning("Already mined");
-      Toast("Already mined", "");
-      setMiningAnimation(null);
-    }
-    if (
-      (selectedGridType === 2 && cellsMined.length + 1 === 2 * 2) ||
-      (selectedGridType === 4 && cellsMined.length + 1 === 4 * 4)
-    ) {
-      stopAndClaimBonus();
+      if (
+        (selectedGridType === 2 && cellsMined.length + 1 === 2 * 2) ||
+        (selectedGridType === 4 && cellsMined.length + 1 === 4 * 4)
+      ) {
+        stopAndClaimBonus();
+      }
     }
   };
 
@@ -187,7 +207,6 @@ const Minesweeper = () => {
         <ResultPopup
           result={result}
           ratio={ratio}
-          winAmount={winAmount}
           setShowResult={setShowResult}
         />
       )}

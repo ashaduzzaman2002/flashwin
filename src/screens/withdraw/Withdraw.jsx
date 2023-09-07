@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import './withdraw.css';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import BottomNav from '../../components/bottomNav/BottomNav';
-import HeaderSecondar from '../../components/HeaderSecondar';
 import { dbObject } from '../../helper/constant';
 import { Link, useNavigate } from 'react-router-dom';
 

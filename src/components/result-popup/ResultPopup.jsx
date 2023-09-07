@@ -2,7 +2,7 @@ import React from "react";
 import "./result-popup.css";
 import { moneyBag } from "../../assets";
 
-const ResultPopup = ({ setShowResult, winAmount, ratio, result }) => {
+const ResultPopup = ({ setShowResult, ratio, result }) => {
   const ratio2x2 = [1, 2, 3, 4];
   const ratio4x4 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
   return (
