@@ -42,9 +42,11 @@ const Minesweeper = () => {
 
     let body = {
       amount: selectedAmount,
-      cell: selectedGridType,
+      cell: String(selectedGridType),
     };
     const response = await dbObject.post("/mine/start", body);
+
+    console.log(response.data)
     if (!response.data.error) {
       setIsPlayingMinesweeper(true);
       setGameId(response.data.id);
@@ -59,7 +61,6 @@ const Minesweeper = () => {
       setGameId(response.data.data?.game_id);
       setCellsMined(removeLastComma(response.data.data?.tapped_cells));
       setBonusAmount(response.data.data?.total_transaction);
-      // toast.warning("Game is already running");
       Toast("Game is already running", 30000);
     } else {
       setIsPlayingMinesweeper(false);
@@ -67,6 +68,10 @@ const Minesweeper = () => {
       toast.error("Something went wrong");
     }
   };
+
+  // useEffect(() => {
+  //   startGame()
+  // }, [])
 
   const handleInc = (value) => {
     return setContactPoint(contactPoint + value);
@@ -93,10 +98,10 @@ const Minesweeper = () => {
           setShowResult(true);
           getMinesweeperHistory();
 
-          // setTimeout(() => {
-          //   setWinAmount(null)
-          //   setShowResult(false)
-          // }, 3000)
+          setTimeout(() => {
+            setWinAmount(null)
+            setShowResult(false)
+          }, 3000)
         } else {
           toast.success(data?.message);
         }
@@ -246,13 +251,13 @@ const Minesweeper = () => {
 
               <div className="start-number">
                 <div>
-                  <button onClick={() => handleDec(5)}>-5</button>
-                  <button onClick={() => handleDec(1)}>-1</button>
+                  <button onClick={() => handleDec(50)}>-5</button>
+                  <button onClick={() => handleDec(10)}>-1</button>
                 </div>
                 <p>{contactPoint}</p>
                 <div>
-                  <button onClick={() => handleInc(1)}>+1</button>
-                  <button onClick={() => handleInc(5)}>+5</button>
+                  <button onClick={() => handleInc(10)}>+1</button>
+                  <button onClick={() => handleInc(50)}>+5</button>
                 </div>
               </div>
             </div>
