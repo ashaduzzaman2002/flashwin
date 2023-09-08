@@ -9,6 +9,7 @@ import { bomb, mining, moneyBag } from "../../../assets";
 import Lottie from "lottie-react";
 import { Toast } from "../../../helper";
 import ResultPopup from "../../../components/result-popup/ResultPopup";
+import Loading from "../../../components/loading/Loading";
 
 const Minesweeper = () => {
   const [ratio, setRatio] = useState("2x2");
@@ -22,11 +23,11 @@ const Minesweeper = () => {
   const [isPlayingMinesweeper, setIsPlayingMinesweeper] = useState(false);
   const [startCart, setStartCart] = useState(false);
   const [miningAnimation, setMiningAnimation] = useState(false);
+  const [isMined, setIsMined] = useState(false);
   const game = "minesweeper";
   const name = "Minesweeper";
   const [activeBtn2, setActiveBtn2] = useState("OtherPlayers");
   const [showResult, setShowResult] = useState(false);
-  const [winAmount, setWinAmount] = useState();
   const [result, setResult] = useState();
 
   const { walletBalance } = useContext(AuthContext);
@@ -42,8 +43,10 @@ const Minesweeper = () => {
 
     let body = {
       amount: selectedAmount,
-      cell: String(selectedGridType),
+      cell: String(ratio === "2x2" ? 2 : 4),
     };
+
+    console.log(body);
     const response = await dbObject.post("/mine/start", body);
 
     console.log(response.data);
@@ -98,10 +101,10 @@ const Minesweeper = () => {
           setShowResult(true);
           getMinesweeperHistory();
 
-          setTimeout(() => {
-            setWinAmount(null);
-            setShowResult(false);
-          }, 3000);
+          // setTimeout(() => {
+          //   setWinAmount(null);
+          //   setShowResult(false);
+          // }, 3000);
         } else {
           toast.success(data?.message);
         }
@@ -116,6 +119,7 @@ const Minesweeper = () => {
 
   const mineCell = async (cell) => {
     if (isPlayingMinesweeper) {
+      setIsMined(true);
       setMiningAnimation(cell);
       if (!cellsMined?.includes(cell)) {
         const body = {
@@ -145,9 +149,9 @@ const Minesweeper = () => {
 
           getMinesweeperHistory();
 
-          setTimeout(() => {
-            setShowResult(false);
-          }, 3000);
+          // setTimeout(() => {
+          //   setShowResult(false);
+          // }, 3000);
         }
         setMiningAnimation(null);
       } else {
@@ -155,6 +159,10 @@ const Minesweeper = () => {
         Toast("Already mined", "");
         setMiningAnimation(null);
       }
+
+      setTimeout(() => {
+        setIsMined(false);
+      }, 1000);
       if (
         (selectedGridType === 2 && cellsMined.length + 1 === 2 * 2) ||
         (selectedGridType === 4 && cellsMined.length + 1 === 4 * 4)
@@ -330,6 +338,25 @@ const Minesweeper = () => {
         </div>
 
         <div className="minesweeper-game">
+          {isMined && (
+            <div
+              style={{
+                backgroundColor: "#00000059",
+                top: 0,
+                right: 0,
+                left: 0,
+                bottom: 0,
+                position: "absolute",
+                zIndex: "9999",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                borderRadius: "16px",
+              }}
+            >
+              <div class="loader"></div>
+            </div>
+          )}
           <div
             className={`minesweeper-game-2x2 ${ratio === "2x2" ? "" : "hide"}`}
           >
