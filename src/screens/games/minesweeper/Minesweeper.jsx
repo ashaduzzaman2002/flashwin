@@ -9,7 +9,6 @@ import { bomb, mining, moneyBag } from "../../../assets";
 import Lottie from "lottie-react";
 import { Toast } from "../../../helper";
 import ResultPopup from "../../../components/result-popup/ResultPopup";
-import Loading from "../../../components/loading/Loading";
 
 const Minesweeper = () => {
   const [ratio, setRatio] = useState("2x2");
@@ -55,6 +54,7 @@ const Minesweeper = () => {
       setGameId(response.data.id);
       // toast.success(response?.data?.message);
       Toast(response?.data?.message, "");
+      setSelectedGridType(ratio === "2x2" ? 2 : 4)
     } else if (
       response.data.error &&
       response.data.message === "Game is already running"
@@ -171,6 +171,10 @@ const Minesweeper = () => {
       }
     }
   };
+
+  useEffect(() => {
+    console.log(selectedGridType)
+  })
 
   const removeLastComma = (arr) => {
     var b = arr.split(",").map(function (item) {
