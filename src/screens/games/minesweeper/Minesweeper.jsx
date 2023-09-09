@@ -13,6 +13,7 @@ import ResultPopup from "../../../components/result-popup/ResultPopup";
 const Minesweeper = () => {
   const [ratio, setRatio] = useState("2x2");
   const [contactPoint, setContactPoint] = useState(10);
+  const [amount, setAmount] = useState(contactPoint);
 
   const [cellsMined, setCellsMined] = useState([0]);
   const [selectedGridType, setSelectedGridType] = useState(2);
@@ -31,8 +32,23 @@ const Minesweeper = () => {
 
   const { walletBalance } = useContext(AuthContext);
 
+  // Update ammount on selecting contact amount
+  useEffect(() => {
+    setAmount(contactPoint);
+  }, [contactPoint]);
+
   const handleStart = () => {
     setStartCart(true);
+  };
+
+  // handle increment of amount
+  const handleInc = (value) => {
+    return setAmount(amount + (value * contactPoint) / 10);
+  };
+
+  // handle decreament of amount
+  const handleDec = (value) => {
+    if (amount > (contactPoint * value / 10)) return setAmount(amount -  (value * contactPoint) / 10);
   };
 
   const startGame = async () => {
@@ -54,7 +70,7 @@ const Minesweeper = () => {
       setGameId(response.data.id);
       // toast.success(response?.data?.message);
       Toast(response?.data?.message, "");
-      setSelectedGridType(ratio === "2x2" ? 2 : 4)
+      setSelectedGridType(ratio === "2x2" ? 2 : 4);
     } else if (
       response.data.error &&
       response.data.message === "Game is already running"
@@ -76,13 +92,7 @@ const Minesweeper = () => {
   //   startGame()
   // }, [])
 
-  const handleInc = (value) => {
-    return setContactPoint(contactPoint + value);
-  };
-
-  const handleDec = (value) => {
-    if (contactPoint > 5) return setContactPoint(contactPoint - value);
-  };
+ 
 
   const stopAndClaimBonus = async () => {
     if (cellsMined?.length > 0) {
@@ -173,8 +183,8 @@ const Minesweeper = () => {
   };
 
   useEffect(() => {
-    console.log(selectedGridType)
-  })
+    console.log(selectedGridType);
+  });
 
   const removeLastComma = (arr) => {
     var b = arr.split(",").map(function (item) {
@@ -285,7 +295,7 @@ const Minesweeper = () => {
                   <button onClick={() => handleDec(50)}>-5</button>
                   <button onClick={() => handleDec(10)}>-1</button>
                 </div>
-                <p>{contactPoint}</p>
+                <p>{amount}</p>
                 <div>
                   <button onClick={() => handleInc(10)}>+1</button>
                   <button onClick={() => handleInc(50)}>+5</button>
