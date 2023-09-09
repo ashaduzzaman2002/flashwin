@@ -1,6 +1,6 @@
 import React from "react";
 import "./result-popup.css";
-import { moneyBag } from "../../assets";
+import { bomb } from "../../assets";
 
 const ResultPopup = ({ setShowResult, ratio, result }) => {
   const ratio2x2 = [1, 2, 3, 4];
@@ -30,7 +30,7 @@ const ResultPopup = ({ setShowResult, ratio, result }) => {
                   {ratio2x2.map((item, i) => (
                     <div key={i}>
                       {result.bomb.bomb_cell === String(i + 1) ? (
-                        <img width={"90%"} src={moneyBag} alt="money" />
+                        <img width={"70%"} src={bomb} alt="money" />
                       ) : (
                         ""
                       )}
@@ -42,7 +42,7 @@ const ResultPopup = ({ setShowResult, ratio, result }) => {
                   {ratio4x4.map((item, i) => (
                     <div key={i}>
                       {result.bomb.bomb_cell === String(i + 1) ? (
-                        <img width={"90%"} src={moneyBag} alt="money" />
+                        <img width={"70%"} src={bomb} alt="money" />
                       ) : (
                         ""
                       )}
