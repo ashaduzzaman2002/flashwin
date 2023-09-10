@@ -2,10 +2,14 @@ import React, {  useContext, useState } from 'react';
 import './start.css';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
+import { useEffect } from 'react';
 
 const Start = ({ name, startGame, game, setStartCart }) => {
   const [contactPoint, setContactPoint] = useState(10);
-  
+  const [amount, setAmount] = useState(contactPoint);
+  useEffect(() => {
+    setAmount(contactPoint);
+  }, [contactPoint]);
 
   const closeCard = () => {
     setStartCart(false)
@@ -14,14 +18,21 @@ const Start = ({ name, startGame, game, setStartCart }) => {
   const navigate = useNavigate()
 
   const handleStart = () => {
-    startGame(contactPoint)
+    startGame(amount)
   };
 
   const { walletBalance } = useContext(AuthContext);
 
-  const handleIncDec = (value) => {
-    // setContactPoint(contactPoint + value);
-  };
+// handle increment of amount
+const handleInc = (value) => {
+  return setAmount(amount + (value * contactPoint) / 10);
+};
+
+// handle decreament of amount
+const handleDec = (value) => {
+  if (amount > (contactPoint * value) / 10)
+    return setAmount(amount - (value * contactPoint) / 10);
+};
 
   return (
     <div  className="start-container">
@@ -75,13 +86,13 @@ const Start = ({ name, startGame, game, setStartCart }) => {
 
           <div className="start-number">
             <div>
-              <button onClick={() => handleIncDec(-5)}>-5</button>
-              <button onClick={() => handleIncDec(-1)}>-1</button>
+              <button onClick={() => handleDec(5)}>-5</button>
+              <button onClick={() => handleDec(1)}>-1</button>
             </div>
-            <p>{contactPoint}</p>
+            <p>{amount}</p>
             <div>
-              <button onClick={() => handleIncDec(1)}>+1</button>
-              <button onClick={() => handleIncDec(5)}>+5</button>
+              <button onClick={() => handleInc(1)}>+1</button>
+              <button onClick={() => handleInc(5)}>+5</button>
             </div>
           </div>
         </div>

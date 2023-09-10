@@ -1,5 +1,4 @@
 .minesweeper-container {
-  padding-top: 1rem;
   color: #fff;
   width: 450px;
   margin: auto;
@@ -159,6 +158,14 @@
   margin-top: 0rem;
 }
 
+.mine-myorder .minesweeper-game-4x4 {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  margin-top: 0rem;
+}
+
 .mine-myorder .minesweeper-game-2x2 div {
   background-color: #3d5474;
   width: 100%;
@@ -174,14 +181,18 @@
   width: 100%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 0.5rem;
+  gap: 0.1rem;
 }
 
 .mine-myorder .minesweeper-game-4x4 div {
-  background-color: #4ca9e2;
-  height: 110px;
-  border-radius: 1rem;
+  background-color: #3d5474;
+  width: 100%;
+  aspect-ratio: 1/1;
+  border-radius: 0.3rem;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .myorder-text {

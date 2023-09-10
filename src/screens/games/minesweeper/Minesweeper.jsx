@@ -9,15 +9,14 @@ import { bomb, mining, moneyBag } from "../../../assets";
 import Lottie from "lottie-react";
 import { Toast } from "../../../helper";
 import ResultPopup from "../../../components/result-popup/ResultPopup";
+import Header from "../../../components/Header";
 
 const Minesweeper = () => {
   const [ratio, setRatio] = useState("2x2");
   const [contactPoint, setContactPoint] = useState(10);
   const [amount, setAmount] = useState(contactPoint);
 
-  const [cellsMined, setCellsMined] = useState([0]);
-  const [selectedGridType, setSelectedGridType] = useState(2);
-  const [selectedAmount, setSelectedAmount] = useState(20);
+  const [cellsMined, setCellsMined] = useState([]);
   const [gameId, setGameId] = useState("");
   const [bonusAmount, setBonusAmount] = useState(0.0);
   const [isPlayingMinesweeper, setIsPlayingMinesweeper] = useState(false);
@@ -29,8 +28,9 @@ const Minesweeper = () => {
   const [activeBtn2, setActiveBtn2] = useState("OtherPlayers");
   const [showResult, setShowResult] = useState(false);
   const [result, setResult] = useState();
+  const [total_transaction, settotal_transaction] = useState(0.0);
 
-  const { walletBalance } = useContext(AuthContext);
+  const { walletBalance, fetchWallet } = useContext(AuthContext);
 
   // Update ammount on selecting contact amount
   useEffect(() => {
@@ -48,53 +48,43 @@ const Minesweeper = () => {
 
   // handle decreament of amount
   const handleDec = (value) => {
-    if (amount > (contactPoint * value / 10)) return setAmount(amount -  (value * contactPoint) / 10);
+    if (amount > (contactPoint * value) / 10)
+      return setAmount(amount - (value * contactPoint) / 10);
   };
 
   const startGame = async () => {
     setStartCart(false);
-    setIsPlayingMinesweeper(false);
-    setGameId("");
 
     let body = {
-      amount: selectedAmount,
+      amount: String(amount),
       cell: String(ratio === "2x2" ? 2 : 4),
     };
 
     console.log(body);
-    const response = await dbObject.post("/mine/start", body);
+    const { data } = await dbObject.post("/mine/start", body);
 
-    console.log(response.data);
-    if (!response.data.error) {
+    console.log(data);
+    if (!data.error) {
       setIsPlayingMinesweeper(true);
-      setGameId(response.data.id);
-      // toast.success(response?.data?.message);
-      Toast(response?.data?.message, "");
-      setSelectedGridType(ratio === "2x2" ? 2 : 4);
-    } else if (
-      response.data.error &&
-      response.data.message === "Game is already running"
-    ) {
+      setGameId(data.id);
+      Toast(data?.message, "");
+      fetchWallet()
+    } else if (data.error && data.message === "Game is already running") {
       setIsPlayingMinesweeper(true);
-      setSelectedGridType(response?.data?.data?.game_mode === "2*2" ? 2 : 4);
-      setGameId(response.data.data?.game_id);
-      setCellsMined(removeLastComma(response.data.data?.tapped_cells));
-      setBonusAmount(response.data.data?.total_transaction);
+      setRatio(data?.data?.game_mode === "2*2" ? "2x2" : "4x4");
+      setGameId(data.data?.game_id);
+      setCellsMined(removeLastComma(data.data?.tapped_cells));
+      setBonusAmount(data.data?.total_transaction);
       Toast("Game is already running", 30000);
     } else {
       setIsPlayingMinesweeper(false);
       setGameId("");
-      toast.error("Something went wrong");
+      toast.error(data?.message || "Something went wrong");
     }
   };
 
-  // useEffect(() => {
-  //   startGame()
-  // }, [])
-
- 
-
   const stopAndClaimBonus = async () => {
+    // return console.log(gameId)
     if (cellsMined?.length > 0) {
       try {
         // return console.log('first')
@@ -104,17 +94,16 @@ const Minesweeper = () => {
           setIsPlayingMinesweeper(false);
           setCellsMined([]);
           setBonusAmount(0.0);
-          setSelectedAmount(20);
-          // Toast(data?.message + " Wallet balance " + data.total_transaction, '')
-          // setWinAmount(data.total_transaction)
+          settotal_transaction(0.0);
+          setContactPoint(10);
           setResult(data);
           setShowResult(true);
           getMinesweeperHistory();
+          fetchWallet()
 
-          // setTimeout(() => {
-          //   setWinAmount(null);
-          //   setShowResult(false);
-          // }, 3000);
+          setTimeout(() => {
+            setShowResult(false);
+          }, 3000);
         } else {
           toast.success(data?.message);
         }
@@ -122,7 +111,6 @@ const Minesweeper = () => {
         console.log(error);
       }
     } else {
-      toast.success("Please mine atleast one cell");
       Toast("Please mine atleast one cell", "");
     }
   };
@@ -144,6 +132,15 @@ const Minesweeper = () => {
           setCellsMined((prev) => [...prev, cell]);
           setBonusAmount(data.bonus);
           getMinesweeperHistory();
+          settotal_transaction(data.total_transaction);
+          fetchWallet()
+
+          if (
+            (ratio === "2x2" && cellsMined.length + 1 === 3) ||
+            (ratio === "4x4" && cellsMined.length + 1 === 15)
+          ) {
+            stopAndClaimBonus();
+          }
         } else {
           setResult({
             bomb: {
@@ -155,13 +152,14 @@ const Minesweeper = () => {
           setIsPlayingMinesweeper(false);
           setCellsMined([]);
           setBonusAmount(0.0);
-          setSelectedAmount(20);
-
+          setContactPoint(10);
+          settotal_transaction(0.0);
           getMinesweeperHistory();
+          fetchWallet()
 
-          // setTimeout(() => {
-          //   setShowResult(false);
-          // }, 3000);
+          setTimeout(() => {
+            setShowResult(false);
+          }, 3000);
         }
         setMiningAnimation(null);
       } else {
@@ -173,18 +171,8 @@ const Minesweeper = () => {
       setTimeout(() => {
         setIsMined(false);
       }, 1000);
-      if (
-        (selectedGridType === 2 && cellsMined.length + 1 === 2 * 2) ||
-        (selectedGridType === 4 && cellsMined.length + 1 === 4 * 4)
-      ) {
-        stopAndClaimBonus();
-      }
     }
   };
-
-  useEffect(() => {
-    console.log(selectedGridType);
-  });
 
   const removeLastComma = (arr) => {
     var b = arr.split(",").map(function (item) {
@@ -332,7 +320,8 @@ const Minesweeper = () => {
       )}
 
       <div className="minesweeper-container" style={{ marginBottom: "-65px" }}>
-        <h2>Minesweeper</h2>
+        {/* <h2>Minesweeper</h2> */}
+        <Header title="Minesweeper" path="/" />
 
         <div className="minesweeper-ratio">
           <button
@@ -417,7 +406,7 @@ const Minesweeper = () => {
           <div className="minesweeper-bonus">
             <div>
               <p>Bonus </p>
-              <p>₹ {bonusAmount}</p>
+              <p>₹ {total_transaction}</p>
             </div>
 
             <button onClick={() => stopAndClaimBonus()}>Stop & Claim</button>
@@ -495,52 +484,38 @@ const Minesweeper = () => {
                         className={`minesweeper-game-2x2`}
                         style={{ marginBottom: 0 }}
                       >
-                        <div>
-                          {item?.bomb_cell === "1" && (
-                            <img style={{ width: "80%" }} src={bomb} alt="" />
-                          )}
-                        </div>
-                        <div>
-                          {item?.bomb_cell === "2" && (
-                            <img style={{ width: "80%" }} src={bomb} alt="" />
-                          )}
-                        </div>
-                        <div>
-                          {item?.bomb_cell === "3" && (
-                            <img style={{ width: "80%" }} src={bomb} alt="" />
-                          )}
-                        </div>
-                        <div>
-                          {item?.bomb_cell === "4" && (
-                            <img style={{ width: "80%" }} src={bomb} alt="" />
-                          )}
-                        </div>
+                        {Array(4)
+                          .fill()
+                          .map((_, i) => (
+                            <div>
+                              {item?.bomb_cell === String(i + 1) && (
+                                <img
+                                  style={{ width: "80%" }}
+                                  src={bomb}
+                                  alt=""
+                                />
+                              )}
+                            </div>
+                          ))}
                       </div>
                     ) : (
                       <div
                         className={`minesweeper-game-4x4`}
                         style={{ marginBottom: 0 }}
                       >
-                        <div>
-                          {item?.bomb_cell === "1" && (
-                            <img style={{ width: "80%" }} src={bomb} alt="" />
-                          )}
-                        </div>
-                        <div>
-                          {item?.bomb_cell === "2" && (
-                            <img style={{ width: "80%" }} src={bomb} alt="" />
-                          )}
-                        </div>
-                        <div>
-                          {item?.bomb_cell === "3" && (
-                            <img style={{ width: "80%" }} src={bomb} alt="" />
-                          )}
-                        </div>
-                        <div>
-                          {item?.bomb_cell === "4" && (
-                            <img style={{ width: "80%" }} src={bomb} alt="" />
-                          )}
-                        </div>
+                        {Array(16)
+                          .fill()
+                          .map((_, i) => (
+                            <div>
+                              {item?.bomb_cell === String(i + 1) && (
+                                <img
+                                  style={{ width: "80%" }}
+                                  src={bomb}
+                                  alt=""
+                                />
+                              )}
+                            </div>
+                          ))}
                       </div>
                     )}
                   </div>

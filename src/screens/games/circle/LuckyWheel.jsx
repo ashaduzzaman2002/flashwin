@@ -10,6 +10,7 @@ import Toaster, { toastOptions } from '../../../components/Toster/Toaster';
 import { toast } from 'react-toastify';
 import Result from '../../../components/result/Result';
 import { useLocation } from 'react-router-dom';
+import Header from '../../../components/Header';
 
 const LuckyWheel = () => {
   const [activeNumbers, setActiveNumbers] = useState('1-10');
@@ -203,10 +204,9 @@ const LuckyWheel = () => {
           <Result result={result} setShowResult={setShowResult} />
         )
       }
-
-      {/* <button onClick={stopInterval}>stop</button> */}
       <div className="lucky-wheel-container">
-        <h2>Cirlce</h2>
+        {/* <h2>Cirlce</h2> */}
+        <Header title='Circle'path='/' />
 
         <div
           style={{

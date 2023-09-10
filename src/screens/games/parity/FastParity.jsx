@@ -8,6 +8,9 @@ import { dbObject } from "../../../helper/constant";
 import { toast } from "react-toastify";
 import Toaster from "../../../components/Toster/Toaster";
 import { Toast } from "../../../helper";
+import Header from "../../../components/Header";
+import { useContext } from "react";
+import { AuthContext } from "../../../context/AuthContext";
 // import GetMaskInput from "../../../helper/MaskInput";
 
 const FastParity = () => {
@@ -27,6 +30,8 @@ const FastParity = () => {
   const [showResult, setShowResult] = useState(false);
   const [result, setResult] = useState([]);
 
+  const {fetchWallet} = useContext(AuthContext)
+
   useEffect(() => {
     const fastParityRef = ref(database, "fast_parity/timer");
 
@@ -41,41 +46,44 @@ const FastParity = () => {
   }, []);
 
   const playGame = async (amount) => {
-    let body;
-    if (color) {
-      body = {
-        amount,
-        color,
-      };
-    }
-    if (number) {
-      body = {
-        amount,
-        number,
-      };
-    }
-    if (timer > 10) {
-      const { data } = await dbObject.post("/fastparity/play", body);
-      console.log(data);
-      if (!data.error) {
-        setIsFastParityPlaying(true);
-        setGameid(data.game_id);
-        setIsParticipenceAllowed(false);
-        setAmountModal(false);
-        insertGameData();
-        Toast(data.message, "");
-
-        setStartCart(false);
-        // if (timer == 0) {
-        //   getResult();
-        // }
+    try {
+      let body;
+      if (color) {
+        body = {
+          amount,
+          color,
+        };
       }
-    }
-  };
+      if (number) {
+        body = {
+          amount,
+          number,
+        };
+      }
 
-  const insertGameData = async () => {
-    // const maskNumber = GetMaskInput(user.number);
-    // console.log(maskNumber);
+      if (timer > 10) {
+        const { data } = await dbObject.post("/fastparity/play", body);
+        console.log(data);
+        if (!data.error) {
+          setIsFastParityPlaying(true);
+          setGameid(data.game_id);
+          setIsParticipenceAllowed(false);
+          setAmountModal(false);
+          Toast(data.message, "");
+
+          setStartCart(false);
+          fetchWallet()
+       
+        }else {
+          toast.error(data.message)
+        }
+      }else {
+        setStartCart(false)
+        Toast('Try in next game', '')
+      }
+    } catch (error) {
+      
+    }
   };
 
   const getHistory = async () => {
@@ -92,10 +100,10 @@ const FastParity = () => {
   };
 
   const getResult = async () => {
-    console.log(gameid)
+    console.log(gameid);
     try {
       const { data } = await dbObject.post("/parity/result", {
-        game_id: 'NcVvZIuRUM50clkrC1o',
+        game_id: "NcVvZIuRUM50clkrC1o",
       });
       console.log(data);
 
@@ -121,6 +129,8 @@ const FastParity = () => {
   useEffect(() => {
     if (timer == 0) {
       getResult();
+      getHistory();
+      fetchWallet()
     }
   }, [timer]);
 
@@ -221,7 +231,7 @@ const FastParity = () => {
       >
         <div className="container">
           <div className="parity-container">
-            <h2>Fast Parity</h2>
+            <Header title="Fast Parity" path="/" />
 
             <div className="parity-top">
               <div className="parity-period">
@@ -403,7 +413,7 @@ const FastParity = () => {
                             {item.result || "?"}
                           </p>
                         </td>
-                        <td>+₹{item.amount}</td>
+                        <td>+₹{item.transaction}</td>
                       </tr>
                     ))}
                   </tbody>

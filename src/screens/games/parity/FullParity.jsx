@@ -6,6 +6,9 @@ import "./FullParity.css";
 import { Toast } from "../../../helper";
 import { onValue, ref } from "firebase/database";
 import { database } from "../../../firebase.config";
+import Header from "../../../components/Header";
+import { useContext } from "react";
+import { AuthContext } from "../../../context/AuthContext";
 
 const FullParity = () => {
   const [startCart, setStartCart] = useState(false);
@@ -20,6 +23,7 @@ const FullParity = () => {
   const [result, setResult] = useState([]);
   const [gameid, setGameid] = useState(); //game id of the game
   const [timer, setTimer] = useState(0);
+  const {fetchWallet} = useContext(AuthContext)
 
   useEffect(() => {
     const fastParityRef = ref(database, "fast_parity/timer");
@@ -60,6 +64,7 @@ const FullParity = () => {
       Toast(data.message, "");
 
       setStartCart(false);
+      fetchWallet()
     }
    }
   };
@@ -106,6 +111,7 @@ const FullParity = () => {
   useEffect(() => {
     if (timer == 0) {
       getResult();
+      fetchWallet()
     }
   }, [timer]);
 
@@ -205,7 +211,7 @@ const FullParity = () => {
       >
         <div className="container">
           <div className="parity-container">
-            <h2>Parity</h2>
+            <Header path={'/'} title={'Parity'} />
 
             <div className="parity-top">
               <div className="parity-period">

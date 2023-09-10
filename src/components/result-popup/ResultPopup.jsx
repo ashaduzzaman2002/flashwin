@@ -1,6 +1,7 @@
 import React from "react";
 import "./result-popup.css";
-import { bomb } from "../../assets";
+import { bomb, hangLoose, magicBag } from "../../assets";
+import Lottie from "lottie-react";
 
 const ResultPopup = ({ setShowResult, ratio, result }) => {
   const ratio2x2 = [1, 2, 3, 4];
@@ -12,9 +13,22 @@ const ResultPopup = ({ setShowResult, ratio, result }) => {
       <div className="container h-100 d-flex align-items-center justify-content-center">
         <div className="result-popup-content">
           <div className="result-popup-heading">
-            <img className="coin" src="/images/coin.png" alt="coin" />
-            <img className="crown" src="/images/crown2.png" alt="crown" />
-            <h2>Win</h2>
+            {result.total_transaction > 0 ? (
+              <>
+                <img className="coin" src="/images/coin.png" alt="coin" />
+                <img
+                  className="crown"
+                  src="/images/crown2.png"
+                  alt="crown"
+                />{" "}
+              </>
+            ) : (
+              <div className="crown" style={{ width: "150px", top: -105 }}>
+                <Lottie animationData={hangLoose} loop={true} />
+              </div>
+            )}
+
+            <h2>{result.total_transaction > 0 ? "Win" : "Lose"}</h2>
           </div>
 
           <div className="result-popup-text">

@@ -5,7 +5,7 @@ const Header = ({ title, path, btn }) => {
   const navigate = useNavigate();
   return (
     <div className="app__top__nav">
-      <Link to="/" className="top__nav__cols">
+      <Link to={path || '/'} style={{cursor: 'default'}} className="top__nav__cols">
         <div className="top__nav__back__btn">
           <svg
             stroke="currentColor"
@@ -22,13 +22,13 @@ const Header = ({ title, path, btn }) => {
       </Link>
       <div className="top__nav__cols">
         <center>
-          <div className="top__nav__title">{title}</div>
+          <div className="top__nav__title" style={{fontWeight: '400', fontSize: '18px'}}>{title}</div>
         </center>
       </div>
       <div className="top__nav__cols">
-        <div onClick={() => navigate(path)} className="recharge__records__button">
+        {/* <div onClick={() => navigate(path)} className="recharge__records__button">
           {btn}
-        </div>
+        </div> */}
       </div>
     </div>
   );

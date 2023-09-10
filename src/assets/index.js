@@ -46,6 +46,7 @@ import ranking from './images/rankingIconNew1.png'
 import myLink from './images/linkNew1.png'
 import privilege1 from './images/PrivilegeNew1.png'
 import agentPlanEnter from './images/agentPlanEnter.png'
+import jenga from './gif/mine-bomb.json'
 
 export {
   Home,
@@ -96,5 +97,6 @@ export {
   ranking,
   myLink,
   privilege1,
-  agentPlanEnter
+  agentPlanEnter,
+  jenga
 };
