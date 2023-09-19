@@ -32,23 +32,41 @@ const Login = () => {
     }
   }, [user]);
 
-
   useEffect(() => {
-    // Add a 500ms (0.5 second) delay before clearing input fields
-    const delay = 300; // 500 milliseconds
-
-    const timeoutId = setTimeout(() => {
-      var inputFields = document.querySelectorAll('input');
+    const handleDOMContentLoaded = () => {
+      const inputFields = document.querySelectorAll('input');
       if (inputFields.length > 0) {
-        inputFields.forEach(function(inputField) {
+        inputFields.forEach(function (inputField) {
           inputField.value = '';
         });
       }
-    }, delay);
+    };
 
-    // Clear the timeout when the component unmounts
-    return () => clearTimeout(timeoutId);
+    window.addEventListener('DOMContentLoaded', handleDOMContentLoaded);
+
+    return () => {
+      // Remove the event listener when the component unmounts
+      window.removeEventListener('DOMContentLoaded', handleDOMContentLoaded);
+    };
   }, []);
+
+
+  // useEffect(() => {
+  //   // Add a 500ms (0.5 second) delay before clearing input fields
+  //   const delay = 1000; // 500 milliseconds
+
+  //   const timeoutId = setTimeout(() => {
+  //     var inputFields = document.querySelectorAll('input');
+  //     if (inputFields.length > 0) {
+  //       inputFields.forEach(function(inputField) {
+  //         inputField.value = '';
+  //       });
+  //     }
+  //   }, delay);
+
+  //   // Clear the timeout when the component unmounts
+  //   return () => clearTimeout(timeoutId);
+  // }, []);
 
   const { values, errors, handleBlur, touched, handleChange, handleSubmit } =
     useFormik({

@@ -144,7 +144,7 @@ const Minesweeper = () => {
         } else {
           setResult({
             bomb: {
-              bomb_cell: data?.bomb,
+              bomb_cell: data?.bomb?.bomb_cell,
             },
             total_transaction: "0",
           });
