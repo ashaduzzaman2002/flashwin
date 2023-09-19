@@ -165,7 +165,7 @@ const Minesweeper = () => {
       } else {
         // toast.warning("Already mined");
         Toast("Already mined", "");
-        setMiningAnimation(null);
+        setMiningAnimation(null);   
       }
 
       setTimeout(() => {

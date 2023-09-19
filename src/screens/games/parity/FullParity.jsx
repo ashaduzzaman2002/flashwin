@@ -9,6 +9,8 @@ import { database } from "../../../firebase.config";
 import Header from "../../../components/Header";
 import { useContext } from "react";
 import { AuthContext } from "../../../context/AuthContext";
+import { toast } from "react-toastify";
+import Toaster, { toastOptions } from "../../../components/Toster/Toaster";
 
 const FullParity = () => {
   const [startCart, setStartCart] = useState(false);
@@ -23,10 +25,11 @@ const FullParity = () => {
   const [result, setResult] = useState([]);
   const [gameid, setGameid] = useState(); //game id of the game
   const [timer, setTimer] = useState(0);
-  const {fetchWallet} = useContext(AuthContext)
+  const { fetchWallet } = useContext(AuthContext);
+  const [period, setPeriod] = useState("");
 
   useEffect(() => {
-    const fastParityRef = ref(database, "fast_parity/timer");
+    const fastParityRef = ref(database, "parity/timer");
 
     onValue(fastParityRef, (snapshot) => {
       const data = snapshot.val();
@@ -38,6 +41,22 @@ const FullParity = () => {
     });
   }, []);
 
+  useEffect(() => {
+    const fastParityRef = ref(database, "parity/period");
+    console.log("first");
+    onValue(fastParityRef, (snapshot) => {
+      console.log(snapshot)
+      const data = snapshot.val();
+      console.log(data);
+      if (data) {
+        setPeriod(data);
+        console.log(data);
+      }
+    });
+
+    console.log("first");
+  }, []);
+
   const playGame = async (amount) => {
     let body;
     if (color) {
@@ -46,27 +65,30 @@ const FullParity = () => {
         color,
       };
     }
-    if (number) {
+    if (number !== null) {
       body = {
         amount,
         number,
       };
     }
-   if(timer > 10) {
-    const { data } = await dbObject.post("/fastparity/play", body);
-    console.log(data);
-    if (!data.error) {
-      // setIsFastParityPlaying(true);
-      setGameid(data.game_id);
-      // setIsParticipenceAllowed(false);
-      // setAmountModal(false);
-      // insertGameData();
-      Toast(data.message, "");
+    if (timer > 10) {
+      const { data } = await dbObject.post("/fastparity/play", body);
+      console.log(data);
+      if (!data.error) {
+        // setIsFastParityPlaying(true);
+        setGameid(data.game_id);
+        // setIsParticipenceAllowed(false);
+        // setAmountModal(false);
+        // insertGameData();
+        Toast(data.message, "");
 
-      setStartCart(false);
-      fetchWallet()
+        setStartCart(false);
+        fetchWallet();
+      } else {
+        setStartCart(false);
+        toast.error(data.message, toastOptions);
+      }
     }
-   }
   };
 
   const getHistory = async () => {
@@ -93,7 +115,7 @@ const FullParity = () => {
       });
       console.log(data);
 
-      if (!data.error && data.result !== []) {
+      if (!data.error && data.result.length) {
         setResult(data.result[0]);
         setShowResult(true);
 
@@ -111,7 +133,7 @@ const FullParity = () => {
   useEffect(() => {
     if (timer == 0) {
       getResult();
-      fetchWallet()
+      fetchWallet();
     }
   }, [timer]);
 
@@ -132,6 +154,7 @@ const FullParity = () => {
           color={color}
         />
       )}
+      <Toaster />
 
       {showResult && (
         <div className="result-popup">
@@ -153,7 +176,7 @@ const FullParity = () => {
                     color: "green",
                   }}
                 >
-                  +₹{result.transaction}
+                  +₹{result?.transaction}
                 </p>
 
                 <div className="result-popup-text">
@@ -211,12 +234,12 @@ const FullParity = () => {
       >
         <div className="container">
           <div className="parity-container">
-            <Header path={'/'} title={'Parity'} />
+            <Header path={"/"} title={"Parity"} />
 
             <div className="parity-top">
               <div className="parity-period">
                 <p>Period</p>
-                <p>23034151</p>
+                <p>{period}</p>
               </div>
 
               <div className="parity-count">
@@ -372,27 +395,28 @@ const FullParity = () => {
                   </thead>
 
                   <tbody>
-                    {resultHistory.map((item, i) => (
+                    {resultHistory?.map((item, i) => (
                       <tr key={i} className="parity-myorder">
-                        <td>{convertTimestamp(item.date)}</td>
+                        <td>{convertTimestamp(item?.date)}</td>
                         <td className="parity-selected">
                           <p
                             style={{
-                              backgroundColor: item.user_color || "transparent",
+                              backgroundColor:
+                                item?.user_color || "transparent",
                               width: "100%",
                               color: "#fff",
                             }}
                           >
-                            {item.user_color || item.user_number}
+                            {item?.user_color || item?.user_number}
                           </p>
                         </td>
-                        <td>₹{item.actual_amount}</td>
+                        <td>₹{item?.actual_amount}</td>
                         <td className="parity-selected parity-result">
                           <p style={{ backgroundColor: "#388e3d" }}>
-                            {item.result || "?"}
+                            {item?.result || "?"}
                           </p>
                         </td>
-                        <td>+₹{item.amount}</td>
+                        <td>+₹{item?.amount}</td>
                       </tr>
                     ))}
                   </tbody>

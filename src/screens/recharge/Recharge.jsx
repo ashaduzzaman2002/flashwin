@@ -1,12 +1,12 @@
-import React, { useContext, useEffect } from 'react';
-import './Recharge.css';
-import BottomNav from '../../components/bottomNav/BottomNav';
-import HeaderSecondar from '../../components/HeaderSecondar';
-import { useState } from 'react';
-import { dbObject } from '../../helper/constant';
-import { Link, useLocation } from 'react-router-dom';
-import Header from '../../components/Header';
-import { AuthContext } from '../../context/AuthContext';
+import React, { useContext, useEffect } from "react";
+import "./Recharge.css";
+import BottomNav from "../../components/bottomNav/BottomNav";
+import HeaderSecondar from "../../components/HeaderSecondar";
+import { useState } from "react";
+import { dbObject } from "../../helper/constant";
+import { Link, useLocation } from "react-router-dom";
+import Header from "../../components/Header";
+import { AuthContext } from "../../context/AuthContext";
 
 const Recharge = () => {
   const quickAmount = [100, 250, 500, 1000, 5000, 10000];
@@ -15,18 +15,21 @@ const Recharge = () => {
 
   const { walletBalance } = useContext(AuthContext);
 
-  const location = useLocation()
+  const location = useLocation();
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location]);
 
-
   const rechargeRequest = async () => {
     try {
       const amountMap = {
-        amount,
+        amount: Number(amount),
       };
-      const { data } = await dbObject.post('/payment/deposit', amountMap);
+
+      // return console.log(amountMap)
+      const { data } = await dbObject.post("/payment/deposit", amountMap);
+
+      console.log(data)
       if (!data.error) {
         window.open(data.data.payurl);
       }
@@ -41,7 +44,7 @@ const Recharge = () => {
     const input = Number(value);
     console.log(typeof value);
 
-    if (input && typeof Number(input) == 'number' && input >= 100) {
+    if (input && typeof Number(input) == "number" && input >= 100) {
       setError(false);
     } else {
       setError(true);
@@ -55,13 +58,15 @@ const Recharge = () => {
 
       <div className="withdraw-container">
         {/* ====== Header ====== */}
-        <Header title="Recharge" path="/recharge-history" btn="Records" />
+        <Header title="Recharge" path="/" btn="Records" btnPath='/recharge-history' />
 
         {/* ====== Blance ====== */}
         <div className="recharge__page__balance__section">
           <div className="recharge__page__balance__section__inner">
             <center>
-              <div className="recharge__page__balance__section__top">Balance</div>
+              <div className="recharge__page__balance__section__top">
+                Balance
+              </div>
               <div className="recharge__page__balance__section__bottom">
                 ₹{walletBalance}
               </div>
@@ -95,7 +100,7 @@ const Recharge = () => {
           <div className="recharge__button">
             <button
               onClick={rechargeRequest}
-              className={`recharge__btn ${error && 'recharge__btn_disabled'}`}
+              className={`recharge__btn ${error && "recharge__btn_disabled"}`}
             >
               Recharge
             </button>

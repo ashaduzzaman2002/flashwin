@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./GameHistory.css";
-import { bomb, emptyBox } from "../../../assets";
+import { Cow, ElephantIcon, bomb, emptyBox, tiger } from "../../../assets";
 import { dbObject } from "../../../helper/constant";
 import { useLocation } from "react-router-dom";
 import Header from "../../../components/Header";
@@ -13,6 +13,8 @@ const GameHistory = () => {
 
   const [minesweeperHistory, setMinesweeperHistory] = useState([]);
   const [fastParityHistory, setFastParityHistory] = useState([]);
+  const [parityHistory, setParityHistory] = useState([]);
+  const [circleHistory, setCirlceHistory] = useState([]);
 
   const getMinesweeperHistory = async () => {
     try {
@@ -41,9 +43,42 @@ const GameHistory = () => {
     }
   };
 
+  const getParityHistory = async () => {
+    try {
+      const { data } = await dbObject.get("/parity/history");
+
+      console.log(data);
+
+      if (!data?.error) {
+        setParityHistory(data?.result);
+        console.log(data.result);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  
+  const getCircleHistory = async () => {
+    try {
+      const { data } = await dbObject.get("/circle/history");
+
+      console.log(data);
+
+      if (!data?.error) {
+        setCirlceHistory(data?.result);
+        console.log(data.result);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     getMinesweeperHistory();
     getFastParityHistory();
+    getParityHistory();
+    getCircleHistory()
   }, []);
 
   const location = useLocation();
@@ -55,7 +90,7 @@ const GameHistory = () => {
     <div className="container">
       <div className="gameHistory-container" style={{ marginBottom: "-65px" }}>
         {/* <h2>Game History</h2> */}
-        <Header title={'Game History'} path={'/profile'} />
+        <Header title={"Game History"} path={"/profile"} />
 
         <div className="gameHistory-content">
           <div className="gameHistory-btn-group">
@@ -190,8 +225,71 @@ const GameHistory = () => {
           )}
 
           {activeBtn === "circle" &&
-            (circle ? (
-              ""
+            (circleHistory.length ? (
+              circleHistory.map((item, i) => (
+                <tbody>
+                {circleHistory?.map((item, i) => {
+                  const currentDate = new Date(item.date);
+                  const hours = currentDate.getHours();
+                  const minutes = currentDate.getMinutes();
+
+                  return (
+                    <tr key={i} className="parity-myorder">
+                      <td>{`${hours}:${minutes}`}</td>
+                      <td
+                        className="parity-selected"
+                        style={{
+                          backgroundColor: item?.user_color,
+                          padding: "0.3rem",
+                          borderRadius: "0.5rem",
+                        }}
+                      >
+                        {!item.user_color && !item.user_animal ? (
+                          <p style={{ padding: "0.2rem" }}>
+                            {item.user_number}
+                          </p>
+                        ) : item.user_color && !item.user_animal ? (
+                          <p
+                            style={{
+                              background: "none",
+                              color: "#fff",
+                              textTransform: "capitalize",
+                            }}
+                          >
+                            {item.user_color}
+                          </p>
+                        ) : !item.user_color && item.user_animal ? (
+                          <img
+                            width={"50%"}
+                            src={
+                              item.user_animal === "lion"
+                                ? tiger
+                                : item.user_animal === "elephant"
+                                ? ElephantIcon
+                                : Cow
+                            }
+                          />
+                        ) : null}
+                      </td>
+                      <td>₹{item.actual_amount}</td>
+                      <td
+                        className="parity-selected parity-result"
+                        style={{
+                          backgroundColor: item?.winner_color,
+                          padding: "0.3rem",
+                          borderRadius: "0.5rem",
+                        }}
+                      >
+                        <p style={{ background: "none" }}>
+                          {item?.winner_number}
+                        </p>
+                      </td>
+                      <td>₹{Number(item.transaction).toFixed(2)}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+              ))
             ) : (
               <div className="emptyImage">
                 <img src={emptyBox} alt="" />
@@ -202,7 +300,7 @@ const GameHistory = () => {
             (fastParity ? (
               <div className="game-history">
                 {fastParityHistory.map((item, i) => (
-                  <FastParityCard item={item} />
+                  <FastParityCard key={i} item={item} />
                 ))}
               </div>
             ) : (
@@ -214,10 +312,9 @@ const GameHistory = () => {
           {activeBtn === "full-parity" &&
             (fullParity ? (
               <div className="game-history">
-                <FullParityCard />
-                <FullParityCard />
-                <FullParityCard />
-                <FullParityCard />
+                {parityHistory.map((item, i) => (
+                  <FullParityCard key={i} item={item} />
+                ))}
               </div>
             ) : (
               <div className="emptyImage">
@@ -230,13 +327,12 @@ const GameHistory = () => {
   );
 };
 
-const FastParityCard = ({ item }) => {
-
-  const dateTimeArr = item.date.split('T')
-  const date  = dateTimeArr[0]
-  const time = dateTimeArr[1].split(':')
+const FastParityCard = ({ item, key }) => {
+  const dateTimeArr = item.date.split("T");
+  const date = dateTimeArr[0];
+  const time = dateTimeArr[1].split(":");
   return (
-    <div className="history-parity">
+    <div key={key} className="history-parity">
       <div className="date">
         <p>Period {`${time[0]}:${time[1]}`}</p>
         <p>{`${date} ${time[0]}:${time[1]}`}</p>
@@ -297,53 +393,71 @@ const FastParityCard = ({ item }) => {
   );
 };
 
-const FullParityCard = () => (
-  <div className="history-parity">
-    <div className="date">
-      <p>Period 15:58</p>
-      <p>11/07/2023 15:58</p>
+const FullParityCard = ({ item, key }) => {
+  const dateTimeArr = item.date.split("T");
+  const date = dateTimeArr[0];
+  const time = dateTimeArr[1].split(":");
+
+  return (
+    <div key={key} className="history-parity">
+      <div className="date">
+        <p>Period {`${time[0]}:${time[1]}`}</p>
+        <p>{`${date} ${time[0]}:${time[1]}`}</p>
+      </div>
+
+      <div>
+        <table style={{ width: "100%", marginTop: "1rem" }}>
+          <thead>
+            <tr
+              className="parity-myorder-header parity-myorder"
+              style={{ gridTemplateColumns: "repeat(4, 1fr)" }}
+            >
+              <td>Select</td>
+              <td>Point</td>
+              <td>Result</td>
+              <td>Amount</td>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr
+              style={{ gridTemplateColumns: "repeat(4, 1fr)" }}
+              className="parity-myorder"
+            >
+              <td className="parity-selected">
+                <p
+                  style={{
+                    backgroundColor: item.user_color || "#a1989894",
+                    width: "100%",
+                    color: "#fff",
+                  }}
+                >
+                  {item.user_color || item.user_number}
+                </p>
+              </td>
+              <td>₹{item.actual_amount}</td>
+              <td className="parity-selected parity-result">
+                <p>{item.result}</p>
+              </td>
+              <td>₹{item.transaction}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div className="hr80" />
+
+      <div className="parity-delivery">
+        <p>Delivery: ₹{item.amount}</p>
+        <p>Fees: ₹1.00</p>
+      </div>
+
+      <div className="history-parity-btn">
+        <button style={{ backgroundColor: "#ffdcaa" }}>To Verify</button>
+        <button style={{ backgroundColor: "#e99d97" }}>Complaint</button>
+      </div>
     </div>
-
-    <div>
-      <table style={{ width: "100%", marginTop: "1rem" }}>
-        <thead>
-          <tr className="parity-myorder-header parity-myorder">
-            <td>Period</td>
-            <td>Select</td>
-            <td>Point</td>
-            <td>Result</td>
-            <td>Amount</td>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr className="parity-myorder">
-            <td>18:01</td>
-            <td className="parity-selected">
-              <p>3</p>
-            </td>
-            <td>₹10</td>
-            <td className="parity-selected parity-result">
-              <p>4</p>
-            </td>
-            <td>₹0.00</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div className="hr80" />
-
-    <div className="parity-delivery">
-      <p>Delivery: ₹19.00</p>
-      <p>Fees: ₹1.00</p>
-    </div>
-
-    <div className="history-parity-btn">
-      <button style={{ backgroundColor: "#ffdcaa" }}>To Verify</button>
-      <button style={{ backgroundColor: "#e99d97" }}>Complaint</button>
-    </div>
-  </div>
-);
+  );
+};
 
 export default GameHistory;

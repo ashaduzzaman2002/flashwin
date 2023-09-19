@@ -32,6 +32,7 @@
     justify-content: space-between;
     padding: 0 5%;
     width: 100%;
+    cursor: pointer;
 }
 
 .profile__records__section__col__left {

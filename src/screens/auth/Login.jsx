@@ -1,19 +1,19 @@
-import React, { useState, useContext, useEffect } from 'react';
-import './auth.css';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { useFormik } from 'formik';
-import { loginValidation } from '../../validation';
-import { dbObject } from '../../helper/constant';
-import { AuthContext } from '../../context/AuthContext';
-import Loading from '../../components/loading/Loading';
-import Toaster, { toastOptions } from '../../components/Toster/Toaster';
-import {Toast} from '../../helper'
+import React, { useState, useContext, useEffect } from "react";
+import "./auth.css";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useFormik } from "formik";
+import { loginValidation } from "../../validation";
+import { dbObject } from "../../helper/constant";
+import { AuthContext } from "../../context/AuthContext";
+import Loading from "../../components/loading/Loading";
+import Toaster, { toastOptions } from "../../components/Toster/Toaster";
+import { Toast } from "../../helper";
 
 const initialValues = {
-  number: '',
-  password: '',
+  number: "",
+  password: "",
 };
 
 const Login = () => {
@@ -27,12 +27,28 @@ const Login = () => {
       if (location.state) {
         navigate(location.state?.from, { replace: true });
       } else {
-        navigate('/', { replace: true });
+        navigate("/", { replace: true });
       }
     }
   }, [user]);
 
 
+  useEffect(() => {
+    // Add a 500ms (0.5 second) delay before clearing input fields
+    const delay = 300; // 500 milliseconds
+
+    const timeoutId = setTimeout(() => {
+      var inputFields = document.querySelectorAll('input');
+      if (inputFields.length > 0) {
+        inputFields.forEach(function(inputField) {
+          inputField.value = '';
+        });
+      }
+    }, delay);
+
+    // Clear the timeout when the component unmounts
+    return () => clearTimeout(timeoutId);
+  }, []);
 
   const { values, errors, handleBlur, touched, handleChange, handleSubmit } =
     useFormik({
@@ -40,20 +56,20 @@ const Login = () => {
       validationSchema: loginValidation,
       onSubmit: async () => {
         try {
-          const { data } = await dbObject.post('/auth/login', values);
-          console.log(data)
+          const { data } = await dbObject.post("/auth/login", values);
+          console.log(data);
           if (!data?.error) {
             // toast.success('Logged In Successfully!', toastOptions);
-            Toast('Logged In Successfully!', '')
+            Toast("Logged In Successfully!", "");
 
             setTimeout(() => {
-              navigate('/');
-              setUser(data.data[0])
-              setIsLogin(true)
+              navigate("/");
+              setUser(data.data[0]);
+              setIsLogin(true);
             }, 1000);
           } else {
             // toast.error(data.message, toastOptions);
-            Toast(data.message, '')
+            Toast(data.message, "");
           }
         } catch (error) {
           console.log(error);
@@ -62,15 +78,15 @@ const Login = () => {
     });
 
   if (loading) {
-    return <Loading />
+    return <Loading />;
   } else {
     return (
       <div className="auth-container">
         <h2>
-          Log <span style={{ color: '#67efaf' }}>In</span>{' '}
+          Log <span style={{ color: "#67efaf" }}>In</span>{" "}
         </h2>
         <form onSubmit={handleSubmit} className="auth-form " action="">
-          <div style={{ marginBottom: '1.5rem' }}>
+          <div style={{ marginBottom: "1.5rem" }}>
             <label htmlFor="number">Phone</label>
             <div className="auth-input phone-input">
               <i className="fa-solid fa-mobile-screen-button"></i>
@@ -88,11 +104,11 @@ const Login = () => {
             </div>
 
             {errors.number && touched.number ? (
-              <small style={{ color: 'red' }}>{errors.number}</small>
+              <small style={{ color: "red" }}>{errors.number}</small>
             ) : null}
           </div>
 
-          <div style={{ marginBottom: '1.5rem' }}>
+          <div style={{ marginBottom: "1.5rem" }}>
             <label htmlFor="password">Password</label>
 
             <div className="auth-input password-input">
@@ -104,7 +120,7 @@ const Login = () => {
                 id="password"
                 placeholder="Password (> 3 characters)"
                 autoComplete="off"
-                type={showPassword ? 'text' : 'password'}
+                type={showPassword ? "text" : "password"}
                 name="password"
               />
 
@@ -112,14 +128,14 @@ const Login = () => {
                 onClick={() => setShowPassword(!showPassword)}
                 className={
                   showPassword
-                    ? 'fa-solid fa-eye'
-                    : 'fa-solid fa-eye-slash' + ' password'
+                    ? "fa-solid fa-eye" + " password"
+                    : "fa-solid fa-eye-slash" + " password"
                 }
               ></i>
             </div>
 
             {errors.password && touched.password ? (
-              <small style={{ color: 'red' }}>{errors.password}</small>
+              <small style={{ color: "red" }}>{errors.password}</small>
             ) : null}
           </div>
 
@@ -140,8 +156,6 @@ const Login = () => {
       </div>
     );
   }
-
-
 };
 
 export default Login;

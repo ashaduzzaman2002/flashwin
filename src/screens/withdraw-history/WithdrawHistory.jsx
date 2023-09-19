@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { dbObject } from '../../helper/constant';
 import HeaderSecondar from '../../components/HeaderSecondar';
 import './withdrawHistory.css';
+import Header from '../../components/Header';
 
 const WithdrawHistory = () => {
   const [withdrawList, setWithdrawList] = useState([]);
@@ -24,7 +25,7 @@ const WithdrawHistory = () => {
   return (
     <div className="container">
       <div className="withdraw-history-container">
-        <h2>Withdraw History</h2>
+        <Header path={'/withdraw'} title={'Withdraw History'} />
 
         <div className="withdraw-history-card-group">
           {withdrawList.map((items) => {

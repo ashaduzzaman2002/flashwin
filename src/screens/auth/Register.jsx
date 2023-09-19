@@ -162,7 +162,7 @@ const Register = () => {
 
             <i
               onClick={() => setShowPassword(!showPassword)}
-              className={showPassword ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash' + ' password'}
+              className={showPassword ? 'fa-solid fa-eye' + ' password' : 'fa-solid fa-eye-slash' + ' password'}
             ></i>
           </div>
 

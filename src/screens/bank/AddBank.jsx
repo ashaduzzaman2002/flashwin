@@ -4,6 +4,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useFormik } from "formik";
 import { bankValidation } from "../../validation";
+import { useNavigate } from "react-router-dom";
+import Header from "../../components/Header";
 
 const initialValues = {
   bank_name: "",
@@ -20,12 +22,7 @@ const AddBank = () => {
   const [account_holder, setAccountHolder] = useState("");
   const [upi, setUpiId] = useState("");
 
-  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
-    useFormik({
-      initialValues: initialValues,
-      validationSchema: bankValidation,
-      onSubmit: async () => {},
-    });
+  const navigate = useNavigate();
 
   const addbankAccount = async (e) => {
     e.preventDefault();
@@ -36,8 +33,11 @@ const AddBank = () => {
       ifsc_code,
       upi,
     };
+
+    console.log(bankMap)
     try {
       const { data } = await dbObject.post("/payment/add", bankMap);
+      console.log(data)
       if (!data.error) {
         toast.success(data.message, {
           position: "top-center",
@@ -49,6 +49,15 @@ const AddBank = () => {
           progress: undefined,
           theme: "colored",
         });
+
+        setAccountHolder("");
+        setAccountNumber("");
+        setBankName("");
+        setUpiId("");
+        setIfscCode("");
+        setTimeout(() => {
+          navigate("/bank-details");
+        }, 1000);
       } else {
         toast.error(data.message, {
           position: "top-center",
@@ -69,25 +78,22 @@ const AddBank = () => {
   return (
     <div className="container">
       <div className="bankDetails-container">
+        <Header title={'Add Bank'} path={'/bank-details'} />
         <div className="addbank-icon">
           <i className="fa-solid fa-building-columns"></i>
         </div>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={addbankAccount}>
           <div className="up-input-outer">
             <label htmlFor="input1">Bank Name</label>
             <input
               id="input1"
               type="text"
               placeholder="Eg., State Bank of India"
-              value={values.bank_name}
+              value={bank_name}
               name="bank_name"
-              onBlur={handleBlur}
-              onChange={handleChange}
+              onChange={(e) => setBankName(e.target.value)}
             />
-            {errors.bank_name && touched.bank_name ? (
-              <small style={{ color: "red" }}>{errors.bank_name}</small>
-            ) : null}
           </div>
 
           <div className="up-input-outer">
@@ -96,15 +102,10 @@ const AddBank = () => {
               id="input2"
               type="text"
               placeholder="Eg., 110283...."
-              value={values.account_number}
+              value={account_number}
               name="account_number"
-              onBlur={handleBlur}
-              onChange={handleChange}
+              onChange={(e) => setAccountNumber(e.target.value)}
             />
-
-            {errors.account_number && touched.account_number ? (
-              <small style={{ color: "red" }}>{errors.account_number}</small>
-            ) : null}
           </div>
 
           <div className="up-input-outer">
@@ -113,14 +114,10 @@ const AddBank = () => {
               id="input3"
               type="text"
               placeholder="Eg., SBIN008.."
-              value={values.ifsc_code}
+              value={ifsc_code}
               name="ifsc_code"
-              onBlur={handleBlur}
-              onChange={handleChange}
+              onChange={(e) => setIfscCode(e.target.value)}
             />
-            {errors.ifsc_code && touched.ifsc_code ? (
-              <small style={{ color: "red" }}>{errors.ifsc_code}</small>
-            ) : null}
           </div>
 
           <div className="up-input-outer">
@@ -129,14 +126,10 @@ const AddBank = () => {
               id="input4"
               type="text"
               placeholder="Eg., Your Name"
-              value={values.account_holder}
+              value={account_holder}
               name="account_holder"
-              onBlur={handleBlur}
-              onChange={handleChange}
+              onChange={(e) => setAccountHolder(e.target.value)}
             />
-            {errors.account_holder && touched.account_holder ? (
-              <small style={{ color: "red" }}>{errors.account_holder}</small>
-            ) : null}
           </div>
 
           <div className="up-input-outer">
@@ -145,15 +138,10 @@ const AddBank = () => {
               id="input1"
               type="text"
               placeholder="Eg., some@upi"
-              value={values.upi}
+              value={upi}
               name="upi"
-              onBlur={handleBlur}
-              onChange={handleChange}
+              onChange={(e) => setUpiId(e.target.value)}
             />
-
-            {errors.upi && touched.upi ? (
-              <small style={{ color: "red" }}>{errors.upi}</small>
-            ) : null}
           </div>
           <div style={{ width: "100%" }}>
             <button

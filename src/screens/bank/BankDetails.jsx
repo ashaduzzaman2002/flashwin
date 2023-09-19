@@ -2,19 +2,22 @@ import React, { useContext, useEffect, useState } from 'react';
 import './Bank.css';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
+import Header from '../../components/Header';
 
 const BankDetails = () => {
   const { user } = useContext(AuthContext);
-  const [banks, setBanks] = useState(true);
+  // const 
+ 
   const navigate = useNavigate();
   return (
     <div className="container">
       <div className="bankDetails-container">
-        <h2>Bank Details</h2>
+        {/* <h2>Bank Details</h2> */}
+        <Header path={'/withdraw'} title={'Bank'} />
 
-        {banks ? (
+        {user?.bank ? (
           <div className="all-bank">
-            <BankCard setBanks={setBanks} />
+            <BankCard remove = {true} data={user?.bank} />
           </div>
         ) : (
           <div onClick={() => navigate('/add-bank')} className="bank-card">
@@ -32,39 +35,44 @@ const BankDetails = () => {
   );
 };
 
-const BankCard = ({setBanks}) => (
-  <div className="bank-detail-card">
-    <div className="bank-detail-card-header">
-      <h3>Punjab National Bank</h3>
-      <button onClick={() => setBanks(false)}>
+export const BankCard = ({remove, data}) => {
+  console.log(data)
+  return (
+  <div className="bank-detail-card" style={{color: '#fff'}}>
+    <div className="bank-detail-card-header" >
+      <h3>{data?.bank_name}</h3>
+      {
+        remove && <button>
         <i className="fa-solid fa-trash"></i>
       </button>
+      }
+      
     </div>
 
     <div className='bank-detail-card-info' style={{marginTop: '2rem'}}>
       <div>
         <p>A/C Number</p>
-        <p>00000000000</p>
+        <p>{data?.account_number}</p>
       </div>
 
       <div>
         <p>IFSC</p>
-        <p>UTBI0007</p>
+        <p>{data?.ifsc_code}</p>
       </div>
     </div>
 
     <div className='bank-detail-card-info'>
       <div>
         <p>Holder Name</p>
-        <p>Ashadu Zaman</p>
+        <p>{data?.account_holder}</p>
       </div>
 
       <div>
         <p>UPI Address</p>
-        <p>exaple@ybl</p>
+        <p>{data?.upi}</p>
       </div>
     </div>
   </div>
-);
+);}
 
 export default BankDetails;

@@ -1,13 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react';
-import BottomNav from '../../../components/bottomNav/BottomNav';
-import { Bot, avatar } from '../../../assets';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import './Profile.css';
-import ConfirmModal from '../../../components/modal/ConfirmModal';
-import { AuthContext } from '../../../context/AuthContext';
-import { dbObject } from '../../../helper/constant';
-import { ToastContainer, toast } from 'react-toastify';
-import { Toast } from '../../../helper';
+import React, { useContext, useEffect, useState } from "react";
+import BottomNav from "../../../components/bottomNav/BottomNav";
+import { Bot, avatar } from "../../../assets";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import "./Profile.css";
+import ConfirmModal from "../../../components/modal/ConfirmModal";
+import { AuthContext } from "../../../context/AuthContext";
+import { dbObject } from "../../../helper/constant";
+import { ToastContainer, toast } from "react-toastify";
+import { Toast } from "../../../helper";
 
 const Profile = () => {
   const [showModal, setShowModal] = useState(false);
@@ -16,13 +16,12 @@ const Profile = () => {
 
   const logout = async () => {
     try {
-      await dbObject.post('auth/logout');
+      await dbObject.post("auth/logout");
 
-
-      Toast('Logged Out!', '')
+      Toast("Logged Out!", "");
 
       setTimeout(() => {
-        navigate('/login');
+        navigate("/login");
       }, 1000);
       setUser(null);
     } catch (error) {
@@ -30,7 +29,7 @@ const Profile = () => {
     }
   };
 
-  const location = useLocation()
+  const location = useLocation();
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location]);
@@ -41,7 +40,7 @@ const Profile = () => {
         <ConfirmModal
           confirmFunc={logout}
           setFunc={setShowModal}
-          text1={'Are you sure you want to logout?'}
+          text1={"Are you sure you want to logout?"}
           text2="Do you really want to logout?"
         />
       )}
@@ -55,7 +54,10 @@ const Profile = () => {
               {/* Top Navbar */}
               <div className="app__top__nav">
                 <div className="top__nav__cols">
-                  <div className="top__nav__back__btn" onClick={() => navigate('/')}>
+                  <div
+                    className="top__nav__back__btn"
+                    onClick={() => navigate("/")}
+                  >
                     <svg
                       stroke="currentColor"
                       fill="currentColor"
@@ -88,22 +90,22 @@ const Profile = () => {
                 </div>
                 <div className="user__details__section__right">
                   <div className="user__details__section__right__col">
-                    <b>ID: 0QLSRILB</b>
+                    <b>ID: {user?.referrel_id}</b>
                   </div>
                   <div className="user__details__section__right__col">
-                    Phone: 7256820024
+                    Phone: {user?.number}
                   </div>
-                  <div className="user__details__section__right__col">Name: </div>
+                
                 </div>
               </div>
-              <div style={{height: 20, backgroundColor: '#0a2134ad'}}>
-
-</div>
-              
+              <div style={{ height: 20, backgroundColor: "#0a2134ad" }}></div>
 
               {/* Game history */}
               <div className="profile__records__section">
-                <div className="profile__records__section__col" onClick={() => navigate('/game-history')}>
+                <div
+                  className="profile__records__section__col"
+                  onClick={() => navigate("/game-history")}
+                >
                   <div className="profile__records__section__col__left">
                     <div className="profile__record__section__col__icon">
                       <svg
@@ -139,7 +141,11 @@ const Profile = () => {
                 </div>
 
                 {/* Recent Transaction */}
-                <div className="profile__records__section__col" style={{ marginTop: 20 }} onClick={() => navigate('/recent-transaction')}>
+                <div
+                  className="profile__records__section__col"
+                  style={{ marginTop: 20 }}
+                  onClick={() => navigate("/recent-transaction")}
+                >
                   <div className="profile__records__section__col__left">
                     <div className="profile__record__section__col__icon">
                       <svg
@@ -168,7 +174,6 @@ const Profile = () => {
                       Recent Transaction
                     </div>
                   </div>
-                  
 
                   <div className="profile__records__section__col__right">
                     <svg
@@ -183,17 +188,23 @@ const Profile = () => {
                       <path d="M294.1 256L167 129c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.3 34 0L345 239c9.1 9.1 9.3 23.7.7 33.1L201.1 417c-4.7 4.7-10.9 7-17 7s-12.3-2.3-17-7c-9.4-9.4-9.4-24.6 0-33.9l127-127.1z"></path>
                     </svg>
                   </div>
-
                 </div>
               </div>
 
-              <div style={{height: 20, backgroundColor: '#0a2134ad', marginTop: '20px'}}>
-              </div>
-
+              <div
+                style={{
+                  height: 20,
+                  backgroundColor: "#0a2134ad",
+                  marginTop: "20px",
+                }}
+              ></div>
 
               <div className="profile__records__section">
                 {/* Follow us */}
-                <div className="profile__records__section__col" onClick={() => navigate('/follow-us')}>
+                <div
+                  className="profile__records__section__col"
+                  onClick={() => navigate("/follow-us")}
+                >
                   <div className="profile__records__section__col__left">
                     <div className="profile__record__section__col__icon">
                       <svg
@@ -231,7 +242,10 @@ const Profile = () => {
 
               {/* Sign out */}
               <div className="profile__records__section">
-                <div className="profile__records__section__col" onClick={() => setShowModal(true)}>
+                <div
+                  className="profile__records__section__col"
+                  onClick={() => setShowModal(true)}
+                >
                   <div className="profile__records__section__col__left">
                     <div className="profile__record__section__col__icon">
                       <svg
@@ -277,6 +291,5 @@ const Profile = () => {
     </>
   );
 };
-
 
 export default Profile;

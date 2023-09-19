@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { dbObject } from '../../helper/constant';
 import './recentTransaction.css';
 import { bomb, check, dice, fortuneWheel, rocket } from '../../assets';
+import Header from '../../components/Header';
 
 const RecentTransaction = () => {
   const [transactionList, setTransactionList] = useState([]);
@@ -24,7 +25,7 @@ const RecentTransaction = () => {
   return (
     <div className="container">
       <div className="transaction-history-container" style={{marginBottom: '-65px'}}>
-        <h2>Recharge History</h2>
+        <Header path='/profile' title='Recent Transaction'/>
 
         <div className="transaction-history-card-group">
           {transactionList.map((items) => (

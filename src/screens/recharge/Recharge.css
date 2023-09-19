@@ -12,7 +12,7 @@
 }
 
 .top__nav__cols {
-    flex-basis: calc(100% / 3);
+    flex-basis: calc(100% / 4);
     color: #fff;
 }
 

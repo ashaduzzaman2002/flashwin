@@ -30,8 +30,10 @@ const FastParity = () => {
   const [showResult, setShowResult] = useState(false);
   const [result, setResult] = useState([]);
 
-  const {fetchWallet} = useContext(AuthContext)
+  const { fetchWallet } = useContext(AuthContext);
+  const [period, setPeriod] = useState('')
 
+  
   useEffect(() => {
     const fastParityRef = ref(database, "fast_parity/timer");
 
@@ -45,6 +47,18 @@ const FastParity = () => {
     });
   }, []);
 
+  useEffect(() => {
+    const fastParityRef = ref(database, "fast_parity/period");
+
+    onValue(fastParityRef, (snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+       setPeriod(data)
+        console.log(data)
+      }
+    });
+  }, []);
+
   const playGame = async (amount) => {
     try {
       let body;
@@ -54,35 +68,37 @@ const FastParity = () => {
           color,
         };
       }
-      if (number) {
+      if (number !== null) {
         body = {
           amount,
-          number,
+          number: String(number),
         };
       }
+
+    console.log(body)
+
 
       if (timer > 10) {
         const { data } = await dbObject.post("/fastparity/play", body);
         console.log(data);
         if (!data.error) {
           setIsFastParityPlaying(true);
-          setGameid(data.game_id);
+          setGameid(data?.game_id);
           setIsParticipenceAllowed(false);
           setAmountModal(false);
           Toast(data.message, "");
 
           setStartCart(false);
-          fetchWallet()
-       
-        }else {
-          toast.error(data.message)
+          fetchWallet();
+        } else {
+          toast.error(data.message);
         }
-      }else {
-        setStartCart(false)
-        Toast('Try in next game', '')
+      } else {
+        setStartCart(false);
+        Toast("Try in next game", "");
       }
     } catch (error) {
-      
+      console.log(error)
     }
   };
 
@@ -107,16 +123,16 @@ const FastParity = () => {
       });
       console.log(data);
 
-      // if (!data.error && data.result !== []) {
-      //   setResult(data.result[0]);
-      //   setShowResult(true);
+      if (!data.error && data.result.length) {
+        setResult(data.result[0]);
+        setShowResult(true);
 
-      //   setTimeout(() => {
-      //     setShowResult(false);
-      //     setResult([]);
-      //     setGameid(null);
-      //   }, 3000);
-      // }
+        setTimeout(() => {
+          setShowResult(false);
+          setResult([]);
+          setGameid(null);
+        }, 3000);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -130,7 +146,7 @@ const FastParity = () => {
     if (timer == 0) {
       getResult();
       getHistory();
-      fetchWallet()
+      fetchWallet();
     }
   }, [timer]);
 
@@ -178,7 +194,7 @@ const FastParity = () => {
                 <div className="result-popup-text">
                   <div className="d-flex justify-content-between">
                     <p className="mb-0">Period</p>
-                    <p className="mb-0">{result.game_id}</p>
+                    <p className="mb-0">{result?.game_id}</p>
                   </div>
 
                   <div className="mt-4 result-popup-text-box">
@@ -191,8 +207,8 @@ const FastParity = () => {
                     >
                       <p className="mb-0">Selected</p>
 
-                      <p className="" style={{ color: result.user_color }}>
-                        {result.user_color || result.user_number}
+                      <p className="" style={{ color: result?.user_color }}>
+                        {result?.user_color || result?.user_number}
                       </p>
                     </div>
 
@@ -202,7 +218,7 @@ const FastParity = () => {
                         className="mb-0 text-success"
                         style={{ color: "#111" }}
                       >
-                        {result.amount}
+                        {result?.amount}
                       </h2>
                     </div>
                   </div>
@@ -236,7 +252,7 @@ const FastParity = () => {
             <div className="parity-top">
               <div className="parity-period">
                 <p>Period</p>
-                <p>23034151</p>
+                <p>{period}</p>
               </div>
 
               <div className="parity-count">
@@ -290,17 +306,17 @@ const FastParity = () => {
             </div>
 
             <div className="paritynum-btns">
-              {firstCardList.map((item, i) => (
+              {Array(10).fill()?.map((item, i) => (
                 <button
                   key={i}
                   onClick={() => {
-                    setNumber(item);
+                    setNumber(i);
                     setColor(null);
                     setStartCart(true);
                   }}
                   disabled={timer < 11}
                 >
-                  <p>{item}</p>
+                  <p>{i}</p>
                   <i className="fa-solid fa-bolt"></i>
                 </button>
               ))}
@@ -393,15 +409,17 @@ const FastParity = () => {
                   </thead>
 
                   <tbody>
-                    {resultHistory.map((item, i) => (
+                    {resultHistory?.map((item, i) => (
                       <tr key={i} className="parity-myorder">
-                        <td>{convertTimestamp(item.date)}</td>
+                        <td>{convertTimestamp(item?.date)}</td>
                         <td className="parity-selected">
                           <p
                             style={{
-                              backgroundColor: item.user_color || "transparent",
+                              backgroundColor: item?.user_color
+                                ? item?.user_color
+                                : "white",
                               width: "100%",
-                              color: "#fff",
+                              color: item?.user_color ? "#fff" : "black",
                             }}
                           >
                             {item.user_color || item.user_number}
@@ -409,11 +427,50 @@ const FastParity = () => {
                         </td>
                         <td>₹{item.actual_amount}</td>
                         <td className="parity-selected parity-result">
-                          <p style={{ backgroundColor: "#388e3d" }}>
-                            {item.result || "?"}
-                          </p>
+                          <div
+                            className="parity__records__circle"
+                            style={{ width: "50%" }}
+                          >
+                            <div className="parity__records__circle__no">
+                              {item?.result}
+                            </div>
+                            <div
+                              className="parity__records__circle__inner"
+                              style={{
+                                backgroundColor:
+                                  item?.result === "-"
+                                    ? "#fec007"
+                                    : item?.result % 2 === 0
+                                    ? "#f44238"
+                                    : "#3b8d3c",
+                              }}
+                            >
+                              <div
+                                className="parity__records__circle__col"
+                                style={{
+                                  background:
+                                    item?.result === 0
+                                      ? "#f24337"
+                                      : item?.result === 5
+                                      ? "#1f98ef"
+                                      : "",
+                                }}
+                              ></div>
+                              <div
+                                className="parity__records__circle__col"
+                                style={{
+                                  background:
+                                    item?.result === 0
+                                      ? "#0f45a2"
+                                      : item?.result === 5
+                                      ? "#388e3d"
+                                      : "",
+                                }}
+                              ></div>
+                            </div>
+                          </div>
                         </td>
-                        <td>+₹{item.transaction}</td>
+                        <td>+₹{item?.transaction}</td>
                       </tr>
                     ))}
                   </tbody>

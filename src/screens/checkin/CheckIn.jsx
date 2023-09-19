@@ -1,63 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import './CheckIn.css';
-import { coin, treasure } from '../../assets';
-import { dbObject } from '../../helper/constant';
+import React, { useEffect, useState } from "react";
+import "./CheckIn.css";
+import { coin, treasure } from "../../assets";
+import { dbObject } from "../../helper/constant";
 
-import { toast, ToastContainer } from 'react-toastify';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from "react-toastify";
+import { useLocation, useNavigate } from "react-router-dom";
+import Toaster, { toastOptions } from "../../components/Toster/Toaster";
 
 const CheckIn = () => {
-  const dayList = [1, 2, 3, 4, 5, 6, 7];
-  const [data, setData] = useState([]);
-
-  const navigate = useNavigate()
-
-  const checkinData = [
-    {
-      label: 'Day 1',
-      amount: 1,
-      icon: 'coin',
-      listLabel: 'day1',
-    },
-    {
-      label: 'Day 2',
-      amount: 2,
-      icon: 'coin',
-      listLabel: 'day2',
-    },
-    {
-      label: 'Day 3',
-      amount: 2,
-      icon: 'coin',
-      listLabel: 'day3',
-    },
-    {
-      label: 'Day 4',
-      amount: 2,
-      icon: 'coin',
-      listLabel: 'day4',
-    },
-    {
-      label: 'Day 5',
-      amount: 3,
-      icon: 'coin',
-      listLabel: 'day5',
-    },
-    {
-      label: 'Day 6',
-      amount: 3,
-      icon: 'coin',
-      listLabel: 'day6',
-    },
-    {
-      label: 'Day 7',
-      amount: 3,
-      icon: 'coin',
-      listLabel: 'day7',
-    },
-  ];
-
-  let dailyCheckinList = {
+  const navigate = useNavigate();
+  const [dailyCheckinList, setDailyCheckList] = useState({
     day1: null,
     day2: null,
     day3: null,
@@ -65,13 +17,14 @@ const CheckIn = () => {
     day5: null,
     day6: null,
     day7: null,
-  };
+  });
 
   const fetchCheckinDetails = async () => {
     try {
-      const { data } = await dbObject.post('/task/checkin/fetch');
+      const { data } = await dbObject.post("/task/checkin/fetch");
+      console.log(data.data);
       if (!data.error) {
-        setData(data?.data);
+        setDailyCheckList(data?.data[0]);
       }
     } catch (error) {
       console.log(error);
@@ -80,29 +33,12 @@ const CheckIn = () => {
 
   const claimCheckinReward = async () => {
     try {
-      const { data } = await dbObject.post('/task/checkin');
+      const { data } = await dbObject.post("/task/checkin");
+      console.log(data);
       if (!data.error) {
-        toast.success(data.message, {
-          position: 'top-center',
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: 'colored',
-        });
+        toast.success(data.message, toastOptions);
       } else {
-        toast.error(data.message, {
-          position: 'top-center',
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: 'colored',
-        });
+        toast.error(data.message, toastOptions);
       }
     } catch (error) {
       console.log(error);
@@ -113,24 +49,23 @@ const CheckIn = () => {
     fetchCheckinDetails();
   }, []);
 
-  const location = useLocation()
+  const location = useLocation();
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location]);
 
-
   return (
     <div className="App">
+      <Toaster />
       <div className="app__responsive">
         <div className="checkIn__page">
-          <div className='container'>
-
+          <div className="container">
             <div className="checkIn__nav">
               <div className="checkIn__nav__col">
                 <div
-                  onClick={() => navigate('/')}
+                  onClick={() => navigate("/")}
                   className="top__nav__back__btn"
-                  style={{ color: 'rgb(255, 255, 255)' }}
+                  style={{ color: "rgb(255, 255, 255)" }}
                 >
                   <svg
                     stroke="currentColor"
@@ -147,32 +82,58 @@ const CheckIn = () => {
               </div>
               <div
                 className="checkIn__nav__col"
-                style={{ color: 'rgb(255, 255, 255)', fontWeight: '500' }}
+                style={{ color: "rgb(255, 255, 255)", fontWeight: "500" }}
               >
                 <center>Check In</center>
               </div>
               <div className="checkIn__nav__col"></div>
             </div>
-            <div className="checkIn__screen" style={{ position: 'relative' }}>
+            <div className="checkIn__screen" style={{ position: "relative" }}>
               <div className="checkIn__screen__container">
-                <CoinCard title='Day 1' point="1" />
-                <CoinCard title='Day 2' point="2" />
-                <CoinCard title='Day 3' point="2" />
-                <CoinCard title='Day 4' point="2" />
-                <CoinCard title='Day 5' point="3" />
-                <CoinCard title='Day 6' point="3" />
-                <CoinCard title='Day 7' point="3" />
+                <CoinCard
+                  title={"Day 1"}
+                  point={"1"}
+                  isDisable={dailyCheckinList?.day1 !== null}
+                />
 
-
-
+                <CoinCard
+                  title="Day 2"
+                  point="2"
+                  isDisable={dailyCheckinList?.day2 !== null}
+                />
+                <CoinCard
+                  title="Day 3"
+                  point="2"
+                  isDisable={dailyCheckinList?.day3 !== null}
+                />
+                <CoinCard
+                  title="Day 4"
+                  point="2"
+                  isDisable={dailyCheckinList?.day4 !== null}
+                />
+                <CoinCard
+                  title="Day 5"
+                  point="3"
+                  isDisable={dailyCheckinList?.day5 !== null}
+                />
+                <CoinCard
+                  title="Day 6"
+                  point="3"
+                  isDisable={dailyCheckinList?.day6 !== null}
+                />
+                <CoinCard
+                  title="Day 7"
+                  point="3"
+                  isDisable={dailyCheckinList?.day7 !== null}
+                />
               </div>
               <div className="checkIn__button__container">
                 <button
                   onClick={claimCheckinReward}
                   className="checkIn__button"
                   style={{
-                    background: 'rgb(253, 221, 12)',
-                    color: 'rgb(255, 255, 255)',
+                    background: "rgb(253, 221, 12)",
+                    color: "rgb(255, 255, 255)",
                   }}
                 >
                   Check In
@@ -186,15 +147,10 @@ const CheckIn = () => {
               </div>
               <div className="checkIn__bottom__screen__img">
                 <center>
-                  <img
-                    src={treasure}
-                    alt=""
-                    className="img1"
-                  />
+                  <img src={treasure} alt="" className="img1" />
                 </center>
               </div>
             </div>
-
           </div>
         </div>
       </div>
@@ -202,11 +158,17 @@ const CheckIn = () => {
   );
 };
 
-const CoinCard = ({ title, point }) => (
+const CoinCard = ({ title, point, isDisable }) => (
   <div className="checkIn__screen__col">
     <center>
       <div className="checkIn__screen__col__day">{title}</div>
-      <img src={coin} alt="" height="40" className="checkIn__screen__col__img" />
+      <img
+        style={{ opacity: isDisable ? "0.5" : "1" }}
+        src={coin}
+        alt=""
+        height="40"
+        className="checkIn__screen__col__img"
+      />
       <div className="checkIn__screen__col__bonus">
         <span>+</span> {point}
       </div>

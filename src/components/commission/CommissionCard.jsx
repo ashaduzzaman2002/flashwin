@@ -15,7 +15,7 @@ const CommissionCard = ({ data }) => {
   console.log(data);
 
   return (
-    <div className="invitePageIncomeBox">
+    <div className="invitePageIncomeBox" style={{color: '#fff'}}>
       <div className="invitePageIncomeBoxLeft">
         <div className="invitePageIncomeBoxIcon">
           <img

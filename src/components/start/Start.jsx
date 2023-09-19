@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 const Start = ({ name, startGame, game, setStartCart }) => {
   const [contactPoint, setContactPoint] = useState(10);
   const [amount, setAmount] = useState(contactPoint);
+  const {fetchWallet} = useContext(AuthContext)
   useEffect(() => {
     setAmount(contactPoint);
   }, [contactPoint]);

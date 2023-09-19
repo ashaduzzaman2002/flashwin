@@ -50,6 +50,7 @@
   color: #fff;
   font-weight: 500;
   font-size: 17px;
+  cursor: pointer;
 }
 
 .invitePageMenuOptions {
@@ -57,12 +58,13 @@
   align-items: center;
   justify-content: space-between;
   padding: 0;
-  margin-top: 30px;
+  margin-top: 10px;
 }
 
 .invitePageMenuCol {
   flex-basis: calc(100% / 3);
   width: 100%;
+  cursor: pointer;
 }
 
 .invitePageBottom {

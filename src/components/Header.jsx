@@ -1,12 +1,16 @@
-import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-const Header = ({ title, path, btn }) => {
+const Header = ({ title, path, btn, btnPath }) => {
   const navigate = useNavigate();
   return (
     <div className="app__top__nav">
-      <Link to={path || '/'} style={{cursor: 'default'}} className="top__nav__cols">
-        <div className="top__nav__back__btn">
+      <Link
+        to={path || "/"}
+        style={{ cursor: "default" }}
+        className="top__nav__cols"
+      >
+        <div className="top__nav__back__btn" style={{cursor: 'pointer'}}>
           <svg
             stroke="currentColor"
             fill="currentColor"
@@ -20,15 +24,28 @@ const Header = ({ title, path, btn }) => {
           </svg>
         </div>
       </Link>
-      <div className="top__nav__cols">
+      <div className="top__nav__cols" style={{ flexBasis: "calc(100% / 2)" }}>
         <center>
-          <div className="top__nav__title" style={{fontWeight: '400', fontSize: '18px'}}>{title}</div>
+          <div
+            className="top__nav__title"
+            style={{ fontWeight: "400", fontSize: "18px" }}
+          >
+            {title}
+          </div>
         </center>
       </div>
-      <div className="top__nav__cols">
-        {/* <div onClick={() => navigate(path)} className="recharge__records__button">
-          {btn}
-        </div> */}
+      <div className="top__nav__cols" >
+        {btn ? (
+          <div
+            onClick={() => navigate(btnPath)}
+            className="recharge__records__button"
+            style={{cursor: 'pointer'}}
+          >
+            {btn}
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

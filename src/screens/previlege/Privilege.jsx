@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './privilege.css';
 import { bar1, bar2, bar3, privilege } from '../../assets';
 import { dbObject } from '../../helper/constant';
+import Header from '../../components/Header';
 
 const Privilege = () => {
   const [people, setPeople] = useState(1);
@@ -57,6 +58,7 @@ const Privilege = () => {
 
   return (
     <div className="container">
+      <Header path='/invite' />
       <div className="privilege-container">
         <div className="privilege-header">
           <h1>FlashWin</h1>

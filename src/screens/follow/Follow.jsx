@@ -4,7 +4,7 @@ import {telegram} from '../../assets'
 import axios from 'axios';
 import {baseURL} from '../../helper/constant'
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../context/AuthContext';
+import Header from '../../components/Header';
 
 const Follow = () => {
   const [data, setData] = useState([])
@@ -25,7 +25,7 @@ const Follow = () => {
   return (
     <div className="container">
       <div className="follow-container">
-        <h2>Follow Us</h2>
+        <Header title={'Follow Us'} path={'/profile'} />
 
         <div className='follow-cards'>
           {

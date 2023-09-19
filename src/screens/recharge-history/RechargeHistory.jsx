@@ -1,14 +1,15 @@
-import { useEffect, useState } from 'react';
-import { dbObject } from '../../helper/constant';
-import './rechargehistory.css';
-import { upi } from '../../assets';
+import { useEffect, useState } from "react";
+import { dbObject } from "../../helper/constant";
+import "./rechargehistory.css";
+import { upi } from "../../assets";
+import Header from "../../components/Header";
 
 const RechargeHistory = () => {
   const [rechargeList, setRechargeList] = useState([]);
 
   const fetchRechargeList = async () => {
     try {
-      const { data } = await dbObject.get('/payment/deposit/history');
+      const { data } = await dbObject.get("/payment/deposit/history");
       if (!data.error) {
         setRechargeList(data.result);
       }
@@ -22,21 +23,18 @@ const RechargeHistory = () => {
   }, []);
 
   return (
-    <div className="container">
+    <div className="container" style={{ paddingBottom: "0px" }}>
       <div className="recharge-history-container">
-        <h2>Recharge History</h2>
-
+        <Header path="/recharge" title="Recharge" />
         <div className="recharge-history-card-group">
           {rechargeList.map((items) => (
             <Card
               key={items.id}
               orderId={items.orderId}
               amount={items.amount}
-              date= {items.date}
+              date={items.date}
             />
           ))}
-
-         
         </div>
       </div>
     </div>
@@ -54,10 +52,10 @@ const Card = ({ orderId, amount, date }) => (
     </div>
 
     <div className="bottom">
-      <div className='amount'>
+      <div className="amount">
         <p>{Number(amount).toFixed(2)}</p>points
       </div>
-      <p style={{color: '#dbdbdb'}}>{date}</p>
+      <p style={{ color: "#dbdbdb" }}>{date}</p>
     </div>
   </div>
 );

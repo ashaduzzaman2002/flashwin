@@ -1,33 +1,27 @@
-import { createContext, useEffect, useState } from 'react';
-import { dbObject } from '../helper/constant';
-
+import { createContext, useEffect, useState } from "react";
+import { dbObject } from "../helper/constant";
 
 export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
-
-  const [user, setUser] = useState(null)
-  const [walletBalance, setWalletBalance] = useState('0.0');
-  const [commissionHistory, setCommissionHistory] = useState([])
-  const [loading, setLoading] = useState(false)
-  const [isLoggin, setIsLogin] = useState(false)
-
+  const [user, setUser] = useState(null);
+  const [walletBalance, setWalletBalance] = useState("0.0");
+  const [commissionHistory, setCommissionHistory] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [isLoggin, setIsLogin] = useState(false);
 
   const getUser = async () => {
     try {
-      setLoading(true)
+      setLoading(true);
       const { data } = await dbObject.get("/auth");
       console.log(data);
-      if(!data.error){
+      if (!data.error) {
         setUser(data.data);
       }
-      setLoading(false)
-
-     
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
   };
-
 
   const fetchWallet = async () => {
     try {
@@ -36,25 +30,39 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   const getCommissionHistory = async () => {
     try {
-      const {data} = await dbObject.get('/commision/history')
-      setCommissionHistory(data.data);
+      const { data } = await dbObject.get("/commision/history");
+      if (!data?.error) {
+        console.log(data);
+        setCommissionHistory(data.data);
+      }
     } catch (error) {
       console.log(error);
     }
-  }
-  
+  };
 
   useEffect(() => {
     getUser();
     fetchWallet();
-    getCommissionHistory()
+    getCommissionHistory();
   }, [isLoggin]);
 
   return (
-    <AuthContext.Provider value={{fetchWallet, user, walletBalance, commissionHistory, loading, setUser, setIsLogin }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider
+      value={{
+        fetchWallet,
+        user,
+        walletBalance,
+        commissionHistory,
+        loading,
+        setUser,
+        setIsLogin,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
   );
 };
